@@ -50,7 +50,7 @@ namespace BanSachMVC.Controllers
                     var user = JsonConvert.DeserializeObject<User>(content);
 
                     // Lưu thông tin người dùng vào Session
-                    HttpContext.Session.SetString("UserId", user.UserId.ToString());
+                    HttpContext.Session.SetInt32("UserId", user.UserId);
                     HttpContext.Session.SetString("UserName", user.Name);
 
                     // Chuyển hướng đến trang chủ sau khi đăng nhập thành công

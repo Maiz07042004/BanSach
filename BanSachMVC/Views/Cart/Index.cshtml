@@ -78,7 +78,7 @@ Purchase:
 
 				<li>
 					<div class="ss_login_box">
-						@if (!string.IsNullOrEmpty(userId))
+						@if (userId!=null)
 						{
 							<a href="/Logout">
 								<span>Logout</span>
@@ -327,7 +327,7 @@ Purchase:
 											</td>
 											<td>
 												<!-- Liên kết để xóa sản phẩm khỏi giỏ hàng -->
-												<a href="@Url.Action("DeleteItem", "Cart", new { id = item.BookId })">
+												<a href="@Url.Action("RemoveItem", "Cart", new { BookId = item.BookId })">
 													<i class="fa fa-trash"></i>
 												</a>
 											</td>

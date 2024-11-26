@@ -55,6 +55,7 @@ namespace BanSach.Controllers
             return Ok(book);
         }
 
+		//Thêm sách
 		// POST: api/books
 		[HttpPost]
 		public async Task<ActionResult<Book>> PostBook(Book book)

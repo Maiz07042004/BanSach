@@ -107,8 +107,8 @@ namespace BanSach.Controllers
 
 			return Ok(new { message = "Item added to cart successfully.", cartItem = cartItem });
 		}
-
-		// API Xoá item khỏi giỏ hàng
+		
+		//Xoá Item khỏi giỏ hàng
 		[HttpDelete("remove/{userId}/{cartItemId}")]
 		public async Task<ActionResult> RemoveItemFromCart(int userId, int cartItemId)
 		{
@@ -118,21 +118,22 @@ namespace BanSach.Controllers
 
 			if (cart == null)
 			{
-				return NotFound(new { message = "Cart not found." });
+				return NotFound(new { message = "Giỏ hàng không tìm thấy." });
 			}
 
-			var cartItem = cart.CartItems?.FirstOrDefault(ci => ci.CartItemId == cartItemId);
+			// Tìm sản phẩm trong giỏ hàng
+			var cartItem = cart.CartItems?.FirstOrDefault(ci => ci.BookId == cartItemId);
 			if (cartItem == null)
 			{
-				return NotFound(new { message = "Không tìm thấy sách" });
+				return NotFound(new { message = "Không tìm thấy sách trong giỏ hàng." });
 			}
 
-			// Xoá item khỏi giỏ hàng
+			// Xoá sản phẩm khỏi giỏ hàng
 			_context.CartItems.Remove(cartItem);
-			cart.UpdatedDate = DateTime.Now; // Cập nhật lại thời gian sửa giỏ hàng
+			cart.UpdatedDate = DateTime.Now;  // Cập nhật lại thời gian sửa giỏ hàng
 			await _context.SaveChangesAsync();
 
-			return Ok(new { message = "Item removed from cart successfully." });
+			return Ok(new { message = "Sản phẩm đã được xóa khỏi giỏ hàng thành công." });
 		}
 
 		// API Cập nhật số lượng item trong giỏ hàng

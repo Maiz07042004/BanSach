@@ -23,9 +23,9 @@ namespace BanSachMVC.Controllers
 				var viewModel = new CartViewModel();
 
 				// Lấy userId từ session
-				var userId = HttpContext.Session.GetString("UserId");
+				var userId = HttpContext.Session.GetInt32("UserId");
 
-				if (string.IsNullOrEmpty(userId))
+				if (userId==null)
 				{
 					// Nếu không có cookie, có thể chuyển hướng đến trang đăng nhập
 					return RedirectToAction("Index", "Login");
@@ -55,10 +55,10 @@ namespace BanSachMVC.Controllers
 					var content = await categoryResponse.Content.ReadAsStringAsync();
 					viewModel.Categories = JsonConvert.DeserializeObject<List<Category>>(content);
 				}
-				if (!string.IsNullOrEmpty(HttpContext.Session.GetString("UserId")) &&
+				if ((HttpContext.Session.GetInt32("UserId"))!=null &&
 					!string.IsNullOrEmpty(HttpContext.Session.GetString("UserName")))
 				{
-					var userId2 = HttpContext.Session.GetString("UserId");
+					var userId2 = HttpContext.Session.GetInt32("UserId");
 					var userName = HttpContext.Session.GetString("UserName");
 					ViewBag.UserId = userId2;
 					ViewBag.UserName = userName;
@@ -82,14 +82,14 @@ namespace BanSachMVC.Controllers
 		{
 			try
 			{
-				var userId = HttpContext.Session.GetString("UserId");
+				var userId = HttpContext.Session.GetInt32("UserId");
 
-				var data = new { idBook=request.idBook, quantity=request.quantity };
+				var data = new { idBook = request.idBook, quantity = request.quantity };
 				var jsonContent = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
-				var response = await _httpClient.PutAsync($"Carts/update/{userId}",jsonContent);
+				var response = await _httpClient.PutAsync($"Carts/update/{userId}", jsonContent);
 				if (response.IsSuccessStatusCode)
 				{
-					
+
 					return Json(new { success = true });
 				}
 				else
@@ -98,7 +98,7 @@ namespace BanSachMVC.Controllers
 					return Json(new { success = false });
 				}
 				// Trả về kết quả thành công
-				
+
 			}
 			catch (Exception ex)
 			{
@@ -106,11 +106,32 @@ namespace BanSachMVC.Controllers
 				return Json(new { success = false, message = ex.Message });
 			}
 		}
-		public async Task<IActionResult> DeleteItem(string idBook)
-		{
-			return View(Index());
-		}
 
+		[HttpGet]
+		public async Task<IActionResult> RemoveItem(int BookId)
+		{
+			
+			try
+			{
+				var userId = HttpContext.Session.GetInt32("UserId");
+				// Gửi yêu cầu đến API
+				var response = await _httpClient.DeleteAsync($"Carts/remove/{userId}/{BookId}");
+
+				// Kiểm tra xem phản hồi từ API có thành công không
+				if (response.IsSuccessStatusCode)
+				{
+					return RedirectToAction("Index");
+				}
+				else
+				{
+					return Json(new { success = false });
+				}
+			}
+			catch (Exception ex)
+			{
+				return Json(new { success = false, message = ex.Message });
+			}
+		} 
 
 	}
 }
