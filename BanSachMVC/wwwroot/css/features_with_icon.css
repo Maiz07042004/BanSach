@@ -1,0 +1,388 @@
+/*------------------------------------------------------------------
+
+Project:	A Future HTML UI Kit
+Version:	1.0.0
+Author: 	webstrot 
+
+------------------------------------------------------------------
+[Table of contents]
+ 
+ 
+1. section-1 css
+2. section-2 css
+3. section-3 css
+4. section-4 css
+5. section-5 css
+
+*/
+
+/* custom css */
+
+.section-1 h4 ,.section-2 h4 ,.section-3 h4 ,.section-4 h4 ,.section-5 h4{
+	margin-bottom:30px;
+}
+.section-1,.section-2,.section-3,.section-4,.section-5{
+	float:left;
+	width:100%;
+}
+.section-1{
+	padding-top: 100px;
+	padding-bottom: 100px;
+}
+.section-2{
+	padding-top: 80px;
+	padding-bottom: 80px;
+}
+.section-3{
+	padding-top: 100px;
+	padding-bottom: 100px;
+}
+.section-4{
+	padding-top: 80px;
+	padding-bottom: 80px;
+}
+.section-5{
+	padding-top: 100px;
+	padding-bottom: 100px;
+}
+.icon-wrapper1{
+	 padding-top:80px;
+ }
+.section-2,.section-4{
+	background:#f7f7f7;
+}
+
+/* custom css end*/
+
+
+/* section-1 css */
+
+.icon-text .fa{
+    margin: auto;
+    display: block;
+    text-align: center;
+    font-size: 35px;
+    color: #4285f4;
+	margin-bottom:30px;
+	-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	-ms-transition: all .5s;
+	-o-transition: all .5s;
+	transition: all .5s;
+}
+.icon-text h4{
+	-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	-ms-transition: all .5s;
+	-o-transition: all .5s;
+	transition: all .5s;
+}
+.icon-text:hover .fa{
+    color: #999999;
+	-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	-ms-transition: all .5s;
+	-o-transition: all .5s;
+}
+.icon-text:hover h4 a{
+    color: #4285f4;
+	-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	-ms-transition: all .5s;
+	-o-transition: all .5s;
+	transition: all .5s;
+}
+
+/* section-1 css  end*/
+
+
+/* section-2 css */
+
+.section-2 .icon-wrapper .fa{
+	-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	-ms-transition: all .5s;
+	-o-transition: all .5s;
+}	
+.section-2 .icon-wrapper:hover .fa{
+    color: #4285f4;
+	-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	-ms-transition: all .5s;
+	-o-transition: all .5s;
+	transition: all .5s;
+}
+.icon-wrapper h4{
+	margin-top:0;
+	-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	-ms-transition: all .5s;
+	-o-transition: all .5s;
+	transition: all .5s;
+}
+.icon-wrapper:hover h4 a{
+    color: #4285f4;
+	-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	-ms-transition: all .5s;
+	-o-transition: all .5s;
+	transition: all .5s;
+}
+.icon-img{
+	width:15%;
+	float:left;
+}
+.icon-img i{
+	font-size: 25px;
+	color: #999999
+}
+.icon-content{
+	font-size: 20px;
+    color: #111111;
+	float:left;
+	width:calc(100% - 15%);
+	padding-left:30px;
+	border-left:1px solid #ebebeb;
+}
+.icon-content p{
+	margin-top: 20px;
+}
+.icon-content a{
+	color: #111111;
+}
+.icon-wrapper{
+	padding-top:20px;
+}
+
+/* section-2 css end*/
+
+
+/* section-3 css */
+
+.section-3 .fa{
+	font-size: 25px;
+    color: #fff;
+    background: #4285f4;
+    border-radius: 50%;
+    margin: auto;
+    display: block;
+    text-align: center;
+	padding: 50px 0px 46px 0px;
+    width: 120px;
+	margin-bottom:34px;
+}
+.icon-section{
+	 border:1px solid #efefef;
+	 padding: 54px 20px;
+	 -webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	-ms-transition: all .5s;
+	-o-transition: all .5s;
+ }
+.icon-section:hover{
+	 border:1px solid #4285f4;
+	-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	-ms-transition: all .5s;
+	-o-transition: all .5s;
+}
+ .icon-section h4{
+	-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	-ms-transition: all .5s;
+	-o-transition: all .5s;
+	
+}
+.icon-section:hover h4 a{
+	color: #4285f4;
+	-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	-ms-transition: all .5s;
+	-o-transition: all .5s;
+	
+}
+ 
+/* section-3 css end*/
+
+
+/* section-4 css*/
+.gb_icon_wrapper:hover .gb_icon_img{
+	background:#4285f4;
+	color:#fff;
+	border:2px solid #4285f4 ;
+	-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	-ms-transition: all .5s;
+	-o-transition: all .5s;
+}
+ .gb_icon_wrapper:hover .gb_icon_img i{
+ 	color:#fff;
+transform:   rotate(360deg); 
+/*Firefox*/
+-moz-transform:rotate(360deg); 
+/*Microsoft Internet Explorer*/
+-ms-transform: rotate(360deg); 
+/*Chrome, Safari*/
+-webkit-transform: rotate(360deg); 
+/*Opera*/
+-o-transform:rotate(360deg); 
+	-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	-ms-transition: all .5s;
+	-o-transition: all .5s;
+	
+ }
+.gb_icon_img{
+	background: #fff;
+	width:54px;
+	height:82px;
+	border:2px solid #efefef;
+	text-align:center;
+	line-height:82px;
+	border-radius:35px;
+	float:left;
+	font-size: 20px;
+	color: #999999;
+	-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	-ms-transition: all .5s;
+	-o-transition: all .5s;
+}
+.gb_icon_wrapper:hover h4{
+	color:#4285f4;
+	-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	-ms-transition: all .5s;
+	-o-transition: all .5s;
+}
+.gb_icon_wrapper h4{
+	-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	-ms-transition: all .5s;
+	-o-transition: all .5s;
+}
+.gb_icon_content{
+	width:calc(100% - 54px);
+	float:left;
+	padding-left:20px;
+}
+.gb_icon_wrapper{
+	padding-top:20px;
+}
+/* section-4 css end*/
+
+
+/* section-5 css */
+
+.section-5 .fa{
+	margin: auto;
+    display: block;
+    text-align: center;
+    font-size: 18px;
+	color: #fff;
+	margin-bottom:30px;
+	padding: 28px 25px;
+	transform: rotate(-46deg);
+}
+.rotate{
+	transform: rotate(45deg);
+    margin: auto;
+    display: block;
+    width: 70px;
+    height: 70px;
+	background-color: #999999;
+	border-radius: 5px;
+	margin-bottom: 37px;
+	margin-top: -55px;
+	-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	-ms-transition: all .5s;
+	-o-transition: all .5s;
+}
+.main:hover .rotate{
+    background-color: #4285f4;
+transform:  rotateY(180deg) rotate(45deg); 
+/*Firefox*/
+-moz-transform:rotateY(180deg) rotate(45deg); 
+/*Microsoft Internet Explorer*/
+-ms-transform: rotateY(180deg) rotate(45deg); 
+/*Chrome, Safari*/
+-webkit-transform: rotateY(180deg) rotate(45deg); 
+/*Opera*/
+-o-transform:rotateY(180deg) rotate(45deg); 
+/*alter opacity*/
+	-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	-ms-transition: all .5s;
+	-o-transition: all .5s;
+
+}
+.main{
+    border: 1px solid #efefef;
+    padding: 20px;	
+	-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	-ms-transition: all .5s;
+	-o-transition: all .5s;
+}
+.main:hover{
+	border-color: #4285f4;
+	-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	-ms-transition: all .5s;
+	-o-transition: all .5s;
+}
+.main:hover h4{
+	color: #4285f4;
+	-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	-ms-transition: all .5s;
+	-o-transition: all .5s;
+}
+.main h4{
+	-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	-ms-transition: all .5s;
+	-o-transition: all .5s;
+}
+
+/* section-5 css  end*/
+
+
+/* media  query css for ipad */
+
+@media(min-width: 767px)and (max-width: 991px) {
+	
+.icon-text{
+    margin-bottom: 30px;	
+}
+.icon-section{
+	margin-bottom: 30px;
+}
+.main {
+    margin-bottom: 70px;
+}
+	
+}
+
+/* media query css for ipad end */
+
+
+/* media query css for mobile */
+
+@media(max-width: 767px){
+	
+.icon-text{
+    margin-bottom: 30px;	
+}
+.icon-section {
+    padding: 54px 12px;
+    margin-bottom: 20px;
+}
+.main {
+    border: 1px solid #efefef;
+    padding: 20px;
+    margin-bottom: 60px;
+}
+ 
+}

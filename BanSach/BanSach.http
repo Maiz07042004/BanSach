@@ -1,0 +1,6 @@
+@BanSach_HostAddress = http://localhost:5063
+
+GET {{BanSach_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

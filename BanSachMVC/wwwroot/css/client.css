@@ -1,0 +1,265 @@
+/*------------------------------------------------------------------
+
+Project:	A Future HTML UI Kit
+Version:	1.0.0
+Author: 	webstrot 
+
+------------------------------------------------------------------
+[Table of contents]
+ 
+1. Clients Area Start
+2. clientOne start
+3. clientTwo start
+4. clientThree start
+5. clientFour start
+6. clientFive start
+*/
+
+
+/* ===================================================
+			Clients Area Start
+====================================================== */
+
+#main-wrapper{
+	float:left;
+	width:100%;
+}
+
+.ptb-100 {
+	text-align:center;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+
+/*   clientOne start */
+
+.line-hr {
+	position: relative;
+	margin-bottom: 40px;
+}
+.clientOneSlider .owl-theme .owl-nav{
+	position: absolute;
+	left: 50%;
+	margin-left: -47px;
+	top: -70px;
+	padding: 0px 10px;
+	background-color: #fff;
+}
+.clientOneSlider .owl-theme .owl-nav .owl-prev,
+.clientOneSlider .owl-theme .owl-nav .owl-next{
+	background: #f7f7f7;
+  	width:25px;
+	height:25px;
+	line-height:18px;
+  	color: #949494;
+  	font-size: 13px;
+	-webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+}
+.clientOneSlider .owl-theme .owl-nav .owl-prev:hover ,
+.clientOneSlider .owl-theme .owl-nav .owl-next:hover {
+	background: #4285f4;
+	color: #fff;
+	-webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+}
+.clientOneSlider .owl-theme .owl-dots{
+	display:none;
+}
+.clientOneSlider .item {
+	border: 1px solid #f1f1f1;
+}
+.clientOneSlider .item img {
+	padding: 41px 61px;	
+	opacity: 0.5;
+	-webkit-transition      : all 0.5s ease 0s;
+    -moz-transition      : all 0.5s ease 0s;
+    -o-transition      : all 0.5s ease 0s;
+    transition      : all 0.5s ease 0s;
+}
+.clientOneSlider .item img:hover {
+	opacity: 1;
+}
+
+/*   clientOne end */
+
+/*   clientTwo start */
+
+.clientTwo {
+	background: #f7f7f7;
+}
+.clientTwo .row {
+	margin-bottom: 1px;
+}
+.clientTwo .row:last-of-type {
+	margin-bottom: 0px;
+}
+.clientTwo .pd-2 {
+	padding: 0px 2px 0px 0px;
+}
+.clientTwo .pd-2:last-of-type {
+	padding-right: 0px;
+}
+.clientTwo a {
+	display: block;
+	background: #fff;
+	text-align: center;
+	padding: 43px 0px;
+}
+.clientTwo a:hover {
+	background: transparent;
+}
+.clientTwo a img {
+	opacity: 0.5;
+	-webkit-transition      : all 0.8s ease 0s;
+    -moz-transition      : all 0.8s ease 0s;
+    -o-transition      : all 0.8s ease 0s;
+    transition      : all 0.8s ease 0s;
+}
+.clientTwo a:hover img {
+	opacity: 1;
+}
+@media (max-width: 768px){
+	.clientTwo .pd-2 {
+		margin-bottom: 1px;
+	}
+}
+
+/*   clientTwo end */
+
+/* clientThree start */
+.clientThreeSlider .owl-theme .owl-nav{
+	display:none;
+}
+.clientThreeSlider .item{
+	display:inline-block;
+	width: 100px;
+	height: 77px;
+}
+.clientThreeSlider .item img {
+	opacity: 0.3;
+	-webkit-transition      : all 0.8s ease 0s;
+    -moz-transition      : all 0.8s ease 0s;
+    -o-transition      : all 0.8s ease 0s;
+    transition      : all 0.8s ease 0s;
+}
+.clientThreeSlider .item img:hover {
+	opacity: 1;
+}
+.clientThreeSlider .owl-theme .owl-dots {
+	margin-top: 45px;
+}
+.clientThreeSlider .owl-theme .owl-dots .owl-dot.active span, 
+.clientThreeSlider .owl-theme .owl-dots .owl-dot:hover span {
+  background: #4285f4 !important;
+}
+.clientThreeSlider .owl-theme .owl-dots .owl-dot span {
+	margin: 5px 4px;
+}
+
+
+/* clientThree end */
+
+/* clientFour start */
+
+.clientFour {
+	background: #f7f7f7;
+}
+.clientFour a img {
+	width: 100%;
+	opacity: 0.3;
+	-webkit-transition      : all 0.8s ease 0s;
+    -moz-transition      : all 0.8s ease 0s;
+    -o-transition      : all 0.8s ease 0s;
+    transition      : all 0.8s ease 0s;
+}
+.clientFour a:hover img {
+	opacity: 1;
+}
+@media (max-width: 992px){
+    .clientFour .section-margin {
+        margin-bottom: 30px;
+    }
+}
+
+/* clientFour end */
+
+/*   clientFive start */
+
+.clientFive{
+	background: url('../assets/images/clients/client-5-bg.png') no-repeat center center;
+	background-size: cover;
+	position:relative;
+}
+.clientFive_overlay{
+	position: absolute;
+    top: 0%;
+    left: 0%;
+    right: 0%;
+    bottom: 0%;
+    background: #000;
+	opacity:0.3;
+}
+.clientFiveSlider{
+	float:left;
+	width:100%;
+}
+.clientFiveSlider .owl-theme .owl-dots{
+	display:none;
+}
+.clientFiveSlider .owl-theme .owl-nav {
+    margin-top: 30px;
+}
+.clientFiveSlider .owl-theme .owl-nav .owl-prev, 
+.clientFiveSlider .owl-theme .owl-nav .owl-next{
+	color: #999;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    line-height: 35px;
+    background: transparent;
+    border: 1px solid #999;
+    font-size: 20px;
+}
+
+.clientFiveSlider .owl-theme .owl-nav .owl-prev:hover, 
+.clientFiveSlider .owl-theme .owl-nav .owl-next:hover{
+	color: #fff;
+	border: 1px solid #fff;
+	background: transparent;
+}
+
+
+.clientFiveSlider .item {
+	background: rgba(104, 95, 86, 0.35);
+	padding: 41px 62px;	
+	-webkit-transition      : all 0.5s ease 0s;
+    -moz-transition      : all 0.5s ease 0s;
+    -o-transition      : all 0.5s ease 0s;
+    transition      : all 0.5s ease 0s;
+}
+.clientFiveSlider .item:hover {
+	background: rgba(110, 98, 87, 0.49);
+}
+.clientFiveSlider .item img {	
+	-webkit-transition      : all 0.5s ease 0s;
+    -moz-transition      : all 0.5s ease 0s;
+    -o-transition      : all 0.5s ease 0s;
+    transition      : all 0.5s ease 0s;	
+}
+.clientFiveSlider .item:hover img {
+	opacity: 1 !important;
+}
+
+/*   clientFive end */
+
+
+
+

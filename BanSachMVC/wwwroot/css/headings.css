@@ -1,0 +1,377 @@
+/*------------------------------------------------------------------
+
+Project:	A Future HTML UI Kit
+Version:	1.0.0
+Author: 	webstrot 
+
+------------------------------------------------------------------
+[Table of contents]
+
+
+1. Heading Styles Start
+2. headingOne
+3. headingTwo
+4. headingThree
+5. headingFour
+6. headingFive
+7. headingSix
+8. headingSeven
+9. headingEight
+10. headingNine
+11. headingTen
+12. headingEleven
+
+*/
+
+
+/* ===========================================
+Heading Styles Start
+============================================== */
+
+#main-wrapper{
+	float:left;
+	width:100%;
+}
+h2 {
+	margin: 0 0 15px;
+}
+.ptb-100 {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+.gray-bg {
+    background-color: #f7f7f7;
+}
+
+/*headingOne*/
+
+.headingOne {}
+.headingOne h2{
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+.headingOne ul {
+  margin-bottom: 20px;
+}
+.headingOne li {
+  display: inline-block;
+  margin-right: 20px;
+}
+@media only screen and (max-width : 480px) {
+  .headingOne li {
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+}
+.headingOne li:last-child {
+  margin-right: 0;
+}
+.headingOne li img{
+  border: 3px solid #f7f7f7;
+  width: 107px;
+  height: 52px;
+}
+
+/*headingTwo*/
+
+.headingTwo {}
+.headingTwo h2 {
+  font-size: 30px;
+  text-transform: uppercase;
+  display: inline-block;
+  margin-bottom: 0;
+  position: relative;
+}
+.headingTwo h2:before, 
+.headingTwo h2:after {
+  content: " ";
+  height: 10px;
+  width: 10px;
+  background-color: #4285f4;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  position: absolute;
+  top: 50%;
+  margin-top: -5px;
+}
+.headingTwo h2:before {
+  left: -28px;
+}
+.headingTwo h2:after {
+  right: -28px;
+}
+
+
+/*headingThree*/
+
+.headingThree {}
+.headingThree i{
+  font-size: 30px;
+  width: 85px;
+  height: 85px;
+  line-height: 85px;
+  color: #fff;
+  background-color: #4285f4;
+  border-radius: 50%;
+  margin-bottom: 30px;
+}
+.headingThree h2 {
+  font-size: 30px;
+}
+.headingThree p {
+  margin-bottom: 0;
+}
+
+
+
+/*headingFour*/
+
+.headingFour {}
+.headingFour span{
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #999999;
+}
+.headingFour h2 {
+  font-size: 30px;
+  padding-bottom: 25px;
+  text-transform: uppercase;
+  position: relative;
+}
+.headingFour h2:after {
+  content: "";
+  background: #4285f4;
+  width: 50px;
+  height: 1px;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  margin-left: -25px;
+}
+
+
+/*headingFive*/
+
+.headingFive {}
+.headingFive span.sub{
+  font-size: 12px;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 8px;
+  color:#999999;
+}
+.headingFive h2{
+  font-size: 30px;
+  line-height: 20px;
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+  padding: 0 30px;
+  margin-bottom: 0;
+  border-right: 1px solid #dadada;
+  border-left: 1px solid #dadada;
+}
+.headingFive h2::before,
+.headingFive h2::after {
+  content: "";
+  background: #dadada;
+  width: 100px;
+  height: 1px;
+  position: absolute;
+  top: 50%;
+}
+@media only screen and (max-width : 480px) {
+  .headingFive h2 {
+    font-size: 20px;;
+    padding: 0 10px;
+  }
+  .headingFive h2::before,
+  .headingFive h2::after {
+    width: 50px;
+  }
+}
+.headingFive h2::before {
+  right: 100%;
+}
+.headingFive h2::after {
+  left: 100%;
+}
+
+/*headingSix*/
+
+.headingSix {}
+.headingSix h2 {
+  font-size: 30px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.headingSix span {
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #313131;
+}
+.headingSix i {
+  font-size: 20px;
+  color: #4285f4;
+}
+
+/*headingSeven*/
+
+.headingSeven {}
+.headingSeven h2 {
+  font-size: 30px;
+  text-transform: uppercase;
+}
+.headingSeven span.bordered-icon {
+  color: #4285f4;
+  padding: 0 10px;
+  font-size: 16px;
+  line-height: 18px;
+  position: relative;
+  display: inline-block;
+}
+.headingSeven span.bordered-icon:before, 
+.headingSeven span.bordered-icon:after {
+  content: "";
+  background: #dadada;
+  width: 90px;
+  height: 1px;
+  top: 8px;
+  position: absolute;
+}
+.headingSeven span.bordered-icon:before {
+  left: 100%;
+}
+.headingSeven span.bordered-icon:after {
+  right: 100%;
+}
+
+
+/*headingEight*/
+
+.headingEight h2 {
+  font-size: 30px;
+  text-transform: uppercase;
+}
+.headingEight span.sub {
+  font-size: 20px;
+  color: #999999;
+}
+.headingEight span.dashed-border {
+  border: 1px dashed #dadada;
+  width: 200px;
+  position: relative;
+  display: inline-block;
+}
+.headingEight span.dashed-border::before, 
+.headingEight span.dashed-border::after {
+  content: "\f111";
+  font-family: FontAwesome;
+  font-size: 10px;
+  color: #4285f4;
+  position: absolute;
+  top: -8px;
+}
+.headingEight span.dashed-border::before {
+  left: -20px;
+}
+.headingEight span.dashed-border::after {
+  right: -20px;
+}
+
+
+/*headingNine*/
+
+.headingNine {}
+.headingNine h2{
+  font-size: 30px;
+  position: relative;
+  text-transform: capitalize;
+  padding-bottom: 25px;
+  margin-bottom: 0;
+}
+.headingNine h2:after {
+  content: "";
+  background: #dadada;
+  width: 118px;
+  height: 1px;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  margin-left: -59px;
+}
+.headingNine i {
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  margin-left: -5px;
+  font-size: 10px;
+  background-color: #fff;
+  color: #4285f4;
+  padding-bottom: 5px;
+  padding-right: 5px;
+  z-index: 100;
+  border-bottom: 1px solid #dadada;
+  border-right: 1px solid #dadada;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+/*headingTen*/
+
+.headingTen h2{
+  font-size: 30px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.headingTen p{
+  font-size: 15px;
+}
+.headingTen span.bottom-border {
+  background-color: #dadada;
+  height: 1px;
+  width: 130px;
+  position: relative;
+  display: inline-block;
+}
+.headingTen span.bottom-border::before, 
+.headingTen span.bottom-border::after {
+  content: "";
+  height: 7px;
+  width: 7px;
+  background-color: #4285f4;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  color: #4285f4;
+  position: absolute;
+  top: -3px;
+}
+.headingTen span.bottom-border::before {
+  left: 44%;
+}
+.headingTen span.bottom-border::after {
+  right: 43%;
+}
+
+
+
+/*headingEleven*/
+
+.headingEleven {}
+.headingEleven h2 {
+ 
+    font-size: 30px;
+    font-weight: 700;
+    display: inline-block;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #4285f4;
+}
+.headingEleven p {
+  margin-bottom: 0;
+}
+
+
+/* ===========================================
+Heading Styles END
+============================================== */

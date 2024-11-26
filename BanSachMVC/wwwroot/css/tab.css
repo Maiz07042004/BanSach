@@ -1,0 +1,580 @@
+/*------------------------------------------------------------------
+
+Project:	A Future HTML UI Kit
+Version:	1.0.0
+Author: 	webstrot 
+
+------------------------------------------------------------------
+[Table of contents]
+ 
+
+1. Tab Style Start
+2. tabOne start
+3. tabTwo start
+4. tabThree start
+5. tabFour start
+6. tabFive start
+7. tabSix start
+8. tabSeven start
+
+*/
+
+
+/* ===========================================
+Tab Style Start
+============================================== */
+
+#main-wrapper{
+	float:left;
+	width:100%;
+}
+.ptb-100 {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+.gray_bg {
+	background-color: #f7f7f7;
+}
+.nav-tabs.nav-justified>.active>a, 
+.nav-tabs.nav-justified>.active>a:focus, 
+.nav-tabs.nav-justified>.active>a:hover {
+	border-bottom-color: #f1f1f1;
+	background-color: #fff;
+	color: #4285f4;
+}
+
+/*tabOne start*/
+.tabOne .tab-panel {
+	
+}
+
+.tabOne .nav-tabs {
+	font-size: 10px;
+  	border-bottom: none;
+  	background-color: #f1f1f1;
+  	padding: 13px 30px;
+  	text-transform: uppercase;
+}
+.tabOne .nav-tabs>li.active {
+    position: relative;
+}
+.tabOne .nav-tabs>li.active::after {
+	content: "";
+	position: absolute;
+	left: 50%;
+	bottom: -5px;
+	margin-left: -10px;
+	border-top: 5px solid #4285f4;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+}
+.tabOne .nav-tabs>li>a {
+	line-height: 20px;
+	padding: 3px 14px;
+	border: 0;
+	border-radius: 20px;
+	background-color: #FFFFFF;
+	color: #999999;
+	margin-right: 10px;
+	transition: inherit;
+}
+
+.tabOne .nav-tabs>li.active>a, 
+.tabOne .nav-tabs>li.active>a:focus, 
+.tabOne .nav-tabs>li.active>a:hover {
+	color: #fff;
+	background-color: #4285f4;
+	border: 0;
+}
+
+@media (min-width : 992px) and (max-width : 1199px) {
+
+	.tabOne .nav-tabs {
+		padding: 13px 18px;
+	}
+
+	.tabOne .nav-tabs>li>a {
+		padding: 3px 8px;
+		margin-right: 5px;
+	}
+
+	.tabOne .nav-tabs>li:last-child>a {
+		margin-right: 0;
+	}
+
+}
+
+@media only screen and (min-width : 480px) and (max-width : 767px) {
+	.tabOne .tab-content{
+		padding: 30px;
+	}
+}
+
+@media (min-width : 768px) {
+	.tabOne .tab-content{
+		background-color: #fff;
+		padding: 30px;
+		border-bottom: 1px solid #f1f1f1;
+		border-right: 1px solid #f1f1f1;
+		border-left: 1px solid #f1f1f1;
+	}
+}
+/*tabOne end*/
+
+
+/*tabTwo start*/
+.tabTwo {
+	background-color: #f7f7f7;
+}
+.tabTwo .nav-tabs {
+	border: 1px solid #f1f1f1;
+	border-bottom: none;
+}
+.tabTwo .nav-tabs li {
+	/*border-top: 1px solid #f1f1f1;*/
+	border-right: 1px solid #fdfdfd;
+	border-bottom: 1px solid #f1f1f1;
+}
+.tabTwo .nav-tabs li.active {
+  	border-bottom: 1px solid transparent;
+}
+.tabTwo .nav-tabs li:last-child {
+  	border-right: 0;
+}
+.tabTwo .nav-tabs>li>a {
+	border: 0;
+	border-radius: 0;
+	background-color: #f1f1f1;
+	color: #969595;
+	height: 50px;
+	line-height: 30px;
+	padding: 0;
+}
+.tabTwo .nav-tabs>.active>a, 
+.tabTwo .nav-tabs>.active>a:focus, 
+.tabTwo .nav-tabs>.active>a:hover {
+	border: 0;
+	background-color: #fff;
+	color: #4285f4;
+}
+
+.tabTwo i{
+	padding: 20px 10px 0px 0px;
+}
+
+@media (min-width : 768px) {
+  .tabTwo .tab-content{
+    border: 1px solid #f1f1f1;
+    padding: 30px;
+    border-top: 0;
+    overflow: hidden;
+  }
+}
+.tabTwo .tab-pane img {
+  	margin-top: 8px;
+}
+.tabTwo .tab-pane img.pull-left {
+  	margin-right: 20px;
+}
+.tabTwo .tab-pane img.pull-right {
+  	margin-left: 20px;
+}
+/*collapse in small devices*/
+.tabTwo .panel-body img{
+  	margin-top: 8px;
+}
+.tabTwo .panel-body img.pull-left {
+  	margin-right: 20px;
+}
+.tabTwo .panel-body img.pull-right {
+  	margin-left: 20px;
+}
+
+.tabTwo .tab-pane p {
+  	margin-bottom: 15px;
+}
+.tabTwo .tab-pane p:last-of-type {
+  	margin-bottom: 0;
+}
+/*tabTwo end*/
+
+
+
+/*tabThree start*/
+.tabThree .tab-area{
+	border: 1px solid #f1f1f1;
+}
+.tabThree .row {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.tabThree .cs-margin{
+	margin-left: -15px;
+	margin-right: -15px;
+}
+
+.tabThree .nav {
+  	background-color: #f7f7f7;
+}
+
+.tabThree .nav-stacked>li {
+  	margin-top: 0px;
+  	
+}
+
+.tabThree .nav-pills>li>a {
+	border-radius: 0px; 
+	color: #969595;
+	padding: 13px 15px;
+}
+
+.tabThree .nav-pills>li.active>a,
+.tabThree .nav-pills>li.active>a:focus,
+.tabThree .nav-pills>li.active>a:hover {
+	background-color: #fff;
+	color: #4285f4;
+}
+
+
+.tabThree .tab-pane img {
+  	margin-top: 30px;
+  	margin-bottom: 30px;
+  	margin-left: 15px;
+}
+.tabThree .tab-pane img.pull-left {
+  	margin-right: 24px;
+}
+
+.tabThree .tab-content p{
+	padding-top: 25px;
+	overflow: hidden;
+}
+/*tabThree end*/
+
+
+/*tabFour start*/
+.tabFour .row {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+.tabFour .no-padding{
+	padding: 0;
+}
+.tabFour .tab-left-part {
+  background-color: #fff;
+  padding: 10px 10px;
+  border: 1px solid #f1f1f1;
+}
+
+.tabFour .tab-right-part{
+	background-color: #fff;
+	border-top: 1px solid #f1f1f1;
+	border-right: 1px solid #f1f1f1;
+	border-bottom: 1px solid #f1f1f1;
+}
+
+.tabFour .nav-stacked>li {
+  	margin-top: 12px;
+  	border-top: 1px solid #f1f1f1;
+  	/*border-bottom: 1px solid #f1f1f1;
+  	border-right: 1px solid #f1f1f1;
+  	border-left: 1px solid #f1f1f1;*/
+  	text-align: center;
+  	position: relative;
+}
+.tabFour .nav-stacked>li.active::after {
+	content: "";
+	position: absolute;
+	left: 100%;
+	top: 0%;
+	border-top: 22px solid transparent;
+	border-left: 10px solid #4285f4;
+	border-bottom: 22px solid transparent;
+}
+.tabFour .nav-stacked>li:first-child{
+	margin-top: 0;
+}
+.tabFour .nav-stacked>li.active{
+	border-right: 0;
+}
+.tabFour .nav-pills>li>a {
+	font-size: 14px;
+	border-radius: 0px; 
+	color: #969595;
+	background-color: #fff;
+	padding: 12px 0px;
+}
+.tabFour .nav-pills>li.active>a,
+.tabFour .nav-pills>li.active>a:focus,
+.tabFour .nav-pills>li.active>a:hover {
+	background-color: #4285f4;
+	color: #fff;
+}
+.tabFour .tab-content{
+	padding: 25px 25px;
+}
+.tabFour h2{
+	font-size: 15px;
+	color: #4285f4;
+	line-height:24px;
+}
+.tabFour .tab-pane img {
+	margin-top: 5px;
+	margin-bottom: 30px;
+	margin-left: 5px;
+}
+.tabFour .tab-pane img.pull-left {
+  	margin-right: 35px;
+}
+
+.tabFour .tab-content p{
+	padding-top: 25px;
+	overflow: hidden;
+}
+
+.tabFour .tab-content p{
+	padding-top: 20px;
+	overflow: hidden;
+}
+/*tabFour end*/
+
+
+/*tabFive start*/
+
+.tabFive .tab-panel {
+	margin-top: -40px;
+	padding: 0 30px;
+	border-bottom: 1px solid #f1f1f1;
+	border-right: 1px solid #f1f1f1;
+	border-left: 1px solid #f1f1f1;
+}
+
+
+.tabFive .nav-tabs>li>a {
+	font-size: 11px;
+	padding: 0;
+	margin-right: 4px;
+	line-height: 40px;
+	border: 0;
+	border-radius: 0px;
+	background-color: #f1f1f1;
+	color: #999999;
+	text-transform: uppercase;
+}
+
+.tabFive .nav-tabs>li:last-child a{
+	margin-right: 0px;
+}
+
+.tabFive .nav-tabs.nav-justified>.active>a, 
+.tabFive .nav-tabs.nav-justified>.active>a:focus, 
+.tabFive .nav-tabs.nav-justified>.active>a:hover {
+   	border: 0;
+   	color: #111111;
+}
+
+.tabFive .nav-tabs.nav-justified>.active>a i{
+	color: #4285f4;
+}
+
+.tabFive .tab-content {
+	margin: 35px auto;
+}
+.tabFive .nav-justified li a {
+	display: block;
+	background: rgba(255, 255, 255, 0.79);
+	color: #999999;
+}
+
+.tabFive i{
+	padding: 0px 8px 0px 0px;
+}
+
+@media (min-width : 992px) and (max-width : 1199px) {
+    .tabFive .tab-panel {
+		padding: 0 10px;
+	}
+}
+
+@media (min-width : 768px) and (max-width : 991px) {
+	.tabFive .tab-image img{
+		width: 100%;
+	}
+}
+/*tabFive end*/
+
+
+/*tabSix start*/
+.tabSix .tab-area{
+	background-color: #fff;
+}
+
+.tabSix .row {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.tabSix .cs-margin{
+	margin-left: -15px;
+	margin-right: -15px;
+}
+
+.tabSix .nav {
+  background-color: #f7f7f7;
+}
+
+.tabSix .nav-stacked>li {
+  	margin-top: 0px;
+  	border-bottom: 4px solid #f7f7f7;
+  	border-right: 4px solid #f7f7f7;
+  	position: relative;
+  	text-align: center;
+}
+
+.tabSix .nav-stacked>li:last-child{
+	border-bottom: 0;
+}
+
+.tabSix .nav-stacked>li.active{
+	border-right: 0;
+}
+
+.tabSix .nav-pills>li>a {
+	font-size: 14px;
+	border-radius: 0px; 
+	color: #999999;
+	background-color: #fff;
+	padding: 25px 0px;
+}
+
+.tabSix .nav-pills>li.active>a,
+.tabSix .nav-pills>li.active>a:focus,
+.tabSix .nav-pills>li.active>a:hover {
+	background-color: #fff;
+	color: #111111;
+	box-shadow: inset 2px 0px 0px #4285f4;
+}
+
+
+.tabSix .nav-pills>li.active i{
+	color: #4285f4;
+}
+
+.tabSix .nav-pills>li.active::after {
+	content: "";
+	position: absolute;
+	left: 0%;
+	top: 45%;
+	border-top: 7px solid transparent;
+	border-left: 6px solid #4285f4;
+	border-bottom: 7px solid transparent;
+}
+
+.tabSix i{
+	display: block;
+	height: 30px;
+	width: 30px;
+	line-height: 30px;
+	color: #dadada;
+	border: 1px solid #f1f1f1;
+	border-radius: 50%;
+	text-align: center;
+	margin: 5px auto;
+}
+
+.tabSix .tab-content{
+	padding: 35px 25px;
+}
+
+.tabSix h2{
+	font-size: 15px;
+	color: #4285f4;
+}
+
+.tabSix .tab-content p{
+	padding-top: 5px;
+	overflow: hidden;
+}
+/*tabSix end*/
+
+
+/*tabSeven start*/
+.tabSeven {}
+.tabSeven .nav-tabs {
+	border: 1px solid #fff;
+	border: none;
+}
+.tabSeven .nav-tabs>li {
+	border-top: 2px solid #f1f1f1;
+	border-bottom: 1px solid #fff;
+	border-right: 1px solid #fff;
+	background-color: #f7f7f7;
+	height: 53px;
+}
+.tabSeven .nav-tabs>li:last-child {
+    border-right: 1px solid #fff;
+}
+.tabSeven .nav-tabs>li.active {
+	border-top: 2px solid transparent;
+	border-bottom: 1px solid transparent;
+	background-color: #f7f7f7;
+	/*margin-top: -2px;*/
+}
+
+.tabSeven .nav-tabs>li>a {
+	background-color: #f7f7f7;
+	border: 0;
+	border-radius: 0;
+	color: #999999;
+	margin-right: 0;
+	line-height: 50px;
+	padding: 0 30px;
+	transition: inherit;
+}
+.tabSeven .nav>li>a:focus, 
+.tabSeven .nav>li>a:hover {
+    background-color: transparent;
+}
+.tabSeven .nav-tabs>.active>a, 
+.tabSeven .nav-tabs>.active>a:focus, 
+.tabSeven .nav-tabs>.active>a:hover {
+	color: #4285f4;
+	line-height: 50px;
+	border: 0;
+	box-shadow: inset 0px 2px 0px #4285f4;
+}
+
+
+.tabSeven .tab-content{
+	background-color: #f7f7f7;
+}
+
+@media (min-width : 768px) {
+	  .tabSeven .tab-content{
+	    padding: 30px;
+	  }
+}
+.tabSeven .tab-pane img {
+  	margin-top: 8px;
+}
+.tabSeven .tab-pane img.pull-left {
+  	margin-right: 20px;
+}
+.tabSeven .tab-pane img.pull-right {
+  	margin-left: 20px;
+}
+/*collapse in small devices*/
+.tabSeven .panel-body img{
+  	margin-top: 8px;
+}
+.tabSeven .panel-body img.pull-left {
+  	margin-right: 20px;
+}
+.tabSeven .panel-body img.pull-right {
+  	margin-left: 20px;
+}
+/*tabSeven end*/
+
+
+

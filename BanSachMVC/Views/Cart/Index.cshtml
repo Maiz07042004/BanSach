@@ -1,0 +1,726 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<!--
+Template Name: big basket
+Version: 1.0.0
+Author:
+Website:
+Purchase:
+-->
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+<head>
+	<meta charset="utf-8" />
+	<title>big basket Responsive HTML Template</title>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<meta name="description" content="big basket" />
+	<meta name="keywords" content="big basket, Ecommerce, Store, Mall, online Shopping" />
+	<meta name="author" content="" />
+	<meta name="MobileOptimized" content="320" />
+	<!--srart theme style -->
+	<link rel="stylesheet" type="text/css" href="css/animate.css" />
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
+	<link rel="stylesheet" type="text/css" href="css/owl.carousel.css" />
+	<link rel="stylesheet" type="text/css" href="css/owl.theme.default.css" />
+	<link rel="stylesheet" type="text/css" href="css/magnific-popup.css" />
+	<link rel="stylesheet" type="text/css" href="css/fonts.css" />
+	<link rel="stylesheet" type="text/css" href="css/dl-menu.css" />
+	<link rel="stylesheet" type="text/css" href="css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="css/camera.css" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="stylesheet" type="text/css" href="css/responsive.css" />
+	<link rel="stylesheet" type="text/css" href="css/sidebar.css" />
+	<!-- favicon links -->
+	<link rel="shortcut icon" type="image/png" href="images/header/favicon.png" />
+</head>
+
+<body>
+	@{
+		var userId = ViewBag.UserId;
+		var userName = ViewBag.UserName;
+	}
+	<!-- preloader Start -->
+	<div id="preloader">
+		<div id="status">
+			<img src="images/header/preloader.gif" id="preloader_image" alt="loader">
+		</div>
+	</div>
+	<!-- Top Scroll Start -->
+	<a href="javascript:" id="return-to-top"><i class="fa fa-angle-up"></i></a>
+	<!-- Top Scroll End -->
+	<!-- Header Wrapper Start -->
+	<div class="ss_middle_header_wrapper">
+		<div class="ss_logo">
+			<a href="index.html">
+				<img src="images/header/logo.png" alt="Logo" title="big basket" class="img-responsive">
+			</a>
+		</div>
+		<div class="ss_info_area">
+			<ul>
+				<li>
+					<div class="ss_search_box">
+						<input type="text" placeholder="Search for products">
+						<button><i class="fa fa-search" aria-hidden="true"></i></button>
+
+					</div>
+				</li>
+
+				<li>
+					<div class="ss_login_box">
+						@if (!string.IsNullOrEmpty(userId))
+						{
+							<a href="/Logout">
+								<span>Logout</span>
+								<img src="images/header/user_icon.png" alt="Logout" title="Logout" class="img-responsive">
+							</a>
+						}
+						else
+						{
+							<a href="/Login">
+								<span>Login or Register</span>
+								<img src="images/header/user_icon.png" alt="Login" title="Login" class="img-responsive">
+							</a>
+						}
+					</div>
+				</li>
+				<li>
+					<div class="ss_cart_value">
+						<a href="/Cart">
+							<p>3</p>
+							<img src="images/header/cart_icon.png" alt="Cart" title="Cart">
+							<span>cart: <ins>$ 25.00</ins></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<div class="ss_cart_inner_main_section">
+									<div class="ss_cart_img_wrapper">
+										<img src="images/header/cart_img.jpg" alt="cart_img">
+									</div>
+									<div class="ss_cart_img_cont_wrapper">
+										<h3>Product item</h3>
+										<h4>Product category</h4>
+										<span>x</span>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="ss_cart_inner_main_section ss_cart_inner_main_section2">
+									<div class="ss_cart_img_wrapper">
+										<img src="images/header/cart_img.jpg" alt="cart_img">
+									</div>
+									<div class="ss_cart_img_cont_wrapper">
+										<h3>Product item</h3>
+										<h4>Product category</h4>
+										<span>x</span>
+									</div>
+								</div>
+							</li>
+							<li>
+								<a href="/checkout" class="ss_check_btn">Checkout</a>
+							</li>
+						</ul>
+					</div>
+
+
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- Header Wrapper End -->
+	<div class="ss_categories_box">
+		<nav>
+			<ul class="list-group vertical-menu yamm make-absolute nav">
+				<li class="list-group-item button-dropdown">
+					<a href="javascript:void(0)" class="dropdown-toggle fisrt_drop">
+						<span><i class="fa fa-list-ul"></i> All Departments</span>
+					</a>
+					<ul class="dropdown-menu">
+						@foreach (var itemDanhMuc in Model.Categories)
+						{
+							<li class="yamm-tfw menu-item menu-item-has-children animate-dropdown dropdown">
+								<a title="Computers &amp; Accessories" data-hover="dropdown" href="@Url.Action("Category", "Home", new { id = itemDanhMuc.CategoryId })" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">
+									<i class="fa fa-user" aria-hidden="true"></i>
+									@itemDanhMuc.CategoryName
+								</a>
+							</li>
+						}
+					</ul>
+				</li>
+			</ul>
+		</nav>
+	</div>
+
+	<!-- Slider Wrapper Start -->
+	<div class="ss_main_slider_wrapper">
+		<div class="ss_header_wrapper">
+			<div class="prs_menu_main_wrapper">
+				<nav class="navbar navbar-default">
+					<div id="dl-menu" class="xv-menuwrapper responsive-menu">
+						<div class="ss_menu_btn dl-trigger" id="menu_click">
+							<div class="bar1"></div>
+							<div class="bar2"></div>
+							<div class="bar3"></div>
+						</div>
+						<div class="clearfix"></div>
+						<ul class="dl-menu">
+							<li class="parent">
+								<a href="#">Home</a>
+
+							</li>
+
+							<li class="parent">
+								<a href="#">Shop</a>
+
+							</li>
+							<li class="parent">
+								<a href="#">Blog</a>
+
+							</li>
+
+							<li class="parent">
+								<a href="contact.html">Contact</a>
+							</li>
+							<li class="parent visible-xs">
+								<a href="#">Cart &nbsp;<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+								<ul class="lg-submenu">
+									<li>
+										<div class="ss_cart_inner_main_section">
+											<div class="ss_cart_img_wrapper">
+												<img src="images/header/cart_img.jpg" alt="cart_img">
+											</div>
+											<div class="ss_cart_img_cont_wrapper">
+												<h3><a href="#">Product item</a></h3>
+												<h4>Product category</h4>
+												<span>x</span>
+											</div>
+										</div>
+									</li>
+									<li>
+										<div class="ss_cart_inner_main_section">
+											<div class="ss_cart_img_wrapper">
+												<img src="images/header/cart_img.jpg" alt="cart_img">
+											</div>
+											<div class="ss_cart_img_cont_wrapper">
+												<h3><a href="#">Product item</a></h3>
+												<h4>Product category</h4>
+												<span>x</span>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+					<!-- /dl-menuwrapper -->
+				</nav>
+			</div>
+			<div class="ss_right_menu">
+				<ul>
+					<li class="ss_menu_toggle_text">
+						<a href="#">Menu</a>
+					</li>
+					<li class="ss_menu_toggle_text2">
+						<a href="#">20% Today’s Deals</a>
+					</li>
+					<li class="ss_menu_toggle_text2">
+						<a href="#">Customer Service</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	</div>
+	<!-- Slider Wrapper End -->
+	<!-- ss inner title Wrapper Start -->
+	<div class="ss_inner_title_wrapper">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="ss_inner_title_cont_wrapper">
+						<ul>
+							<li><a href="#"><i class="fa fa-home"></i></a>&nbsp;&nbsp; ></li>
+							<li>Product&nbsp;&nbsp; ></li>
+							<li>Shopping&nbsp;&nbsp; ></li>
+							<li>Cart</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--cart product wrapper Wrapper Start -->
+	<div class="cart_product_wrapper">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="btc_shop_single_prod_right_section shop_product_single_head related_pdt_shop_head">
+						<h1>Your cart Products (04)</h1>
+					</div>
+				</div>
+				<div class="shop_cart_page_wrapper">
+					<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+						<div class="table-responsive cart-calculations">
+							<table class="table">
+
+								<thead class="cart_table_heading">
+									<tr>
+										<th>item</th>
+
+										<th>product</th>
+										<th>&nbsp;</th>
+										<th> price</th>
+
+										<th>Quantity</th>
+
+										<th>Total price</th>
+										<th>&nbsp;</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											1
+										</td>
+										<td>
+											<div class="table_cart_img">
+												<figure>
+													<img src="images/content/cart_1.png" alt="" />
+												</figure>
+											</div>
+											<div class="table_cart_cntnt">
+												<h1>Brand new phone</h1>
+												<p>color : black </p>
+											</div>
+										</td>
+										<td></td>
+										<td class="cart_page_price">$199.00</td>
+										<td>
+											<input value="1" type="number" />
+										</td>
+										<td class="cart_page_totl">$299.00</td>
+										<td>
+											<a href="#"> <i class="fa fa-trash"></i></a>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											2
+										</td>
+										<td>
+											<div class="table_cart_img">
+												<figure>
+													<img src="images/content/cart_1.png" alt="" />
+												</figure>
+											</div>
+											<div class="table_cart_cntnt">
+												<h1>Brand new phone</h1>
+												<p>color : black </p>
+											</div>
+										</td>
+										<td></td>
+										<td class="cart_page_price">$199.00</td>
+										<td>
+											<input value="1" type="number" />
+										</td>
+										<td class="cart_page_totl">$399.00</td>
+										<td>
+											<a href="#"> <i class="fa fa-trash"></i></a>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											3
+										</td>
+										<td>
+											<div class="table_cart_img">
+												<figure>
+													<img src="images/content/cart_1.png" alt="" />
+												</figure>
+											</div>
+											<div class="table_cart_cntnt">
+												<h1>Brand new phone</h1>
+												<p>color : black </p>
+											</div>
+										</td>
+										<td></td>
+										<td class="cart_page_price">$99.00</td>
+										<td>
+											<input value="1" type="number" />
+										</td>
+										<td class="cart_page_totl">$199.00</td>
+										<td>
+											<a href="#"> <i class="fa fa-trash"></i></a>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											4
+										</td>
+										<td>
+											<div class="table_cart_img">
+												<figure>
+													<img src="images/content/cart_1.png" alt="" />
+												</figure>
+											</div>
+											<div class="table_cart_cntnt">
+												<h1>Brand new phone</h1>
+												<p>color : black </p>
+											</div>
+										</td>
+										<td></td>
+										<td class="cart_page_price">$199.00</td>
+										<td>
+											<input value="1" type="number" />
+										</td>
+										<td class="cart_page_totl">$299.00</td>
+										<td>
+											<a href="#"> <i class="fa fa-trash"></i></a>
+										</td>
+									</tr>
+									<tr>
+
+										<td> </td>
+										<td class="shop_btn_wrapper shop_car_btn_wrapper">
+
+											<ul>
+												<li>
+													<a href="#">continue shopping</a>
+												</li>
+											</ul>
+
+										</td>
+										<td> </td>
+										<td> </td>
+										<td></td>
+
+										<td class="cart_btn_cntnt"> Sub Total : <span>$1192.00 </span> </td>
+										<td></td>
+
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+						<div class="estimate_shiping_Wrapper_cntnt estimate_shiping_Wrapper_cntnt_2">
+							<div class="btc_shop_single_prod_right_section shop_product_single_head related_pdt_shop_head related_pdt_shop_head_2">
+								<h1>coupan code enetr here : </h1>
+								<div class="lr_nl_form_wrapper">
+									<input type="text" placeholder="Type Your Code">
+									<button type="submit">apply</button>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+
+						<div class="shipping_Wrapper">
+							<div class="btc_shop_single_prod_right_section shop_product_single_head related_pdt_shop_head related_pdt_shop_head_2">
+								<h1>estimate shipping : </h1>
+							</div>
+							<div class="estimate_shiping_Wrapper_cntnt">
+								<div class="custome-select style2">
+									<span>Select country <i class="fa fa-angle-down"></i></span>
+									<select>
+										<option>United States</option>
+										<option>Austraila</option>
+										<option>London</option>
+									</select>
+								</div>
+
+								<div class="custome-select style2">
+									<span>Select State <i class="fa fa-angle-down"></i></span>
+									<select>
+										<option>United States</option>
+										<option>Austraila</option>
+										<option>London</option>
+									</select>
+								</div>
+								<input type="text" class="form-control" placeholder="Enter ZIP code" />
+								<div class="shop_btn_wrapper shop_btn_wrapper_shipping">
+									<ul>
+										<li>
+											<a href="#">check</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="estimate_shiping_Wrapper_cntnt estimate_shiping_Wrapper_repsnse">
+
+								<table class="table">
+									<tbody>
+										<tr>
+											<th>Sub Total : </th>
+											<td><span class="price">$1,00.00</span></td>
+										</tr>
+										<tr>
+											<th>IGST 18% :</th>
+											<td><span class="price">$200.00</span></td>
+										</tr>
+										<tr>
+											<th>CGST 20% :</th>
+											<td><span class="price">$200.00</span></td>
+										</tr>
+										<tr>
+											<th> Discount:</th>
+											<td><span class="price">-$200.00</span></td>
+										</tr>
+										<tr>
+											<th class="cart_btn_cntnt"> Sub Total :</th>
+											<td><span class="cart_btn_cntnt_clr">$1192.00 </span> </td>
+										</tr>
+									</tbody>
+								</table>
+								<div class="shop_btn_wrapper shop_btn_wrapper_shipping">
+									<ul>
+										<li>
+											<a href="#">checkout</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- cart product wrapper end -->
+	<!-- Newsletter Wrapper Start -->
+	<div class="ss_newsletter_wrapper">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+					<div class="ss_newsletter_text">
+						<h3><i class="fa fa-envelope-o" aria-hidden="true"></i> subscribe Our Newsletter</h3>
+					</div>
+				</div>
+				<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+					<div class="ss_newsletter_field">
+						<input type="text" placeholder="Type your email address...">
+						<button type="submit">Subscribe</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Newsletter Wrapper End -->
+	<!-- Footer Wrapper Start -->
+	<div class="ss_footer_wrapper">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+					<div class="widget ss_footer_widget">
+						<h4 class="widget-title"><i class="fa fa-user" aria-hidden="true"></i> My Account</h4>
+						<ul>
+							<li>
+								<a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> My Account</a>
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Personal Information</a>
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Address</a>
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Discount</a>
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Order History</a>
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> My Credit Slip</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+					<div class="widget ss_footer_widget">
+						<h4 class="widget-title"><i class="fa fa-user" aria-hidden="true"></i> Our Services</h4>
+						<ul>
+							<li>
+								<a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Shipping & Return</a>
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> International Shipping</a>
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Affliates</a>
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Careers</a>
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> FAQ’s</a>
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Secure Shoping</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+					<div class="widget ss_footer_widget">
+						<h4 class="widget-title"><i class="fa fa-user" aria-hidden="true"></i> company info</h4>
+						<ul>
+							<li>
+								<a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> About Us</a>
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Delivery Information</a>
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Pribacy & Policy</a>
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Terms & Conditions</a>
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Manufactures</a>
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Suppliers</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+					<div class="widget ss_address_widget">
+						<h4 class="widget-title"><i class="fa fa-user" aria-hidden="true"></i> Get In Touch</h4>
+						<ul>
+							<li>
+								<span>Head Office:</span>
+								<p>Web Company Name, 125, Colis Street ABC45 India #010101</p>
+							</li>
+							<li>
+								<span>Phone:</span>
+								<p>
+									+1-804-548-5214
+									<br>+1-804-548-5215
+								</p>
+							</li>
+							<li>
+								<span>Email:</span>
+								<p>
+									<a href="#">store@example.com</a>
+									<br><a href="#">support@example.com</a>
+								</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ss_middle_footer_wrapper">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+						<div class="ss_payfooter_wrapper">
+							<h4>Payment Getways</h4>
+							<ul>
+								<li>
+									<a href="#"><i class="fa fa-cc-paypal" aria-hidden="true"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="fa fa-cc-mastercard" aria-hidden="true"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="fa fa-cc-discover" aria-hidden="true"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="fa fa-cc-visa" aria-hidden="true"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="fa fa-cc-stripe" aria-hidden="true"></i></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+						<div class="ss_socialfooter_wrapper">
+							<h4>connect always</h4>
+							<ul>
+								<li>
+									<a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="fa fa-skype" aria-hidden="true"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ss_copyright_wrapper">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<p>© Copyright 2017 by <a href="#">big basket</a> - All Right Reserved</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Footer Wrapper End -->
+	<!--main js file start-->
+	<script src="js/jquery_min.js"></script>
+	<script src="js/wow.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/owl.carousel.js"></script>
+	<script src="js/modernizr.js"></script>
+	<script src="js/jquery.magnific-popup.js"></script>
+	<script src="js/jquery.dlmenu.js"></script>
+	<script src="js/jquery.sticky.js"></script>
+	<script src="js/jquery.menu-aim.js"></script>
+	<script src="js/camera.min.js"></script>
+	<script src="js/jquery.easing.1.3.js"></script>
+	<script src="js/jquery.inview.min.js"></script>
+	<script src="js/custom.js"></script>
+	<script>
+		$(window).on("load", function () {
+			var wow = new WOW({
+				boxClass: 'wow',
+				animateClass: 'animated',
+				offset: 0,
+				mobile: true,
+				live: true
+			});
+			wow.init();
+		});
+	</script>
+	<!--main js file end-->
+</body>
+
+</html>

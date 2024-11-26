@@ -1,0 +1,465 @@
+/*------------------------------------------------------------------
+
+Project:	A Future HTML UI Kit
+Version:	1.0.0
+Author: 	webstrot 
+
+------------------------------------------------------------------
+[Table of contents]
+
+
+1. FORM STYLE
+2. formOne section start
+3. formtwo section start
+4. formthree section start
+5. formfour section start
+6. formfive section start
+7. formsix section start
+
+*/
+
+
+/* custom css */
+
+h4 {
+    font-size: 18px;
+    line-height: 24px;
+}
+
+/* custom css end */
+
+
+/* =========================================================
+FORM STYLE 
+============================================================ */
+
+#main-wrapper{
+	float:left;
+	width:100%;
+}
+.ptb-100 {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+form .btn{
+	border-radius: 0 !important; 
+}
+.form-group {
+  margin-bottom: 20px;
+}
+.form-control {
+  height: 53px;
+  padding: 15px 20px;
+  font-size: 13px;
+  line-height: 24px;
+  border: 1px solid #F1F1F1;
+  border-radius: 0;
+  box-shadow: none;
+  font-family: 'Roboto';
+}
+.form-control:focus {
+  box-shadow: none;
+}
+
+/*formOne section start*/
+
+.formOne .form-control {
+	background-color: #f7f7f7;
+	border: 1px solid transparent;
+	color:#999999;
+}
+.formOne button.btn{
+	font-weight: 700;
+	padding: 11px 32px;
+	margin: 0 auto;
+	display: block;
+	margin-top: 10px;
+	background: #4285f4;
+	border: 1px solid #4285f4;
+    -webkit-transition      : all 0.3s ease 0s;
+    -moz-transition      : all 0.3s ease 0s;
+    -o-transition      : all 0.3s ease 0s;
+    transition      : all 0.3s ease 0s;
+}
+.formOne button.btn:focus,
+.formOne button.btn:hover {
+	border-color: #4285f4;
+	background-color: transparent;
+	color: #4285f4;
+}
+
+/*formOne section end*/
+
+/* formtwo section start */
+.formtwo {
+	background: url('../assets/images/form/forms-bg-8.jpg') no-repeat center center;
+	background-size: cover;
+}
+.formtwo-contact-info {
+	padding-top: 20px;
+	padding-right: 60px;
+}
+.formtwo-contact-info p {
+	color: #ffffff;
+}
+.formtwo-contact-info address {
+	margin-top: 30px;
+}
+
+.formtwo-contact-info address ul li {
+	color: #ffffffcc;
+	margin-bottom: 30px;
+	font-size:20px;
+	
+}
+.formtwo-contact-info address ul li a {
+	color: #ffffffcc;
+}
+.formtwo-contact-info address ul li a:hover {
+	color: #fff;
+}
+
+
+.formtwo-contact-info address ul li i {
+	margin-right: 10px;
+}
+
+
+
+.formtwo-contact-social ul li {
+	display: inline-block;
+	margin-right: 15px;
+}
+.formtwo-contact-social ul li:last-child{
+	margin-right: 0px;
+}
+.formtwo-contact-social ul li a{
+	font-size: 20px;
+  	color: #ffffffcc;
+  	-webkit-transition: all 0.3s ease 0s;
+   	-moz-transition: all 0.3s ease 0s;
+   	-o-transition: all 0.3s ease 0s;
+   	transition: all 0.3s ease 0s;
+}
+.formtwo-contact-social ul li a:hover,
+.formtwo-contact-social ul li a:hover{
+	color: #fff;
+}
+
+.formtwo-right-1,
+.formtwo-right-2,
+.formtwo-right-3{
+	position: relative;
+}
+.formtwo-right-1 .i-user:after,
+.formtwo-right-2 .i-mail:after,
+.formtwo-right-3 .i-message:after{
+	position: absolute;
+  	right: 15px;
+  	top: 12px;
+  	font-family: "FontAwesome";
+  	color: #fff;
+  	left: auto;
+}
+.formtwo-right-3 .i-mail:after{
+	content: "\f003";
+}
+.formtwo-right-3 .i-message:after{
+	content: "\f0e5";
+}
+
+
+
+
+
+.formtwo-right {}
+.formtwo-right .form-group {
+	margin-bottom: 10px;
+}
+.formtwo-right .form-group ::-webkit-input-placeholder{
+    color:    #fff;
+}
+.formtwo-right .form-group :-moz-placeholder{
+    color:    #fff;
+}
+.formtwo-right .form-group ::-moz-placeholder{
+    color:    #fff;
+}
+.formtwo-right .form-group :-ms-input-placeholder{
+    color:    #fff;
+}
+
+
+.formtwo-right .form-control {	
+	border: 1px solid #fff;
+	background: transparent;
+	color: #fff;
+	-webkit-transition: all 0.3s ease 0s;
+   	-moz-transition: all 0.3s ease 0s;
+   	-o-transition: all 0.3s ease 0s;
+   	transition: all 0.3s ease 0s;
+}
+.formtwo-right .form-control:focus{
+	
+	border: 1px solid #313131 !important;
+	background: transparent;	
+}
+
+.formtwo-right button.btn{
+	margin: 0 auto;
+	display: block;
+    padding: 15px 32px;
+    font-weight: 700;
+    -webkit-transition: all 0.3s ease 0s;
+   	-moz-transition: all 0.3s ease 0s;
+   	-o-transition: all 0.3s ease 0s;
+   	transition: all 0.3s ease 0s;
+   	  font-weight: normal;
+}
+.formtwo-right .btn-default {
+	background-color: transparent;
+	color: #fff;
+	border: 1px solid #fff;
+}
+
+.formtwo-right .btn-default:hover,
+.formtwo-right .btn-default.focus {
+  	color: #313131;
+  	border: 1px solid #313131 !important;
+  	
+}
+/**formtwo section end*/
+/**********************
+
+
+ formthree section start
+*************************/
+.formthree {
+	background: #f7f7f7;	
+}
+.formthree .form-control {
+	border-top: 0 ;
+	border-left: 0;
+	border-right: 0;
+	border-bottom: 1px solid #d3d3d3;
+	background: transparent;
+}
+
+
+.formthree .form-control:focus {
+	color: #313131 !important;
+	border-top: 0 !important ;
+	border-left: 0 !important;
+	border-right: 0 !important;
+	border-bottom: 1px solid #313131 !important;
+	background: transparent;	
+}
+
+.formthree form button.btn{
+	margin: 30px auto;
+	display: block;
+    padding: 11px 32px;
+	background: #4285f4;
+	border: 1px solid #4285f4;
+    -webkit-transition: all 0.3s ease 0s;
+   -moz-transition: all 0.3s ease 0s;
+   -o-transition: all 0.3s ease 0s;
+   transition: all 0.3s ease 0s;
+}
+
+.formthree .btn-primary.focus,
+.formthree .btn-primary:hover{
+	background-color: transparent;
+  	color: #4285f4;
+  	border: 1px solid #4285f4 !important;
+}
+
+/* formthree section end */
+
+
+/***********************
+formfour section start
+**************************/
+.formfour {
+	background: url('../assets/images/form/forms-9.jpg') no-repeat center center;
+	background-size: cover;
+}
+.formfour .form-bg {
+	background: rgba(68, 68, 65, 0.77);
+	padding: 20px;
+}
+.formfour form {
+	background-color: rgb(255, 255, 255);
+  	padding: 20px;
+}
+.formfour .form-control {	
+	border-top: 0px;
+	border-left: 0px;
+	border-right: 0px;
+	border-bottom: 1px solid #61615e;
+	background: transparent;
+	-webkit-transition: all 0.3s ease 0s;
+   	-moz-transition: all 0.3s ease 0s;
+   	-o-transition: all 0.3s ease 0s;
+   	transition: all 0.3s ease 0s;
+}
+.formfour .form-control:focus {
+	border-top: 0px !important;
+	border-left: 0px !important;
+	border-right: 0px !important;
+	border-bottom: 1px solid #313131 !important;
+	background: transparent;	
+}
+.formfour button.btn{
+	display: block;
+    padding: 11px 32px;
+    -webkit-transition: all 0.3s ease 0s;
+   	-moz-transition: all 0.3s ease 0s;
+   	-o-transition: all 0.3s ease 0s;
+   	transition: all 0.3s ease 0s;
+   	margin: 30px 0px;
+}
+.formfour .btn-blue {
+	background-color: #4285f4;
+	color: #fff;
+	border: 1px solid #4285f4;
+}
+.formfour .btn-blue.focus,
+.formfour .btn-blue:hover {
+	background-color: transparent;
+	color:#4285f4;
+  	
+}
+
+/** formfour section end **/
+
+/**********************
+ formfive section start
+*************************/
+.formfive {
+	background: #f7f7f7;
+}
+.formfive .form-group {
+	margin-bottom: 10px;
+}
+.formfive .form-control {
+	background-color: #313131;
+	border: 1px solid #313131;
+	-webkit-transition: all 0.3s ease 0s;
+   -moz-transition: all 0.3s ease 0s;
+   -o-transition: all 0.3s ease 0s;
+   transition: all 0.3s ease 0s;
+   text-align: center;
+}
+.formfive .form-control:focus {
+	background-color: transparent;
+	border: 1px solid #313131 !important;	
+}
+
+.formfive form button.btn{
+	margin: 0 auto;
+	display: block;
+    padding: 15px 32px;
+    font-weight: 700;
+    -webkit-transition: all 0.3s ease 0s;
+   -moz-transition: all 0.3s ease 0s;
+   -o-transition: all 0.3s ease 0s;
+   transition: all 0.3s ease 0s;
+}
+.formfive .btn-primary {
+	background-color: #4285f4;
+	border: 1px solid #4285f4;
+}
+
+.formfive .btn-primary.focus,
+.formfive .btn-primary:hover{
+	background-color: transparent;
+  	color: #4285f4;
+  	border: 1px solid #4285f4 !important;
+}
+/* formfive section end */
+
+
+/***********************
+formsix section start
+**************************/
+.formsix {
+	background: url('../assets/images/form/forms-10.jpg') no-repeat center center;
+	background-size: cover;
+}
+
+.formsix .form-control {
+	border: 1px solid #fff;
+	-webkit-transition: all 0.3s ease 0s;
+   -moz-transition: all 0.3s ease 0s;
+   -o-transition: all 0.3s ease 0s;
+   transition: all 0.3s ease 0s;
+   background-color: transparent;
+   padding: 15px 35px; 
+}
+.formsix input::placeholder, .formsix textarea::placeholder {
+  color: #fff;
+}
+.formsix .form-control:focus {
+	color: #fff;
+	background-color: transparent;
+	border: 1px solid #4285f4 !important;	
+}
+.formsix form button.btn{
+	margin: 0 auto;
+	display: block;
+    padding: 11px 32px;
+    font-weight: 700;
+	background:#4285f4;
+	border:1px solid #4285f4;
+    -webkit-transition: all 0.3s ease 0s;
+   -moz-transition: all 0.3s ease 0s;
+   -o-transition: all 0.3s ease 0s;
+   transition: all 0.3s ease 0s;
+}
+.formsix .btn-primary.focus,
+.formsix .btn-primary:hover{
+	background-color: transparent;
+  	color: #4285f4;
+  	border: 1px solid #4285f4 !important;
+}
+.formsix-pos,.formsix-e,.formsix-m,.formsix-p{
+	position: relative;
+}
+.form-group.i-name:after, .form-group.i-email:after, .form-group.i-phone:after, .form-group.i-message:after {
+    position: absolute;
+    top: 16px;
+    font-size: 13px;
+    font-family: "FontAwesome";
+    color: #fff;
+}
+.formsix .form-group.i-name:after{
+	content: "\f007";
+	left: 14px;
+}
+.formsix .form-group.i-email:after{
+	content: "\f003";
+	left: 14px;
+}
+.formsix .form-group.i-phone:after{
+	content: "\f095";
+	left: 14px;
+}
+.formsix .form-group.i-message:after{
+	content: "\f0e5";
+	left: 14px;
+}
+
+/** formsix section end **/
+
+@media(max-width: 767px){
+.formtwo-right {
+    padding-top: 40px;
+}
+}
+

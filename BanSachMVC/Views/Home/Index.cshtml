@@ -1,0 +1,914 @@
+﻿@{
+	ViewData["Title"] = "Home Page";
+	Layout = null;
+}
+@model HomeViewModel
+<!DOCTYPE html>
+<!-- 
+Template Name: big basket
+Version: 1.0.0
+Author: 
+Website: 
+Purchase: 
+-->
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+<head>
+	<meta charset="utf-8" />
+	<title>big basket Responsive HTML Template</title>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<meta name="description" content="big basket" />
+	<meta name="keywords" content="big basket, Ecommerce, Store, Mall, online Shopping" />
+	<meta name="author" content="" />
+	<meta name="MobileOptimized" content="320" />
+	<!--srart theme style -->
+	<link rel="stylesheet" type="text/css" href="css/animate.css" />
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
+	<link rel="stylesheet" type="text/css" href="css/owl.carousel.css" />
+	<link rel="stylesheet" type="text/css" href="css/owl.theme.default.css" />
+	<link rel="stylesheet" type="text/css" href="css/magnific-popup.css" />
+	<link rel="stylesheet" type="text/css" href="css/fonts.css" />
+	<link rel="stylesheet" type="text/css" href="css/dl-menu.css" />
+	<link rel="stylesheet" type="text/css" href="css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="css/camera.css" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="stylesheet" type="text/css" href="css/responsive.css" />
+	<link rel="stylesheet" type="text/css" href="css/sidebar.css" />
+	<!-- favicon links -->
+	<link rel="shortcut icon" type="image/png" href="images/header/favicon.png" />
+</head>
+
+<body>
+	@{
+		var userId = ViewBag.UserId;
+		var userName = ViewBag.UserName;
+	}
+	<!-- preloader Start -->
+	<div id="preloader">
+		<div id="status">
+			<img src="images/header/preloader.gif" id="preloader_image" alt="loader">
+		</div>
+	</div>
+	<!-- Top Scroll Start -->
+	<a href="javascript:" id="return-to-top"><i class="fa fa-angle-up"></i></a>
+	<!-- Top Scroll End -->
+	<!-- Header Wrapper Start -->
+	<div class="ss_middle_header_wrapper">
+		<div class="ss_logo">
+			<a href="index.html">
+				<img src="images/header/logo.png" alt="Logo" title="big basket" class="img-responsive">
+			</a>
+		</div>
+		<div class="ss_info_area">
+			<ul>
+				<li>
+					<div class="ss_search_box">
+						<input type="text" placeholder="Search for products">
+						<button><i class="fa fa-search" aria-hidden="true"></i></button>
+
+					</div>
+				</li>
+				
+				<li>
+					<div class="ss_login_box">
+						@if (!string.IsNullOrEmpty(userId))
+						{
+							<a href="/Logout">
+								<span>Logout</span>
+								<img src="images/header/user_icon.png" alt="Logout" title="Logout" class="img-responsive">
+							</a>
+						}
+						else
+						{
+							<a href="/Login">
+								<span>Login or Register</span>
+								<img src="images/header/user_icon.png" alt="Login" title="Login" class="img-responsive">
+							</a>
+						}
+					</div>
+				</li>
+				<li>
+					<div class="ss_cart_value">
+						<a href="/Cart">
+							<p>3</p>
+							<img src="images/header/cart_icon.png" alt="Cart" title="Cart">
+							<span>cart: <ins>$ 25.00</ins></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<div class="ss_cart_inner_main_section">
+									<div class="ss_cart_img_wrapper">
+										<img src="images/header/cart_img.jpg" alt="cart_img">
+									</div>
+									<div class="ss_cart_img_cont_wrapper">
+										<h3>Product item</h3>
+										<h4>Product category</h4>
+										<span>x</span>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="ss_cart_inner_main_section ss_cart_inner_main_section2">
+									<div class="ss_cart_img_wrapper">
+										<img src="images/header/cart_img.jpg" alt="cart_img">
+									</div>
+									<div class="ss_cart_img_cont_wrapper">
+										<h3>Product item</h3>
+										<h4>Product category</h4>
+										<span>x</span>
+									</div>
+								</div>
+							</li>
+							<li>
+								<a href="/checkout" class="ss_check_btn">Checkout</a>
+							</li>
+						</ul>
+					</div>
+
+
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- Header Wrapper End -->
+	<div class="ss_categories_box">
+		<nav>
+			<ul class="list-group vertical-menu yamm make-absolute nav">
+				<li class="list-group-item button-dropdown">
+					<a href="javascript:void(0)" class="dropdown-toggle fisrt_drop">
+						<span><i class="fa fa-list-ul"></i> All Departments</span>
+					</a>
+					<ul class="dropdown-menu">
+						@foreach (var itemDanhMuc in Model.Categories)
+						{
+							<li class="yamm-tfw menu-item menu-item-has-children animate-dropdown dropdown">
+								<a title="Computers &amp; Accessories" data-hover="dropdown" href="@Url.Action("Category", "Home", new { id = itemDanhMuc.CategoryId })" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">
+									<i class="fa fa-user" aria-hidden="true"></i>
+									@itemDanhMuc.CategoryName
+								</a>
+							</li>
+						}
+					</ul>
+				</li>
+			</ul>
+		</nav>
+	</div>
+
+	<!-- Slider Wrapper Start -->
+	<div class="ss_main_slider_wrapper">
+		<div class="ss_header_wrapper">
+			<div class="prs_menu_main_wrapper">
+				<nav class="navbar navbar-default">
+					<div id="dl-menu" class="xv-menuwrapper responsive-menu">
+						<div class="ss_menu_btn dl-trigger" id="menu_click">
+							<div class="bar1"></div>
+							<div class="bar2"></div>
+							<div class="bar3"></div>
+						</div>
+						<div class="clearfix"></div>
+						<ul class="dl-menu">
+							<li class="parent"><a href="#">Home</a>
+								
+							</li>
+							
+							<li class="parent"><a href="#">Shop</a>
+								
+							</li>
+							<li class="parent"><a href="#">Blog</a>
+								
+							</li>
+							
+							<li class="parent"><a href="contact.html">Contact</a>
+							</li>
+							<li class="parent visible-xs"><a href="#">Cart &nbsp;<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+								<ul class="lg-submenu">
+									<li>
+										<div class="ss_cart_inner_main_section">
+											<div class="ss_cart_img_wrapper">
+												<img src="images/header/cart_img.jpg" alt="cart_img">
+											</div>
+											<div class="ss_cart_img_cont_wrapper">
+												<h3><a href="#">Product item</a></h3>
+												<h4>Product category</h4>
+												<span>x</span>
+											</div>
+										</div>
+									</li>
+									<li>
+										<div class="ss_cart_inner_main_section">
+											<div class="ss_cart_img_wrapper">
+												<img src="images/header/cart_img.jpg" alt="cart_img">
+											</div>
+											<div class="ss_cart_img_cont_wrapper">
+												<h3><a href="#">Product item</a></h3>
+												<h4>Product category</h4>
+												<span>x</span>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+					<!-- /dl-menuwrapper -->
+				</nav>
+			</div>
+			<div class="ss_right_menu">
+				<ul>
+					<li class="ss_menu_toggle_text"><a href="#">Menu</a>
+					</li>
+					<li class="ss_menu_toggle_text2"><a href="#">20% Today’s Deals</a>
+					</li>
+					<li class="ss_menu_toggle_text2"><a href="#">Customer Service</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	</div>
+	<!-- Slider Wrapper End -->
+	<div class="ss_top_slider_wrapper">
+		<div id="theme-main-banner">
+			@foreach (var itemSanPham in Model.Books.Take(3))
+			{
+				<div data-src="img/@itemSanPham.Image">
+					<div class="camera_caption">
+						<div class="container ss_slider_wrapper">
+							<h3 class="wow fadeInUp animated" data-wow-delay="0.1s">Only This Week!</h3>
+							<div class="clearfix"></div>
+							<h2 class="wow fadeInUp animated" data-wow-delay="0.1s">@itemSanPham.Discount % OFF</h2>
+							<div class="clearfix"></div>
+							<h1 class="wow fadeInUp animated" data-wow-delay="0.1s">@itemSanPham.Title</h1>
+							<div class="clearfix"></div>
+							<p class="wow fadeInUp animated" data-wow-delay="0.4s">
+								@itemSanPham.Author
+							</p>
+							<div class="clearfix">@itemSanPham.Category.CategoryName</div>	<a href="#" class="wow fadeInUp animated" data-wow-delay="0.4s">buy now!</a>
+						</div>
+						<!-- /.container -->
+					</div>
+					<!-- /.camera_caption -->
+				</div>
+			}
+			
+		</div>
+		<!-- /#theme-main-banner -->
+	</div>
+	<!-- Service Wrapper Start -->
+	<div class="ss_services_wrapper">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+					<div class="ss_services_box">	<span><i class="fa fa-truck" aria-hidden="true"></i></span>
+						<h4>Miễn phí vận chuyển và trả hàng</h4>
+						<p>Chương trình miễn phí vận chuyển và trả hàng miễn phí.</p>	<a href="#"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+					<div class="ss_services_box ss_services_box2">	<span><i class="fa fa-shield" aria-hidden="true"></i></span>
+						<h4>Thanh toán an toàn</h4>
+						<p>Thanh toán an toàn và giải quyết nhanh gọn</p>	<a href="#"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+					<div class="ss_services_box ss_services_box3">	<span><i class="fa fa-headphones" aria-hidden="true"></i></span>
+						<h4>24/7 Hỗ trợ</h4>
+						<p>Hỗ trợ tận tình từ cửa hàng.</p>	<a href="#"<i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Service Wrapper End -->
+	<!-- ProAdd Wrapper Start -->
+	<div class="ss_proadd_wrapper ss_proadd_top_wrapper">
+		<div class="container">
+			<div class="row">
+				@foreach (var itemSanPham in Model.Books.Take(2))
+				{
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+						<div class="ss_proadd_box">
+							<h2>@Html.ActionLink(itemSanPham.Title, "Category", new { id = itemSanPham.BookId })</h2>
+							<p>
+								@itemSanPham.Title
+							</p>	<ins>$@itemSanPham.Price</ins>
+							<a href="#" class="ss_btn">Shop Now!</a>
+						</div>
+					</div>
+				}
+				
+				
+			</div>
+		</div>
+	</div>
+	<!-- ProAdd Wrapper End -->
+	<!-- Featured Products Wrapper Start -->
+	<div class="ss_featured_products_wrapper">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="ss_featured_products_tab">
+						<div class="ss_heading">
+							<h3>featured products</h3>
+						</div>
+						<ul class="nav nav-tabs" role="tablist">
+							<li role="presentation" class="active"><a href="#best" aria-controls="best" role="tab" data-toggle="tab">Best Sellers</a>
+							</li>
+							<li role="presentation"><a href="#hot" aria-controls="hot" role="tab" data-toggle="tab">Top Hot Deals</a>
+							</li>
+						</ul>
+					</div>
+					<div class="tab-content">
+						<div role="tabpanel" class="tab-pane fade in active" id="best">
+							<div class="ss_featured_products">
+								<div class="owl-carousel owl-theme">
+
+									@foreach (var itemSanPham in Model.Books.Take(10))
+									{
+										<div class="item">
+											<div class="ss_featured_products_box">
+												<div class="ss_featured_products_box_img">
+													<span class="ss_tag">new</span>
+													<span class="ss_offer">@itemSanPham.Discount %</span>
+													<img src="img/@itemSanPham.Image" alt="Product" class="img-responsive">
+
+												</div>
+												<div class="ss_feat_prod_cont_heading_wrapper">
+													<h4>@Html.ActionLink(itemSanPham.Title, "Category", new { id = itemSanPham.BookId })</h4>
+													<p>@itemSanPham.Category.CategoryName</p>	<del>@itemSanPham.Price</del>  <ins>@(Math.Floor(itemSanPham.Price * (1 - itemSanPham.Discount / 100)))đ</ins>
+												</div>
+												<div class="ss_featured_products_box_footer">
+
+													<ul>
+
+														<li>
+															<button class="ss_btn">Add To Bag</button>
+														</li>
+
+													</ul>
+												</div>
+											</div>
+										</div>
+									}
+								</div>
+							</div>
+						</div>
+						<div role="tabpanel" class="tab-pane fade" id="hot">
+							<div class="ss_featured_products">
+								<div class="owl-carousel owl-theme">
+									@foreach (var itemSanPham in Model.Books.Skip(10).Take(10))
+									{
+										<div class="item">
+											<div class="ss_featured_products_box">
+												<div class="ss_featured_products_box_img">
+													<span class="ss_tag">hot</span>
+													<span class="ss_offer">20% off</span>
+													<img src="img/@itemSanPham.Image" alt="Product" class="img-responsive">
+												</div>
+												<div class="ss_feat_prod_cont_heading_wrapper">
+													<h4><a href="#">@Html.ActionLink(itemSanPham.Title, "Category", new { id = itemSanPham.BookId })</a></h4>
+													<p>@itemSanPham.Category.CategoryName</p>	<del>@itemSanPham.Price</del>  <ins>@(Math.Floor(itemSanPham.Price * (1 - itemSanPham.Discount / 100)))đ</ins>
+												</div>
+												<div class="ss_featured_products_box_footer">
+
+													<ul>
+
+														<li>
+															<button class="ss_btn">Add To Bag</button>
+														</li>
+
+													</ul>
+												</div>
+											</div>
+										</div>
+									}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Featured Products Wrapper End -->
+	<!-- SliderNTimer Wrapper Start -->
+	<div class="ss_slider_timer_wrapper">
+		<div class="ss_addver_slider_wrapper">
+			<div class="slider-area">
+				<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="height:706px;overflow-y:hidden">
+					<div class="carousel-inner" role="listbox">
+						
+						<div class="item active" style="background:url(https://hoanghamobile.com/tin-tuc/wp-content/uploads/2024/01/anh-mau-trang-74.jpg) 50% 0 repeat-y !important;">
+							<div class="carousel-captions caption-1" style="background:url(https://hoanghamobile.com/tin-tuc/wp-content/uploads/2024/01/anh-mau-trang-74.jpg) 50% 0 repeat-y !important;">
+								<div class="container">
+									<div class="row">
+										@foreach (var itemSanPham in Model.Books.Take(1))
+										{
+											<div class="col-lg-6 col-md-4 col-sm-12 col-xs-12 hot_slider_custom_col_img">
+												<div class="ss_hds_slider_overl_img">
+													<img src="img/@itemSanPham.Image" alt="hds_img" data-animation="animated bounceInUp">
+												</div>
+											</div>
+											<div class="col-lg-6 col-md-8 col-sm-12 col-xs-12 hot_slider_custom_col_img_cont">
+												<div class="content lr_banner_content_inner_wrapper">
+													<h2 data-animation="animated bounceInLeft">@itemSanPham.Category.CategoryName</h2>
+													<h3 data-animation="animated fadeInLeft">@itemSanPham.Title</h3>
+													<p data-animation="animated fadeInLeft">
+														@itemSanPham.Author
+													</p>
+													<h4 data-animation="animated fadeInLeft">@(Math.Floor(itemSanPham.Price * (1 - itemSanPham.Discount / 100)))đ Only</h4>
+													<a href="#" class="lr-btn-background move-eff lr_ff_btn2 lr_index2_slider_btn" data-animation="animated bounceInUp"><span>buy now!</span></a>
+													<div class="clear"></div>
+												</div>
+											</div>
+										}
+										
+									</div>
+								</div>
+							</div>
+						</div>
+						@foreach (var itemSanPham in Model.Books.Take(3))
+						{
+							<div class="item">
+								<div class=" carousel-captions caption-2" style="background:url(https://hoanghamobile.com/tin-tuc/wp-content/uploads/2024/01/anh-mau-trang-74.jpg) 50% 0 repeat-y !important;">
+									<div class="container">
+										<div class="row">
+											<div class="col-lg-6 col-md-4 col-sm-12 col-xs-12 hot_slider_custom_col_img">
+												<div class="ss_hds_slider_overl_img">
+													<img src="img/@itemSanPham.Image" alt="hds_img" data-animation="animated bounceInUp">
+												</div>
+											</div>
+											<div class="col-lg-6 col-md-8 col-sm-12 col-xs-12 hot_slider_custom_col_img_cont">
+												<div class="content lr_banner_content_inner_wrapper">
+													<h2 data-animation="animated bounceInLeft">@itemSanPham.Category.CategoryName</h2>
+													<h3 data-animation="animated fadeInLeft">@itemSanPham.Title</h3>
+													<p data-animation="animated fadeInLeft">
+														@itemSanPham.Author
+													</p>
+													<h4 data-animation="animated fadeInLeft">@(Math.Floor(itemSanPham.Price * (1 - itemSanPham.Discount / 100)))đ Only</h4>
+													<a href="#" class="lr-btn-background move-eff lr_ff_btn2 lr_index2_slider_btn" data-animation="animated bounceInUp"><span>buy now!</span></a>
+													<div class="clear"></div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						}
+						
+				
+						<div class="carousel-nevigation">
+							<a class="prev" href="#carousel-example-generic" role="button" data-slide="prev">	<i class="fa fa-angle-left"></i>
+							</a>
+							<a class="next" href="#carousel-example-generic" role="button" data-slide="next"> <i class="fa fa-angle-right"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ss_timer_wrapper">
+			@foreach (var itemSanPham in Model.Books.Take(1))
+			{
+				<div class="ss_timer_header_wrapper">
+					<h2>Hot Deal Today</h2>
+					<div class="ss_hot_deal_timer_img">
+						<img src="img/@itemSanPham.Image" alt="Deal" style="max-height:322px;width:auto">
+					</div>
+					<div id="clockdiv">
+						<div>
+							<span class="days"></span>
+							<div class="smalltext">Days</div>
+						</div>
+						<div>
+							<span class="hours"></span>
+							<div class="smalltext">Hours</div>
+						</div>
+						<div>
+							<span class="minutes"></span>
+							<div class="smalltext">Minutes</div>
+						</div>
+						<div>
+							<span class="seconds"></span>
+							<div class="smalltext">Seconds</div>
+						</div>
+					</div>
+				</div>
+				<div class="ss_timer_footer_wrapper">
+					<h2>@itemSanPham.Title</h2>
+					<p>Only at @(Math.Floor(itemSanPham.Price * (1 - itemSanPham.Discount / 100)))đ (@(itemSanPham.Discount)% OFF)</p>
+				</div>
+			}
+			
+		</div>
+	</div>
+	<!-- SliderNTimer Wrapper End -->
+	
+	<!-- Latest Products Wrapper Start -->
+	<div class="ss_latest_products_wrapper " style="margin-top:30px">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="ss_featured_products_tab mt-3">
+						<div class="ss_heading">
+							<h3>Latest Products</h3>
+						</div>
+					</div>
+					<div class="ss_latest_products">
+						<div class="owl-carousel owl-theme">
+							@foreach (var itemSanPham in Model.Books.Take(10))
+							{
+								<div class="item">
+									<div class="ss_featured_products_box">
+										<div class="ss_featured_products_box_img">
+											<span class="ss_tag">new</span>
+											<span class="ss_offer">20% off</span>
+											<img src="img/@itemSanPham.Image" alt="Product" class="img-responsive">
+										
+										</div>
+										<div class="ss_feat_prod_cont_heading_wrapper">
+											<h4><a href="#">@itemSanPham.Title</a></h4>
+											<p>@itemSanPham.Category.CategoryName</p>	<del>@itemSanPham.Price</del>
+											<ins>@(Math.Floor(itemSanPham.Price * (1 - itemSanPham.Discount / 100)))đ</ins>
+										</div>
+										<div class="ss_featured_products_box_footer">
+											
+											<ul>												
+												<li>
+													<button class="ss_btn">Add To Bag</button>
+												</li>												
+											</ul>
+										</div>
+									</div>
+								</div>
+							}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Latest Products Wrapper End -->
+	
+	<!-- Mix Product Wrapper Start -->
+	<div class="ss_mixproducts_wrapper">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+					<div class="ss_feat_cate_wrapper">
+						<div class="ss_heading_box">
+							<div class="ss_heading">
+								<h3>Top Rated</h3>
+							</div>
+						</div>
+						<div class="ss_toprated_slider">
+							<div class="owl-carousel owl-theme">
+								<div class="item">
+									<div class="ss_toprated_slider_box">
+										<ul>
+											@foreach (var itemSanPham in Model.Books.Take(4))
+											{
+												<li>
+													<div class="ss_toprated_slider_box_img">
+														<a href="#">
+															<img src="img/@itemSanPham.Image" alt="Product">
+														</a>
+													</div>
+													<div class="ss_toprated_slider_box_text">
+														<h4><a href="#">@itemSanPham.Title</a></h4>
+														<ins>@(itemSanPham.Price)đ</ins> 	
+														<del>@(Math.Floor(itemSanPham.Price * (1 - itemSanPham.Discount / 100)))đ</del>
+													</div>
+												</li>
+											}
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="ss_addver_sidebar">
+							<a href="#">
+								<img src="img/suimlangbaycuu.jpg" alt="Add">
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+					<div class="ss_latest_products_wrapper">
+						<div class="ss_featured_products_tab">
+							<div class="ss_heading">
+								<h3>Best Seller</h3>
+							</div>
+						</div>
+						<div class="ss_best_seller">
+							<div class="owl-carousel owl-theme">
+								@for (int i = 1; i < 8; i++)
+								{	
+
+									<div class="item">
+										@foreach (var itemSanPham in Model.Books.Skip(i).Take(1))
+										{
+											<div class="ss_featured_products_box">
+												<div class="ss_featured_products_box_img">
+													<span class="ss_tag">new</span>
+													<span class="ss_offer">@(itemSanPham.Discount)% off</span>
+													<img src="img/@itemSanPham.Image" alt="Product" class="img-responsive">
+
+												</div>
+												<div class="ss_feat_prod_cont_heading_wrapper">
+													<h4><a href="#">@itemSanPham.Title</a></h4>
+													<p>@itemSanPham.Category.CategoryName</p>	<del>@(itemSanPham.Price)đ</del>
+													<ins>@(Math.Floor(itemSanPham.Price * (1 - itemSanPham.Discount / 100)))đ</ins>
+												</div>
+												<div class="ss_featured_products_box_footer">
+
+													<ul>
+
+														<li>
+															<button class="ss_btn">Add To Bag</button>
+														</li>
+
+													</ul>
+												</div>
+											</div>
+										}
+										@foreach (var itemSanPham in Model.Books.Skip(i+7).Take(1))
+										{
+											<div class="ss_featured_products_box">
+												<div class="ss_featured_products_box_img">
+													<span class="ss_tag">new</span>
+													<span class="ss_offer">@(itemSanPham.Discount)% off</span>
+													<img src="img/@itemSanPham.Image" alt="Product" class="img-responsive">
+
+												</div>
+												<div class="ss_feat_prod_cont_heading_wrapper">
+													<h4><a href="#">@itemSanPham.Title</a></h4>
+													<p>@itemSanPham.Category.CategoryName</p>	<del>@(itemSanPham.Price)đ</del>
+													<ins>@(Math.Floor(itemSanPham.Price * (1 - itemSanPham.Discount / 100)))đ</ins>
+												</div>
+												<div class="ss_featured_products_box_footer">
+
+													<ul>
+
+														<li>
+															<button class="ss_btn">Add To Bag</button>
+														</li>
+
+													</ul>
+												</div>
+											</div>
+										}
+										
+									</div>
+								}
+							</div>
+						</div>
+					</div>
+					<!-- ProAdd Wrapper Start -->
+					@foreach (var itemSanPham in Model.Books.Take(1))
+					{
+						<div class="ss_proadd_wrapper">
+							<div class="ss_proadd_box">
+								<h2>@itemSanPham.Title</h2>
+								<p>Starting @(Math.Floor(itemSanPham.Price * (1 - itemSanPham.Discount / 100)))đ only/-</p>
+								<a href="#" class="ss_btn">Shop Now!</a>
+							</div>
+						</div>
+					}
+					
+					<!-- ProAdd Wrapper End -->
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<!-- Newsletter Wrapper Start -->
+	<div class="ss_newsletter_wrapper">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+					<div class="ss_newsletter_text">
+						<h3><i class="fa fa-envelope-o" aria-hidden="true"></i> subscribe Our Newsletter</h3>
+					</div>
+				</div>
+				<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+					<div class="ss_newsletter_field">
+						<input type="text" placeholder="Type your email address...">
+						<button type="submit">Subscribe</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Newsletter Wrapper End -->
+	<!-- Footer Wrapper Start -->
+	<div class="ss_footer_wrapper">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+					<div class="widget ss_footer_widget">
+						<h4 class="widget-title"><i class="fa fa-user" aria-hidden="true"></i> My Account</h4>
+						<ul>
+							<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> My Account</a>
+							</li>
+							<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Personal Information</a>
+							</li>
+							<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Address</a>
+							</li>
+							<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Discount</a>
+							</li>
+							<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Order History</a>
+							</li>
+							<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> My Credit Slip</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+					<div class="widget ss_footer_widget">
+						<h4 class="widget-title"><i class="fa fa-user" aria-hidden="true"></i> Our Services</h4>
+						<ul>
+							<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Shipping & Return</a>
+							</li>
+							<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> International Shipping</a>
+							</li>
+							<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Affliates</a>
+							</li>
+							<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Careers</a>
+							</li>
+							<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> FAQ’s</a>
+							</li>
+							<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Secure Shoping</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+					<div class="widget ss_footer_widget">
+						<h4 class="widget-title"><i class="fa fa-user" aria-hidden="true"></i> company info</h4>
+						<ul>
+							<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> About Us</a>
+							</li>
+							<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Delivery Information</a>
+							</li>
+							<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Pribacy & Policy</a>
+							</li>
+							<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Terms & Conditions</a>
+							</li>
+							<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Manufactures</a>
+							</li>
+							<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Suppliers</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+					<div class="widget ss_address_widget">
+						<h4 class="widget-title"><i class="fa fa-user" aria-hidden="true"></i> Get In Touch</h4>
+						<ul>
+							<li>	<span>Head Office:</span>
+								<p>Web Company Name, 125, Colis Street ABC45 India #010101</p>
+							</li>
+							<li>	<span>Phone:</span>
+								<p>+1-804-548-5214
+									<br>+1-804-548-5215</p>
+							</li>
+							<li>	<span>Email:</span>
+								<p><a href="#">store@example.com</a>
+									<br><a href="#">support@example.com</a>
+								</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ss_middle_footer_wrapper">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+						<div class="ss_payfooter_wrapper">
+							<h4>Payment Getways</h4>
+							<ul>
+								<li><a href="#"><i class="fa fa-cc-paypal" aria-hidden="true"></i></a>
+								</li>
+								<li><a href="#"><i class="fa fa-cc-mastercard" aria-hidden="true"></i></a>
+								</li>
+								<li><a href="#"><i class="fa fa-cc-discover" aria-hidden="true"></i></a>
+								</li>
+								<li><a href="#"><i class="fa fa-cc-visa" aria-hidden="true"></i></a>
+								</li>
+								<li><a href="#"><i class="fa fa-cc-stripe" aria-hidden="true"></i></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+						<div class="ss_socialfooter_wrapper">
+							<h4>connect always</h4>
+							<ul>
+								<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+								</li>
+								<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+								</li>
+								<li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+								</li>
+								<li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a>
+								</li>
+								<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+								</li>
+								<li><a href="#"><i class="fa fa-skype" aria-hidden="true"></i></a>
+								</li>
+								<li><a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a>
+								</li>
+								<li><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ss_copyright_wrapper">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<p>© Copyright 2017 by <a href="#">big basket</a> - All Right Reserved</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Footer Wrapper End -->
+	<!--main js file start-->
+	<script src="js/jquery_min.js"></script>
+	<script src="js/wow.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/owl.carousel.js"></script>
+	<script src="js/modernizr.js"></script>
+	<script src="js/jquery.magnific-popup.js"></script>
+	<script src="js/jquery.dlmenu.js"></script>
+	<script src="js/jquery.sticky.js"></script>
+	<script src="js/jquery.menu-aim.js"></script>
+	<script src="js/camera.min.js"></script>
+	<script src="js/jquery.easing.1.3.js"></script>
+	<script src="js/jquery.inview.min.js"></script>
+	<script src="js/custom.js"></script>
+	<script>
+		$(window).on("load", function() {
+				var wow = new WOW({
+					boxClass: 'wow',
+					animateClass: 'animated',
+					offset: 0,
+					mobile: true,
+					live: true
+				});
+				wow.init();
+			});
+			
+			
+			// CountDown Js
+			var deadline = 'December 31 2018 23:59:59 GMT+0530';
+				function time_remaining(endtime){
+					var t = Date.parse(endtime) - Date.parse(new Date());
+					var seconds = Math.floor( (t/1000) % 60 );
+					var minutes = Math.floor( (t/1000/60) % 60 );
+					var hours = Math.floor( (t/(1000*60*60)) % 24 );
+					var days = Math.floor( t/(1000*60*60*24) );
+					return {'total':t, 'days':days, 'hours':hours, 'minutes':minutes, 'seconds':seconds};
+				}
+				function run_clock(id,endtime){
+					var clock = document.getElementById(id);
+					
+					// get spans where our clock numbers are held
+					var days_span = clock.querySelector('.days');
+					var hours_span = clock.querySelector('.hours');
+					var minutes_span = clock.querySelector('.minutes');
+					var seconds_span = clock.querySelector('.seconds');
+		
+					function update_clock(){
+						var t = time_remaining(endtime);
+						
+						// update the numbers in each part of the clock
+						days_span.innerHTML = t.days;
+						hours_span.innerHTML = ('0' + t.hours).slice(-2);
+						minutes_span.innerHTML = ('0' + t.minutes).slice(-2);
+						seconds_span.innerHTML = ('0' + t.seconds).slice(-2);
+						
+						if(t.total<=0){ clearInterval(timeinterval); }
+					}
+					update_clock();
+					var timeinterval = setInterval(update_clock,1000);
+				}
+				run_clock('clockdiv',deadline);
+	</script>
+	<!--main js file end-->
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+.sidebar-two{
+    display: none;
+}
+.vertical-menu .list-group-item .dropdown-menu{
+	left:0;
+	padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+.vertical-menu .list-group-item .dropdown-menu .menu-item .dropdown-menu{
+	left:100%;
+}
+.vertical-menu-three .list-group-item .dropdown-menu .menu-item .dropdown-menu {
+    left: auto;
+    right: 100%;
+}
+.vertical-menu li.list-group-item a, .vertical-menu li.list-group-item span{
+	color:#ffffff;
+	font-size: 18px;
+    font-weight: normal;
+	padding:0;
+}
+.fisrt_drop{
+	padding: 24px 30px !important;
+}
+.fisrt_drop:after{
+	display:none;
+}
+.fisrt_drop:hover, .fisrt_drop:focus{
+	background:#0091dc !important;
+}
+#theme-main-banner .camera_prev,
+#theme-main-banner .camera_next {
+    background: #fff;
+    height: 70px;
+    width: 70px;
+    border-radius: 0;
+    text-align: center;
+	display:block !important;
+}
+
+#theme-main-banner .camera_prev:hover,
+#theme-main-banner .camera_next:hover {
+    background: #0091dc;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+#theme-main-banner .camera_prev > span,
+#theme-main-banner .camera_next > span {
+    background: none;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+#theme-main-banner .camera_prev > span:before,
+#theme-main-banner .camera_next > span:before {
+    font-family: 'FontAwesome';
+    font-size: 28px;
+    color: #111111;
+    line-height: 70px;
+	-webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+}
+#theme-main-banner .camera_prev:hover > span:before,
+#theme-main-banner .camera_next:hover > span:before {
+	color:#ffffff;
+	-webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+}
+#theme-main-banner .camera_prev > span:before {
+    content: '';
+}
+
+#theme-main-banner .camera_next > span:before {
+    content: '';
+}
+.camera_wrap .camera_pag .camera_pag_ul{
+	display:none;
+}

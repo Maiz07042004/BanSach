@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BanSach", "BanSach\BanSach.csproj", "{3DC5F209-D8ED-4189-9C5A-7221E63C7722}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BanSachMVC", "BanSachMVC\BanSachMVC.csproj", "{ECDF3287-EC9E-4A24-8EF6-63F7CB260667}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3DC5F209-D8ED-4189-9C5A-7221E63C7722}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DC5F209-D8ED-4189-9C5A-7221E63C7722}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DC5F209-D8ED-4189-9C5A-7221E63C7722}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DC5F209-D8ED-4189-9C5A-7221E63C7722}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECDF3287-EC9E-4A24-8EF6-63F7CB260667}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECDF3287-EC9E-4A24-8EF6-63F7CB260667}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECDF3287-EC9E-4A24-8EF6-63F7CB260667}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECDF3287-EC9E-4A24-8EF6-63F7CB260667}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2F50AD7A-7C5E-4F67-AC82-43E42090EAE4}
+	EndGlobalSection
+EndGlobal

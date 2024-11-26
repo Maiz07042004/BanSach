@@ -1,0 +1,338 @@
+/*------------------------------------------------------------------
+
+Project:	A Future HTML UI Kit
+Version:	1.0.0
+Author: 	webstrot 
+
+------------------------------------------------------------------
+[Table of contents]
+ 
+1. Counter Style Start
+2. counterOne start
+3. counterTwo start
+4. counterThree start
+5. counterFour start
+6. counterFive start
+*/
+
+
+/* ===========================================
+Counter Style Start
+============================================== */
+#main-wrapper{
+	float:left;
+	width:100%;
+}
+.ptb-100 {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+.gray_bg {
+	background-color: #f7f7f7;
+}
+
+/*counterOne start*/
+
+.counterOne .chart_one{
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.counterOne .percent {
+	position: absolute;
+	top: 38%;
+	left: 0;
+    right: 0;
+    margin: 0px auto;
+	font-size: 30px;
+	line-height: 30px;
+	font-weight: 400;
+	color: #111111;
+	letter-spacing: 3px;
+}
+
+.counterOne .percent:after {
+	content: '%';
+	font-size: 18px;
+	position: absolute;
+	margin-top: -5px;
+}
+.counterOne h4{
+	line-height: 24px;
+	color: #111111;
+	padding-top: 10px;
+}
+.counterOne p{
+	font-size: 14px;
+	line-height: 24px;
+	color: #999999;
+	padding-top: 10px;
+}
+
+/*counterOne end*/
+
+/*counterTwo start*/
+
+.counterTwo{
+	background: #f7f7f7;
+}
+.counterTwo .chart_two_1st, .chart_two_2nd, .chart_two_3rd, .chart_two_4th {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.counterTwo .percent {
+	position: absolute;
+	top: 38%;
+	left: 0;
+    right: 0;
+    margin: 0px auto;
+	font-size: 24px;
+	line-height: 30px;
+	font-weight: 600;
+	color: #111111;
+	letter-spacing: 3px;
+}
+
+.counterTwo .percent:after {
+	content: '%';
+	font-size: 18px;
+	position: absolute;
+	margin-top: -5px;
+}
+
+.counterTwo h4{
+	line-height: 24px;
+	color: #111111;
+	padding-top: 10px;
+}
+
+.counterTwo p{
+	font-size: 14px;
+	line-height: 24px;
+	color: #999999;
+	padding-top: 10px;
+}
+
+/*counterTwo end*/	
+
+/*counterThree start*/
+
+.counterThree{
+}
+.counterThree .chart_three_1st, .chart_three_2nd, .chart_three_3rd, .chart_three_4th {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.counterThree .percent-one {
+	position: absolute;
+	top: 25%;
+	left: 0;
+    right: 0;
+    margin: 0px auto;
+	height: 80px;
+	width: 80px;
+	background-color: #4285f4;
+	border-radius: 50%;
+	font-size: 24px;
+	line-height: 80px;
+	font-weight: 600;
+	color: #fff;
+	letter-spacing: 3px;
+}
+
+.counterThree .percent-two{
+	position: absolute;
+	top: 25%;
+	left: 0;
+    right: 0;
+    margin: 0px auto;
+	height: 80px;
+	width: 80px;
+	background-color: #7197b3;
+	border-radius: 50%;
+	font-size: 24px;
+	line-height: 80px;
+	font-weight: 600;
+	color: #fff;
+	letter-spacing: 3px;
+}
+
+.counterThree .percent-three{
+	position: absolute;
+	top: 25%;
+	left: 0;
+    right: 0;
+    margin: 0px auto;
+	height: 80px;
+	width: 80px;
+	background-color: #73ca8d;
+	border-radius: 50%;
+	font-size: 24px;
+	line-height: 80px;
+	font-weight: 600;
+	color: #fff;
+	letter-spacing: 3px;
+}
+
+.counterThree .percent-four{
+	position: absolute;
+	top: 25%;
+	left: 0;
+    right: 0;
+    margin: 0px auto;
+	height: 80px;
+	width: 80px;
+	background-color: #ea6a38;
+	border-radius: 50%;
+	font-size: 24px;
+	line-height: 80px;
+	font-weight: 600;
+	color: #fff;
+	letter-spacing: 3px;
+}
+
+.counterThree .percent:after {
+	content: '%';
+	font-size: 18px;
+	position: absolute;
+	color: #fff;
+}
+
+.counterThree h4{
+	line-height: 24px;
+	color: #111111;
+	padding-top: 10px;
+}
+
+.counterThree p{
+	font-size: 14px;
+	line-height: 24px;
+	color: #999999;
+	padding-top: 10px;
+}
+
+/*counterThree end*/
+
+
+/*counterFour start*/
+
+.counterFour {
+	background-color: #f9f9f9;
+}
+.counterFour .icon-one i{
+	color: #4285f4;
+	font-size: 80px;
+	line-height: 80px;
+}
+
+.counterFour .icon-two i{
+	color: #7197b3;
+	font-size: 80px;
+	line-height: 80px;
+}
+.counterFour .icon-three i{
+	color: #73ca8d;
+	font-size: 80px;
+	line-height: 80px;
+}
+.counterFour .icon-four i{
+	color: #ea6a38;
+	font-size: 80px;
+	line-height: 80px;
+}
+.counterFour .count-description{
+	display: inline-block;
+	font-size: 50px;
+	font-weight: 600;
+	color: #313131;
+	padding-top: 5px;
+}
+.counterFour h4{
+	display: block;
+	line-height: 40px;
+	color: #111111;
+	padding-top: 20px;
+}
+
+/*counterFour end*/
+
+
+/*counterFive start*/
+
+.counterFive .our-progress-one{
+	background-color: #4285f4;
+	border-radius: 5px;
+}
+
+.counterFive .our-progress-two{
+	background-color: #7197b3;
+	border-radius: 5px;
+}
+
+.counterFive .our-progress-three{
+	background-color: #73ca8d;
+	border-radius: 5px;
+}
+
+.counterFive .our-progress-four{
+	background-color: #ea6a38;
+	border-radius: 5px;
+}
+
+.counterFive .chart_five_1st, .chart_five_2nd, .chart_five_3rd, .chart_five_4th {
+	position: relative;
+	padding: 32px 0;
+}
+
+.counterFive .percent {
+	position: absolute;
+	top: 42%;
+  	left: 0;
+    right: 0;
+    margin: 0px auto;
+	font-size: 24px;
+	line-height: 30px;
+	font-weight: 600;
+	color: #fff;
+	letter-spacing: 3px;
+}
+
+.counterFive .percent:after {
+	content: '%';
+	font-size: 18px;
+	position: absolute;
+}
+.counterFive h2 {
+	font-size:18px;
+	line-height: 24px;
+	padding-top: 30px;
+}
+.counterFive h2 a{
+	color: #fff;
+}
+/*counterFive end*/
+
+@media(min-width: 768px)and (max-width: 991px){
+	
+	.our-progress{
+		padding-bottom:60px;
+	}
+	.counterFive .chart_five_1st, .chart_five_2nd, .chart_five_3rd, .chart_five_4th {
+		margin-bottom: 60px;
+	}
+	.counterFour h4 {
+		font-size:17px;
+	}
+}
+
+@media(max-width: 767px){
+	
+	.our-progress, .counterFour .count-description{
+		padding-bottom:60px;
+	}
+	.counterFive .chart_five_1st, .chart_five_2nd, .chart_five_3rd, .chart_five_4th {
+		margin-bottom: 60px;
+	}
+}

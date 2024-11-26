@@ -1,0 +1,111 @@
+/*------------------------------------------------------------------
+
+Project:	A Future HTML UI Kit
+Version:	1.0.0
+Author: 	webstrot 
+
+------------------------------------------------------------------ */
+
+
+/* icon section css */
+
+
+.icon_codes .row{
+	margin:0;
+}
+.icon_codes .col-md-3{
+	width:23%;
+}
+.icon_codes{
+	float:left;
+	width:100%;
+	padding-top:100px;
+	padding-bottom:100px;
+}
+.icon_wrapper_1{
+	font-size:24px;
+	text-transform:capitalize;
+	color:#232121;
+	padding-bottom:25px;
+}
+.icon_codes .fontawesome-icon-list div, .font-lists .glyph{
+border: 1px solid #ddd;
+    padding: 0;
+    height: 50px;
+	margin: -1px -1px 0 0;
+	text-align:left;
+    line-height: 50px;
+    cursor: default;
+	font-size:14px;
+	margin-right:20px;
+	margin-bottom:20px;
+}
+.icon_codes .fontawesome-icon-list div:hover, .font-lists .glyph:hover{
+	 background-color: #4285f4;
+    color: white;
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+}
+.icon_codes .fontawesome-icon-list div:hover .text-muted, .font-lists .glyph:hover .text-muted{
+	 color: white;
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+}
+.icon_codes .fontawesome-icon-list i, .icon_codes .font-lists .glyph .glyph-icon {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    text-align: center;
+    border-right: 1px solid rgba(100,100,100,0.2);
+    margin-right: 8px;
+    display: block;
+    float: left;
+}
+.alert{
+	margin-top:15px;
+	margin-bottom:0;
+}
+
+/* icon section end */
+
+@media only screen and (min-width : 320px) and (max-width : 480px) {
+	.col-md-3{
+		width:96%;
+	}
+}
+
+/* Landscape Mobile */
+
+@media only screen and (min-width : 480px) and (max-width : 767px) {
+
+.col-md-3{
+		width:96%;
+	}
+}
+
+/* Small devices (tablets, 768px and up) */
+
+@media (min-width : 768px) and (max-width : 991px) {
+	.col-md-3{
+		width:46%;
+	}
+}
+
+/* Medium devices (desktops, 992px and up) */
+
+@media (min-width : 992px) and (max-width : 1199px) {
+	/*navigation*/
+	.main-nav {
+	  padding-right: 40px;
+	}
+.col-md-3{
+		width:46%;
+	}
+}
+
+/* Large devices (large desktops, 1200px and up) */
