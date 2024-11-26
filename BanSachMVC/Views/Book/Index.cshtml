@@ -2,9 +2,9 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    Layout = null;
+	Layout = null;
 }
-@model CartViewModel
+
 <!DOCTYPE html>
 <!--
 Template Name: big basket
@@ -48,8 +48,8 @@ Purchase:
 <body>
 	@{
 		var userId = ViewBag.UserId;
-		var userName = ViewBag.UserName;
 	}
+	@model BanSachMVC.Models.BookViewModel
 	<!-- preloader Start -->
 	<div id="preloader">
 		<div id="status">
@@ -78,7 +78,7 @@ Purchase:
 
 				<li>
 					<div class="ss_login_box">
-						@if (userId!=null)
+						@if (userId != null)
 						{
 							<a href="/Logout">
 								<span>Logout</span>
@@ -146,16 +146,16 @@ Purchase:
 						<span><i class="fa fa-list-ul"></i> All Departments</span>
 					</a>
 					<ul class="dropdown-menu">
-						@foreach (var itemDanhMuc in Model.Categories)
-						{
-							<li class="yamm-tfw menu-item menu-item-has-children animate-dropdown dropdown">
-								<a title="Computers &amp; Accessories" data-hover="dropdown" href="@Url.Action("Category", "Home", new { id = itemDanhMuc.CategoryId })" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">
-									<i class="fa fa-user" aria-hidden="true"></i>
-									@itemDanhMuc.CategoryName
-								</a>
-							</li>
-						}
-					</ul>
+					 	@foreach (var itemDanhMuc in Model.Categories)
+					 	{
+					 		<li class="yamm-tfw menu-item menu-item-has-children animate-dropdown dropdown">
+					 			<a title="Computers &amp; Accessories" data-hover="dropdown" href="@Url.Action("Category", "Home", new { id = itemDanhMuc.CategoryId })" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">
+					 				<i class="fa fa-user" aria-hidden="true"></i>
+					 				@itemDanhMuc.CategoryName
+					 			</a>
+					 		</li>
+					 	}
+					 </ul>
 				</li>
 			</ul>
 		</nav>
@@ -192,7 +192,7 @@ Purchase:
 								<a href="contact.html">Contact</a>
 							</li>
 							<li class="parent visible-xs">
-								<a href="#">Cart &nbsp;<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+								<a href="/Cart">Cart &nbsp;<i class="fa fa-angle-down" aria-hidden="true"></i></a>
 								<ul class="lg-submenu">
 									<li>
 										<div class="ss_cart_inner_main_section">
@@ -240,8 +240,8 @@ Purchase:
 			</div>
 		</div>
 	</div>
-	</div>
 	<!-- Slider Wrapper End -->
+	
 	<!-- ss inner title Wrapper Start -->
 	<div class="ss_inner_title_wrapper">
 		<div class="container">
@@ -250,137 +250,155 @@ Purchase:
 					<div class="ss_inner_title_cont_wrapper">
 						<ul>
 							<li><a href="#"><i class="fa fa-home"></i></a>&nbsp;&nbsp; ></li>
-							<li>Product&nbsp;&nbsp; ></li>
-							<li>Shopping&nbsp;&nbsp; ></li>
-							<li>Cart</li>
+							<li>Book&nbsp;&nbsp; ></li>
 						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!--cart product wrapper Wrapper Start -->
-	<div class="cart_product_wrapper">
+	<!-- ss inner title Wrapper End -->
+	<!-- CC pc sidebar accordion Start -->
+	<div class="cc_pc_accordion_main_wrapper">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-					<div class="btc_shop_single_prod_right_section shop_product_single_head related_pdt_shop_head">
-						@{
-							var totalQuantity = Model.Cart.Items.Sum(item => item.Quantity);
-						}
-						<h1>Số lượng sản phẩm giỏ hàng (@(totalQuantity))</h1>
-					</div>
-				</div>
-				<div class="shop_cart_page_wrapper">
-					<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-						<div class="table-responsive cart-calculations">
-							<table class="table">
-
-								<thead class="cart_table_heading">
-									<tr>
-										<th>STT</th>
-										<th>Sản phẩm;</th>
-										<th>Giá</th>
-										<th>Số lượng</th>
-										<th>Tổng</th>
-										<th>Xoá</th>
-									</tr>
-								</thead>
-								<tbody>
-									@{
-										var i = 0;
-									}
-									@foreach (var item in Model.Cart.Items)
-									{
-										<tr>
-											<td>
-												@(i+1)
-												@{
-													i = i + 1;
-												}<!-- Hiển thị số thứ tự hoặc ID sản phẩm -->
-											</td>
-											<td>
-												<div class="table_cart_img">
-													<figure>
-														<!-- Hiển thị ảnh sản phẩm -->
-														<img src="img/@item.Image" alt="@item.Title" style="width:65px;height:66px;object-fit: cover;" />
-													</figure>
-												</div>
-												<div class="table_cart_cntnt">
-													<!-- Hiển thị tên và mô tả sản phẩm -->
-													<h1>@item.Title</h1>
-													<p>Tác giả: @item.Author</p>
-												</div>
-											</td>
-											<td class="cart_page_price">
-												<!-- Hiển thị giá của sản phẩm -->
-												@(item.Price)đ
-											</td>
-											<td>
-												<!-- Hiển thị số lượng và cho phép người dùng thay đổi -->
-												<input class="item-quantity" value="@item.Quantity" type="number" min="1" data-item-id="@item.BookId" />
-											</td>
-											
-											<td class="cart_page_totl">
-												<!-- Tính toán và hiển thị tổng cho sản phẩm này (Price x Quantity) -->
-												@(item.Price * @item.Quantity)đ
-											</td>
-											<td>
-												<!-- Liên kết để xóa sản phẩm khỏi giỏ hàng -->
-												<a href="@Url.Action("RemoveItem", "Cart", new { BookId = item.BookId })">
-													<i class="fa fa-trash"></i>
-												</a>
-											</td>
-										</tr>
-									}
-									
-								</tbody>
-							</table>
-						</div>
-
-						
-
-					</div>
-
-					<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-
-						<div class="shipping_Wrapper">
-							<div class="btc_shop_single_prod_right_section shop_product_single_head related_pdt_shop_head related_pdt_shop_head_2">
-								<h1>estimate shipping : </h1>
+				<div class="col-lg-12  col-md-12 col-sm-12 col-xs-12 sidebar2_main_wrapper">
+					<div class="sidebar_widget">
+						<div class="ss_proadd_wrapper ss_proadd_wrapper_inner">
+							<div class="ss_proadd_box">
+								<h2>@Model.Books.FirstOrDefault()?.Title</h2>
+								<p>Starting @(Model.Books.FirstOrDefault()?.Price)đ/-</p>
+								<img src="img/@Model.Books.FirstOrDefault()?.Image" alt="camera" title="Camera" class="img-responsive" style="width:310px;height:187px;object-fit:cover">	
+								<a href="#" class="ss_btn">Shop Now!</a>
 							</div>
-							
-							<div class="estimate_shiping_Wrapper_cntnt estimate_shiping_Wrapper_repsnse">
-
-								<table class="table">
-									<tbody>
+						</div>
+					</div>
+					<div class="sidebar_widget2">
+						<div class="filter-area">
+							<div class="showpro">
+								<p><span>Showing @((Model.CurrentPage - 1) * Model.PageSize + 1)-@(Model.CurrentPage * Model.PageSize + 1)</span></p>
+							</div>
+							<select>
+								<option><a href="/Book">Danh mục</a></option>
+								@foreach(var itemDanhMuc in Model.Categories)
+								{
+									<option><a href="/Book/Category/@itemDanhMuc.CategoryId">@itemDanhMuc.CategoryName</a></option>
+								}
+							</select>
+							<div class="list-grid">
+								<ul class="list-inline nav nav-pills">
+									<li class="active"><a data-toggle="pill" href="#grid"><i class="fa fa-th-large"></i></a>
+									</li>
+									<li><a data-toggle="pill" href="#list"><i class="fa fa-list"></i></a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<div class="tab-content">
+								<div id="grid" class="tab-pane fade in active">
+									<div class="row">
+										@foreach (var itemSanPham in Model.Books)
+										{
+											<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 prs_upcom_slide_first">
+												<div class="ss_featured_products_box">
+													<div class="ss_featured_products_box_img">
+														<span class="ss_tag">new</span>
+														<span class="ss_offer">@(itemSanPham.Discount)% off</span>
+														<img src="img/@itemSanPham.Image" alt="Product" class="img-responsive">														
+													</div>
+													<div class="ss_feat_prod_cont_heading_wrapper">
+														<h4><a href="#">@itemSanPham.Title</a></h4>
+														<p>@itemSanPham.Category.CategoryName</p>	<del>@(itemSanPham.Price)đ</del>  
+														<ins>@(Math.Floor(itemSanPham.Price * itemSanPham.Discount / 100))đ</ins>
+													</div>
+													<div class="ss_featured_products_box_footer">
+														
+														<ul>		
+															<li>
+																<button class="ss_btn">Add To Bag</button>
+															</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										}
 										
-										<tr>
-											<th> Số tiền được giảm:</th>
-											<td><span class="price">-$200.00</span></td>
-										</tr>
-										<tr>
-											<th class="cart_btn_cntnt"> Tổng tiền :</th>
-											<td><span class="cart_btn_cntnt_clr">@(Model.Cart.TotalAmount)đ</span> </td>
-										</tr>
-									</tbody>
-								</table>
-								<div class="shop_btn_wrapper shop_btn_wrapper_shipping">
-									<ul>
-										<li>
-											<a href="#">Thanh toán</a>
-										</li>
-									</ul>
+									</div>
+								</div>
+								<div id="list" class="tab-pane fade">
+									@if (Model.Books != null && Model.Books.Any())
+									{																			
+										@foreach (var itemSanPham in Model.Books)
+										{
+											<div class="row">
+												<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+													<div class="prs_mcc_list_movie_main_wrapper">
+														<div class="ss_featured_products_box_img ss_featured_products_box_img_list">
+															<span class="ss_tag">new</span>
+															<span class="ss_offer">@(itemSanPham.Discount)% off</span>
+															<img src="img/@itemSanPham.Image" alt="Product" class="img-responsive">
+														
+														</div>
+														<div class="ss_featured_products_box_img_list_cont">
+															<div class="ss_feat_prod_cont_heading_wrapper">
+																<h4><a href="#">@itemSanPham.Title</a></h4>
+																<p>@itemSanPham.Category.CategoryName</p>	<del>@(itemSanPham.Price)đ</del>
+																<ins>@(Math.Floor(itemSanPham.Price * itemSanPham.Discount / 100))đ</ins>
+															</div>
+															<div class="ss_featured_products_box_footer ss_featured_products_box_footer_list">
+															
+																<ul>
+																	<li>
+																		<button class="ss_btn">Add To Bag</button>
+																	</li>
+																</ul>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										}
+									}
 								</div>
 							</div>
 						</div>
-
+					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<!-- blog_pagination_section start -->
+						<div class="pager_wrapper gc_blog_pagination">
+							<ul class="pagination">
+								<li>
+									@if (Model.CurrentPage > 1)
+									{
+										<a href="@Url.Action("Index", new { page = Model.CurrentPage - 1, pageSize = Model.PageSize })">Previous</a>
+									}
+								</li>
+								@for (int i = 1; i <= Model.TotalPages; i++)
+								{									
+									<li>
+										<a href="@Url.Action("Index", new { page = i, pageSize = Model.PageSize })" class="@(i == Model.CurrentPage ? "active" : "")">
+											@i
+										</a>
+									</li>
+								}
+								<li>
+									@if (Model.CurrentPage < Model.TotalPages)
+									{
+										<a href="@Url.Action("Index", new { page = Model.CurrentPage + 1, pageSize = Model.PageSize })">Next</a>
+									}
+								</li>
+							</ul>
+						</div>
+						<!-- blog_pagination_section end -->
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</div>
-	<!-- cart product wrapper end -->
+	<!-- CC pc sidebar accordion End -->
 	<!-- Newsletter Wrapper Start -->
 	<div class="ss_newsletter_wrapper">
 		<div class="container">
@@ -485,20 +503,20 @@ Purchase:
 						<ul>
 							<li>
 								<span>Head Office:</span>
-								<p>Web Company Name, 125, Colis Street ABC45 India #010101</p>
+								<p>Trang web bán sách tốt nhất Việt Nam</p>
 							</li>
 							<li>
 								<span>Phone:</span>
 								<p>
-									+1-804-548-5214
-									<br>+1-804-548-5215
+									0364933757
+									<br>0364933757
 								</p>
 							</li>
 							<li>
 								<span>Email:</span>
 								<p>
-									<a href="#">store@example.com</a>
-									<br><a href="#">support@example.com</a>
+									<a href="#">dangmai19112016@gmail.com.com</a>
+									<br><a href="#">dangmai19112016@gmail.com.com</a>
 								</p>
 							</li>
 						</ul>
@@ -591,35 +609,6 @@ Purchase:
 	<script src="js/jquery.inview.min.js"></script>
 	<script src="js/custom.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script>
-		$(document).ready(function () {
-			// Bắt sự kiện khi giá trị input thay đổi
-			$('.item-quantity').on('change', function () {
-				var quantity = $(this).val();  // Lấy số lượng mới
-				var itemId = $(this).data('item-id');  // Lấy ID của sản phẩm từ thuộc tính data-item-id
-
-				// Gửi AJAX request để cập nhật số lượng
-				$.ajax({
-					url: '/Cart/UpdateQuantity',
-					type: 'PUT',// URL tới controller xử lý yêu cầu
-					contentType: 'application/json',
-					data: JSON.stringify({
-						idBook: itemId,  // Lấy id sản phẩm
-						quantity: quantity  // Lấy số lượng sản phẩm
-					}),
-					success: function (response) {
-						// Cập nhật thành công
-						alert("Giỏ hàng đã được cập nhật.");
-						location.reload(); // Tự động reload lại trang
-					},
-					error: function (xhr, status, error) {
-						// Xử lý khi có lỗi
-						alert("Có lỗi xảy ra khi cập nhật giỏ hàng.");
-					}
-				});
-			});
-		});
-	</script>
 	<script>
 		$(window).on("load", function () {
 			var wow = new WOW({

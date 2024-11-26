@@ -15,7 +15,7 @@ namespace BanSach.Controllers
             _context = context;
         }
 
-        // Lấy tất cả sách
+        // Lấy tất cả danh mục
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
         {

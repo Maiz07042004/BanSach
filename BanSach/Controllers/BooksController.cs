@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using BanSach.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using BanSach.DTO;
 
 namespace BanSach.Controllers
 {
@@ -17,13 +18,37 @@ namespace BanSach.Controllers
             _context = context;
         }
 
-        // Lấy tất cả sách
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Book>>> GetBooks()
-        {
-            var books = await _context.Books.Include(b => b.Category).ToListAsync();
-            return Ok(books);
-        }
+		// Lấy tất cả sách
+		[HttpGet("all")]
+		public async Task<ActionResult<List<Book>>> GetBooks()
+		{
+			var books = await _context.Books.Include(b => b.Category).ToListAsync();
+			return Ok(books);
+		}
+
+		// Lấy sách theo pagination
+		[HttpGet]
+		public async Task<IActionResult> GetBooksPagination(int page = 1, int pageSize = 12)
+		{
+			// Lấy tổng số sách trong cơ sở dữ liệu
+			var totalBooks = await _context.Books.CountAsync();
+
+			// Lấy danh sách sách theo phân trang
+			var books = await _context.Books.Include(b => b.Category)
+				.Skip((page - 1) * pageSize)  // Bỏ qua số sách của các trang trước đó
+				.Take(pageSize)              // Lấy số sách trong trang hiện tại
+				.ToListAsync();
+
+			// Tạo đối tượng DTO để trả về kết quả
+			var pageResult = new PageResultDTO
+			{
+				Items = books,                  // Các sách trong trang
+				TotalCount = totalBooks,        // Tổng số sách trong cơ sở dữ liệu
+			};
+
+			return Ok(pageResult);
+		}
+
 
 		// Lấy danh sách sách theo category
 		[HttpGet("category/{categoryId}")]

@@ -23,7 +23,7 @@ namespace BanSachMVC.Controllers
                 var viewModel = new HomeViewModel();
 
                 // Gọi API lấy danh sách sách
-                var response = await _httpClient.GetAsync("Books");
+                var response = await _httpClient.GetAsync("Books/all");
                 if (response.IsSuccessStatusCode)
                 {
                     var content = await response.Content.ReadAsStringAsync();
