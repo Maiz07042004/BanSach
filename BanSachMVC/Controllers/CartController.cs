@@ -1,6 +1,8 @@
-﻿using BanSachMVC.Models;
+﻿using BanSachMVC.DTO;
+using BanSachMVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Text;
 
 namespace BanSachMVC.Controllers
 {
@@ -18,7 +20,7 @@ namespace BanSachMVC.Controllers
 		{
 			try
 			{
-				var viewModel = new CartDTO();
+				var viewModel = new CartViewModel();
 
 				// Lấy userId từ session
 				var userId = HttpContext.Session.GetString("UserId");
@@ -39,12 +41,29 @@ namespace BanSachMVC.Controllers
 
 					// Giải mã JSON thành đối tượng giỏ hàng
 					var cart = JsonConvert.DeserializeObject<CartDTO>(content);
-					viewModel = cart;  // Giả sử ViewModel có thuộc tính Cart để lưu thông tin giỏ hàng
+					viewModel.Cart = cart;  // Giả sử ViewModel có thuộc tính Cart để lưu thông tin giỏ hàng
 				}
 				else
 				{
 					// Nếu API không thành công, có thể log lỗi hoặc xử lý như thế nào đó
-					viewModel = null;
+					viewModel.Cart = null;
+				}
+				// Gọi API lấy danh sách danh mục
+				var categoryResponse = await _httpClient.GetAsync("Categories");
+				if (categoryResponse.IsSuccessStatusCode)
+				{
+					var content = await categoryResponse.Content.ReadAsStringAsync();
+					viewModel.Categories = JsonConvert.DeserializeObject<List<Category>>(content);
+				}
+				if (!string.IsNullOrEmpty(HttpContext.Session.GetString("UserId")) &&
+					!string.IsNullOrEmpty(HttpContext.Session.GetString("UserName")))
+				{
+					var userId2 = HttpContext.Session.GetString("UserId");
+					var userName = HttpContext.Session.GetString("UserName");
+					ViewBag.UserId = userId2;
+					ViewBag.UserName = userName;
+
+					// Tiếp tục xử lý với userId và userName
 				}
 
 				// Trả về view với dữ liệu đã lấy được từ API
@@ -56,6 +75,40 @@ namespace BanSachMVC.Controllers
 				// Logger.LogError(ex, "Error occurred while fetching cart data");
 				return View("Error");
 			}
+		}
+
+		[HttpPut]
+		public async Task<IActionResult> UpdateQuantity([FromBody] UpdateQuantityBook request)
+		{
+			try
+			{
+				var userId = HttpContext.Session.GetString("UserId");
+
+				var data = new { idBook=request.idBook, quantity=request.quantity };
+				var jsonContent = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
+				var response = await _httpClient.PutAsync($"Carts/update/{userId}",jsonContent);
+				if (response.IsSuccessStatusCode)
+				{
+					
+					return Json(new { success = true });
+				}
+				else
+				{
+					// Xử lý lỗi nếu có
+					return Json(new { success = false });
+				}
+				// Trả về kết quả thành công
+				
+			}
+			catch (Exception ex)
+			{
+				// Xử lý lỗi nếu có
+				return Json(new { success = false, message = ex.Message });
+			}
+		}
+		public async Task<IActionResult> DeleteItem(string idBook)
+		{
+			return View(Index());
 		}
 
 

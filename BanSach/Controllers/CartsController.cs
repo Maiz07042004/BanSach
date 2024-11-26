@@ -39,10 +39,11 @@ namespace BanSach.Controllers
 					BookId = ci.BookId,
 					Title = ci.Book.Title,
 					Author = ci.Book.Author,
-					Price = ci.Book.Price,
+					Price = Math.Floor(ci.Book.Price*ci.Book.Discount/100),
+					Image=ci.Book.Image,
 					Quantity = ci.Quantity
 				}).ToList(),
-				TotalAmount = cart.CartItems.Sum(ci => ci.Quantity * ci.UnitPrice) // Tính tổng số tiền giỏ hàng
+				TotalAmount = cart.CartItems.Sum(ci => ci.Quantity * Math.Floor(ci.Book.Price * ci.Book.Discount / 100)) // Tính tổng số tiền giỏ hàng
 			};
 
 			return Ok(cartDTO); // Trả về DTO của giỏ hàng
@@ -123,7 +124,7 @@ namespace BanSach.Controllers
 			var cartItem = cart.CartItems?.FirstOrDefault(ci => ci.CartItemId == cartItemId);
 			if (cartItem == null)
 			{
-				return NotFound(new { message = "Item not found in cart." });
+				return NotFound(new { message = "Không tìm thấy sách" });
 			}
 
 			// Xoá item khỏi giỏ hàng
@@ -135,10 +136,10 @@ namespace BanSach.Controllers
 		}
 
 		// API Cập nhật số lượng item trong giỏ hàng
-		[HttpPut("update/{userId}/{cartItemId}")]
-		public async Task<ActionResult> UpdateCartItem(int userId, int cartItemId, [FromBody] UpdateCartItemDTO updateCartItemDTO)
+		[HttpPut("update/{userId}")]
+		public async Task<ActionResult> UpdateCartItem(int userId, [FromBody] UpdateQuantityBook request)
 		{
-			if (updateCartItemDTO.Quantity <= 0)
+			if (request.quantity <= 0)
 			{
 				return BadRequest(new { message = "Quantity must be greater than 0." });
 			}
@@ -152,15 +153,14 @@ namespace BanSach.Controllers
 				return NotFound(new { message = "Cart not found." });
 			}
 
-			var cartItem = cart.CartItems?.FirstOrDefault(ci => ci.CartItemId == cartItemId);
+			var cartItem = cart.CartItems?.FirstOrDefault(ci => ci.BookId == request.idBook);
 			if (cartItem == null)
 			{
 				return NotFound(new { message = "Item not found in cart." });
 			}
 
 			// Cập nhật số lượng
-			cartItem.Quantity = updateCartItemDTO.Quantity;
-			cartItem.UnitPrice = updateCartItemDTO.UnitPrice; // Nếu có thay đổi giá
+			cartItem.Quantity = request.quantity;
 
 			// Cập nhật thời gian sửa giỏ hàng
 			cart.UpdatedDate = DateTime.Now;

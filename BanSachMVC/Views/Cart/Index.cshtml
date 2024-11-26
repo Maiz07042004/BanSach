@@ -4,6 +4,7 @@
 @{
     Layout = null;
 }
+@model CartViewModel
 <!DOCTYPE html>
 <!--
 Template Name: big basket
@@ -264,7 +265,10 @@ Purchase:
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="btc_shop_single_prod_right_section shop_product_single_head related_pdt_shop_head">
-						<h1>Your cart Products (04)</h1>
+						@{
+							var totalQuantity = Model.Cart.Items.Sum(item => item.Quantity);
+						}
+						<h1>Số lượng sản phẩm giỏ hàng (@(totalQuantity))</h1>
 					</div>
 				</div>
 				<div class="shop_cart_page_wrapper">
@@ -274,152 +278,67 @@ Purchase:
 
 								<thead class="cart_table_heading">
 									<tr>
-										<th>item</th>
-
-										<th>product</th>
-										<th>&nbsp;</th>
-										<th> price</th>
-
-										<th>Quantity</th>
-
-										<th>Total price</th>
-										<th>&nbsp;</th>
+										<th>STT</th>
+										<th>Sản phẩm;</th>
+										<th>Giá</th>
+										<th>Số lượng</th>
+										<th>Tổng</th>
+										<th>Xoá</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td>
-											1
-										</td>
-										<td>
-											<div class="table_cart_img">
-												<figure>
-													<img src="images/content/cart_1.png" alt="" />
-												</figure>
-											</div>
-											<div class="table_cart_cntnt">
-												<h1>Brand new phone</h1>
-												<p>color : black </p>
-											</div>
-										</td>
-										<td></td>
-										<td class="cart_page_price">$199.00</td>
-										<td>
-											<input value="1" type="number" />
-										</td>
-										<td class="cart_page_totl">$299.00</td>
-										<td>
-											<a href="#"> <i class="fa fa-trash"></i></a>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											2
-										</td>
-										<td>
-											<div class="table_cart_img">
-												<figure>
-													<img src="images/content/cart_1.png" alt="" />
-												</figure>
-											</div>
-											<div class="table_cart_cntnt">
-												<h1>Brand new phone</h1>
-												<p>color : black </p>
-											</div>
-										</td>
-										<td></td>
-										<td class="cart_page_price">$199.00</td>
-										<td>
-											<input value="1" type="number" />
-										</td>
-										<td class="cart_page_totl">$399.00</td>
-										<td>
-											<a href="#"> <i class="fa fa-trash"></i></a>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											3
-										</td>
-										<td>
-											<div class="table_cart_img">
-												<figure>
-													<img src="images/content/cart_1.png" alt="" />
-												</figure>
-											</div>
-											<div class="table_cart_cntnt">
-												<h1>Brand new phone</h1>
-												<p>color : black </p>
-											</div>
-										</td>
-										<td></td>
-										<td class="cart_page_price">$99.00</td>
-										<td>
-											<input value="1" type="number" />
-										</td>
-										<td class="cart_page_totl">$199.00</td>
-										<td>
-											<a href="#"> <i class="fa fa-trash"></i></a>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											4
-										</td>
-										<td>
-											<div class="table_cart_img">
-												<figure>
-													<img src="images/content/cart_1.png" alt="" />
-												</figure>
-											</div>
-											<div class="table_cart_cntnt">
-												<h1>Brand new phone</h1>
-												<p>color : black </p>
-											</div>
-										</td>
-										<td></td>
-										<td class="cart_page_price">$199.00</td>
-										<td>
-											<input value="1" type="number" />
-										</td>
-										<td class="cart_page_totl">$299.00</td>
-										<td>
-											<a href="#"> <i class="fa fa-trash"></i></a>
-										</td>
-									</tr>
-									<tr>
-
-										<td> </td>
-										<td class="shop_btn_wrapper shop_car_btn_wrapper">
-
-											<ul>
-												<li>
-													<a href="#">continue shopping</a>
-												</li>
-											</ul>
-
-										</td>
-										<td> </td>
-										<td> </td>
-										<td></td>
-
-										<td class="cart_btn_cntnt"> Sub Total : <span>$1192.00 </span> </td>
-										<td></td>
-
-									</tr>
+									@{
+										var i = 0;
+									}
+									@foreach (var item in Model.Cart.Items)
+									{
+										<tr>
+											<td>
+												@(i+1)
+												@{
+													i = i + 1;
+												}<!-- Hiển thị số thứ tự hoặc ID sản phẩm -->
+											</td>
+											<td>
+												<div class="table_cart_img">
+													<figure>
+														<!-- Hiển thị ảnh sản phẩm -->
+														<img src="img/@item.Image" alt="@item.Title" style="width:65px;height:66px;object-fit: cover;" />
+													</figure>
+												</div>
+												<div class="table_cart_cntnt">
+													<!-- Hiển thị tên và mô tả sản phẩm -->
+													<h1>@item.Title</h1>
+													<p>Tác giả: @item.Author</p>
+												</div>
+											</td>
+											<td class="cart_page_price">
+												<!-- Hiển thị giá của sản phẩm -->
+												@(item.Price)đ
+											</td>
+											<td>
+												<!-- Hiển thị số lượng và cho phép người dùng thay đổi -->
+												<input class="item-quantity" value="@item.Quantity" type="number" min="1" data-item-id="@item.BookId" />
+											</td>
+											
+											<td class="cart_page_totl">
+												<!-- Tính toán và hiển thị tổng cho sản phẩm này (Price x Quantity) -->
+												@(item.Price * @item.Quantity)đ
+											</td>
+											<td>
+												<!-- Liên kết để xóa sản phẩm khỏi giỏ hàng -->
+												<a href="@Url.Action("DeleteItem", "Cart", new { id = item.BookId })">
+													<i class="fa fa-trash"></i>
+												</a>
+											</td>
+										</tr>
+									}
+									
 								</tbody>
 							</table>
 						</div>
 
-						<div class="estimate_shiping_Wrapper_cntnt estimate_shiping_Wrapper_cntnt_2">
-							<div class="btc_shop_single_prod_right_section shop_product_single_head related_pdt_shop_head related_pdt_shop_head_2">
-								<h1>coupan code enetr here : </h1>
-								<div class="lr_nl_form_wrapper">
-									<input type="text" placeholder="Type Your Code">
-									<button type="submit">apply</button>
-								</div>
-							</div>
-						</div>
+						
 
 					</div>
 
@@ -429,63 +348,26 @@ Purchase:
 							<div class="btc_shop_single_prod_right_section shop_product_single_head related_pdt_shop_head related_pdt_shop_head_2">
 								<h1>estimate shipping : </h1>
 							</div>
-							<div class="estimate_shiping_Wrapper_cntnt">
-								<div class="custome-select style2">
-									<span>Select country <i class="fa fa-angle-down"></i></span>
-									<select>
-										<option>United States</option>
-										<option>Austraila</option>
-										<option>London</option>
-									</select>
-								</div>
-
-								<div class="custome-select style2">
-									<span>Select State <i class="fa fa-angle-down"></i></span>
-									<select>
-										<option>United States</option>
-										<option>Austraila</option>
-										<option>London</option>
-									</select>
-								</div>
-								<input type="text" class="form-control" placeholder="Enter ZIP code" />
-								<div class="shop_btn_wrapper shop_btn_wrapper_shipping">
-									<ul>
-										<li>
-											<a href="#">check</a>
-										</li>
-									</ul>
-								</div>
-							</div>
+							
 							<div class="estimate_shiping_Wrapper_cntnt estimate_shiping_Wrapper_repsnse">
 
 								<table class="table">
 									<tbody>
+										
 										<tr>
-											<th>Sub Total : </th>
-											<td><span class="price">$1,00.00</span></td>
-										</tr>
-										<tr>
-											<th>IGST 18% :</th>
-											<td><span class="price">$200.00</span></td>
-										</tr>
-										<tr>
-											<th>CGST 20% :</th>
-											<td><span class="price">$200.00</span></td>
-										</tr>
-										<tr>
-											<th> Discount:</th>
+											<th> Số tiền được giảm:</th>
 											<td><span class="price">-$200.00</span></td>
 										</tr>
 										<tr>
-											<th class="cart_btn_cntnt"> Sub Total :</th>
-											<td><span class="cart_btn_cntnt_clr">$1192.00 </span> </td>
+											<th class="cart_btn_cntnt"> Tổng tiền :</th>
+											<td><span class="cart_btn_cntnt_clr">@(Model.Cart.TotalAmount)đ</span> </td>
 										</tr>
 									</tbody>
 								</table>
 								<div class="shop_btn_wrapper shop_btn_wrapper_shipping">
 									<ul>
 										<li>
-											<a href="#">checkout</a>
+											<a href="#">Thanh toán</a>
 										</li>
 									</ul>
 								</div>
@@ -708,6 +590,36 @@ Purchase:
 	<script src="js/jquery.easing.1.3.js"></script>
 	<script src="js/jquery.inview.min.js"></script>
 	<script src="js/custom.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			// Bắt sự kiện khi giá trị input thay đổi
+			$('.item-quantity').on('change', function () {
+				var quantity = $(this).val();  // Lấy số lượng mới
+				var itemId = $(this).data('item-id');  // Lấy ID của sản phẩm từ thuộc tính data-item-id
+
+				// Gửi AJAX request để cập nhật số lượng
+				$.ajax({
+					url: '/Cart/UpdateQuantity',
+					type: 'PUT',// URL tới controller xử lý yêu cầu
+					contentType: 'application/json',
+					data: JSON.stringify({
+						idBook: itemId,  // Lấy id sản phẩm
+						quantity: quantity  // Lấy số lượng sản phẩm
+					}),
+					success: function (response) {
+						// Cập nhật thành công
+						alert("Giỏ hàng đã được cập nhật.");
+						location.reload(); // Tự động reload lại trang
+					},
+					error: function (xhr, status, error) {
+						// Xử lý khi có lỗi
+						alert("Có lỗi xảy ra khi cập nhật giỏ hàng.");
+					}
+				});
+			});
+		});
+	</script>
 	<script>
 		$(window).on("load", function () {
 			var wow = new WOW({
