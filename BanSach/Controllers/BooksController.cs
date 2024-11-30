@@ -57,6 +57,7 @@ namespace BanSach.Controllers
 			// Truy vấn các sách thuộc thể loại có CategoryId tương ứng
 			var books = await _context.Books
 				.Where(b => b.CategoryId == categoryId)
+				.Include(b => b.Category)
 				.ToListAsync();
 
 			if (books == null || books.Count == 0)

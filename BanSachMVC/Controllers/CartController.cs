@@ -131,7 +131,58 @@ namespace BanSachMVC.Controllers
 			{
 				return Json(new { success = false, message = ex.Message });
 			}
-		} 
+		}
+		[HttpGet]
+		public async Task<IActionResult> AddToCart(int bookId, int quantity = 1)
+		{
+			try
+			{
+				// Lấy userId từ session
+				var userId = HttpContext.Session.GetInt32("UserId");
+
+				if (userId == null)
+				{
+					// Nếu không có userId trong session, chuyển hướng đến trang đăng nhập
+					return RedirectToAction("Index", "Login");
+				}
+
+				// Tạo đối tượng dữ liệu cần gửi cho API
+				var data = new
+				{
+					userId = userId,
+					bookId = bookId,
+					quantity = quantity
+				};
+
+				// Chuyển đối tượng dữ liệu thành JSON
+				var jsonContent = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
+
+				// Gọi API để thêm sách vào giỏ hàng
+				var response = await _httpClient.PostAsync($"Carts/add?userId={userId}&bookId={bookId}&quantity={quantity}",null);
+
+				// Kiểm tra phản hồi từ API
+				if (response.IsSuccessStatusCode)
+				{
+					// Quay lại trang trước đó
+					var refererUrl = Request.Headers["Referer"].ToString();
+					if (!string.IsNullOrEmpty(refererUrl))
+					{
+						return Redirect(refererUrl); // Quay lại trang trước đó
+					}
+				}
+				else
+				{
+					// Nếu API không thành công, xử lý lỗi (có thể log lỗi hoặc hiển thị thông báo lỗi)
+					return Json(new { success = false, message = "Failed to add item to cart." });
+				}
+			}
+			catch (Exception ex)
+			{
+				// Xử lý lỗi nếu có
+				return Json(new { success = false, message = ex.Message });
+			}
+			return RedirectToAction("Index", "Home");
+		}
 
 	}
 }

@@ -1,6 +1,7 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
+
 @{
 	Layout = null;
 }
@@ -27,23 +28,22 @@ Purchase:
 	<meta name="keywords" content="big basket, Ecommerce, Store, Mall, online Shopping" />
 	<meta name="author" content="" />
 	<meta name="MobileOptimized" content="320" />
-
 	<!--srart theme style -->
-	<link rel="stylesheet" type="text/css" href="css/animate.css" />
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-	<link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
-	<link rel="stylesheet" type="text/css" href="css/owl.carousel.css" />
-	<link rel="stylesheet" type="text/css" href="css/owl.theme.default.css" />
-	<link rel="stylesheet" type="text/css" href="css/magnific-popup.css" />
-	<link rel="stylesheet" type="text/css" href="css/fonts.css" />
-	<link rel="stylesheet" type="text/css" href="css/dl-menu.css" />
-	<link rel="stylesheet" type="text/css" href="css/reset.css" />
-	<link rel="stylesheet" type="text/css" href="css/camera.css" />
-	<link rel="stylesheet" type="text/css" href="css/style.css" />
-	<link rel="stylesheet" type="text/css" href="css/responsive.css" />
-	<link rel="stylesheet" type="text/css" href="css/sidebar.css" />
+	<link rel="stylesheet" type="text/css" href="~/css/animate.css" />
+	<link rel="stylesheet" type="text/css" href="~/css/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="~/css/font-awesome.css" />
+	<link rel="stylesheet" type="text/css" href="~/css/owl.carousel.css" />
+	<link rel="stylesheet" type="text/css" href="~/css/owl.theme.default.css" />
+	<link rel="stylesheet" type="text/css" href="~/css/magnific-popup.css" />
+	<link rel="stylesheet" type="text/css" href="~/css/fonts.css" />
+	<link rel="stylesheet" type="text/css" href="~/css/dl-menu.css" />
+	<link rel="stylesheet" type="text/css" href="~/css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="~/css/camera.css" />
+	<link rel="stylesheet" type="text/css" href="~/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="~/css/responsive.css" />
+	<link rel="stylesheet" type="text/css" href="~/css/sidebar.css" />
 	<!-- favicon links -->
-	<link rel="shortcut icon" type="image/png" href="images/header/favicon.png" />
+	<link rel="shortcut icon" type="~/image/png" href="~/images/header/favicon.png" />
 </head>
 
 <body>
@@ -54,7 +54,7 @@ Purchase:
 	<!-- preloader Start -->
 	<div id="preloader">
 		<div id="status">
-			<img src="images/header/preloader.gif" id="preloader_image" alt="loader">
+			<img src="~/images/header/preloader.gif" id="preloader_image" alt="loader">
 		</div>
 	</div>
 	<!-- Top Scroll Start -->
@@ -64,7 +64,7 @@ Purchase:
 	<div class="ss_middle_header_wrapper">
 		<div class="ss_logo">
 			<a href="index.html">
-				<img src="images/header/logo.png" alt="Logo" title="big basket" class="img-responsive">
+				<img src="~/images/header/logo.png" alt="Logo" title="big basket" class="img-responsive">
 			</a>
 		</div>
 		<div class="ss_info_area">
@@ -83,14 +83,14 @@ Purchase:
 						{
 							<a href="/Logout">
 								<span>Logout</span>
-								<img src="images/header/user_icon.png" alt="Logout" title="Logout" class="img-responsive">
+								<img src="~/images/header/user_icon.png" alt="Logout" title="Logout" class="img-responsive">
 							</a>
 						}
 						else
 						{
 							<a href="/Login">
 								<span>Login or Register</span>
-								<img src="images/header/user_icon.png" alt="Login" title="Login" class="img-responsive">
+								<img src="~/images/header/user_icon.png" alt="Login" title="Login" class="img-responsive">
 							</a>
 						}
 					</div>
@@ -106,7 +106,7 @@ Purchase:
 							<li>
 								<div class="ss_cart_inner_main_section">
 									<div class="ss_cart_img_wrapper">
-										<img src="images/header/cart_img.jpg" alt="cart_img">
+										<img src="~/images/header/cart_img.jpg" alt="cart_img">
 									</div>
 									<div class="ss_cart_img_cont_wrapper">
 										<h3>Product item</h3>
@@ -118,7 +118,7 @@ Purchase:
 							<li>
 								<div class="ss_cart_inner_main_section ss_cart_inner_main_section2">
 									<div class="ss_cart_img_wrapper">
-										<img src="images/header/cart_img.jpg" alt="cart_img">
+										<img src="~/images/header/cart_img.jpg" alt="cart_img">
 									</div>
 									<div class="ss_cart_img_cont_wrapper">
 										<h3>Product item</h3>
@@ -147,16 +147,16 @@ Purchase:
 						<span><i class="fa fa-list-ul"></i> All Departments</span>
 					</a>
 					<ul class="dropdown-menu">
-					 	@foreach (var itemDanhMuc in Model.Categories)
-					 	{
-					 		<li class="yamm-tfw menu-item menu-item-has-children animate-dropdown dropdown">
+						@foreach (var itemDanhMuc in Model.Categories)
+						{
+							<li class="yamm-tfw menu-item menu-item-has-children animate-dropdown dropdown">
 								<a title="Computers &amp; Accessories" data-hover="dropdown" href="@Url.Action("GetBooksByCategory", "Book", new { CategoryId = itemDanhMuc.CategoryId })" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">
-					 				<i class="fa fa-user" aria-hidden="true"></i>
-					 				@itemDanhMuc.CategoryName
-					 			</a>
-					 		</li>
-					 	}
-					 </ul>
+									<i class="fa fa-user" aria-hidden="true"></i>
+									@itemDanhMuc.CategoryName
+								</a>
+							</li>
+						}
+					</ul>
 				</li>
 			</ul>
 		</nav>
@@ -198,7 +198,7 @@ Purchase:
 									<li>
 										<div class="ss_cart_inner_main_section">
 											<div class="ss_cart_img_wrapper">
-												<img src="images/header/cart_img.jpg" alt="cart_img">
+												<img src="~/images/header/cart_img.jpg" alt="cart_img">
 											</div>
 											<div class="ss_cart_img_cont_wrapper">
 												<h3><a href="#">Product item</a></h3>
@@ -210,7 +210,7 @@ Purchase:
 									<li>
 										<div class="ss_cart_inner_main_section">
 											<div class="ss_cart_img_wrapper">
-												<img src="images/header/cart_img.jpg" alt="cart_img">
+												<img src="~/images/header/cart_img.jpg" alt="cart_img">
 											</div>
 											<div class="ss_cart_img_cont_wrapper">
 												<h3><a href="#">Product item</a></h3>
@@ -242,7 +242,6 @@ Purchase:
 		</div>
 	</div>
 	<!-- Slider Wrapper End -->
-	
 	<!-- ss inner title Wrapper Start -->
 	<div class="ss_inner_title_wrapper">
 		<div class="container">
@@ -269,7 +268,7 @@ Purchase:
 							<div class="ss_proadd_box">
 								<h2>@Model.Books.FirstOrDefault()?.Title</h2>
 								<p>Starting @(Model.Books.FirstOrDefault()?.Price)đ/-</p>
-								<img src="img/@Model.Books.FirstOrDefault()?.Image" alt="camera" title="Camera" class="img-responsive" style="width:310px;height:187px;object-fit:cover">	
+								<img src="~/img/@Model.Books.FirstOrDefault()?.Image" alt="camera" title="Camera" class="img-responsive" style="width:310px;height:187px;object-fit:cover">
 								<a href="#" class="ss_btn">Shop Now!</a>
 							</div>
 						</div>
@@ -288,9 +287,11 @@ Purchase:
 							</select>
 							<div class="list-grid">
 								<ul class="list-inline nav nav-pills">
-									<li class="active"><a data-toggle="pill" href="#grid"><i class="fa fa-th-large"></i></a>
+									<li class="active">
+										<a data-toggle="pill" href="#grid"><i class="fa fa-th-large"></i></a>
 									</li>
-									<li><a data-toggle="pill" href="#list"><i class="fa fa-list"></i></a>
+									<li>
+										<a data-toggle="pill" href="#list"><i class="fa fa-list"></i></a>
 									</li>
 								</ul>
 							</div>
@@ -308,7 +309,7 @@ Purchase:
 													<div class="ss_featured_products_box_img">
 														<span class="ss_tag">new</span>
 														<span class="ss_offer">@(itemSanPham.Discount)% off</span>
-														<img src="img/@itemSanPham.Image" alt="Product" class="img-responsive">														
+														<img src="~/img/@itemSanPham.Image" alt="Product" class="img-responsive">
 													</div>
 													<div class="ss_feat_prod_cont_heading_wrapper">
 														<h4><a href="#">@itemSanPham.Title</a></h4>
@@ -316,22 +317,19 @@ Purchase:
 														<ins>@(Math.Floor(itemSanPham.Price * ((100 - itemSanPham.Discount) / 100)))đ</ins>
 													</div>
 													<div class="ss_featured_products_box_footer">
-														
-														<ul>		
+
+														<ul>
 															<li>
-																
-																	<!-- Thẻ <a> với URL được tạo từ Url.Action -->
 																<a href="@Url.Action("AddToCart", "Cart", new { bookId = itemSanPham.BookId, quantity = 1 }) class=" ss_btn" style="width: auto;border-radius: 20px; padding-left: 15px;padding-right: 15px;">
-																		Thêm vào giỏ hàng
+																	Thêm vào giỏ hàng
 																</a>
-																
 															</li>
 														</ul>
 													</div>
 												</div>
 											</div>
 										}
-										
+
 									</div>
 								</div>
 								<div id="list" class="tab-pane fade">
@@ -344,32 +342,31 @@ Purchase:
 													<div class="ss_featured_products_box_img ss_featured_products_box_img_list">
 														<span class="ss_tag">new</span>
 														<span class="ss_offer">@(itemSanPham.Discount)% off</span>
-														<img src="img/@itemSanPham.Image" alt="Product" class="img-responsive">
+														<img src="~/img/@itemSanPham.Image" alt="Product" class="img-responsive">
 
 													</div>
 													<div class="ss_featured_products_box_img_list_cont">
 														<div class="ss_feat_prod_cont_heading_wrapper">
 															<h4><a href="#">@itemSanPham.Title</a></h4>
 															<p>@itemSanPham.Category.CategoryName</p>	<del>@(itemSanPham.Price)đ</del>
-															<ins>@(Math.Floor(itemSanPham.Price * ((100-itemSanPham.Discount) / 100)))đ</ins>
+															<ins>@(Math.Floor(itemSanPham.Price * ((100 - itemSanPham.Discount) / 100)))đ</ins>
 														</div>
 														<div class="ss_featured_products_box_footer ss_featured_products_box_footer_list">
 
 															<ul>
 																<li>
-																		<!-- Thẻ <a> với URL được tạo từ Url.Action -->
 																	<a href="@Url.Action("AddToCart", "Cart", new { bookId = itemSanPham.BookId, quantity = 1 }) class=" ss_btn" style="width: auto;border-radius: 20px; padding-left: 15px;padding-right: 15px;">
 																		Thêm vào giỏ hàng
 																	</a>
 
-																	
+
 																</li>
 															</ul>
 														</div>
 													</div>
 												</div>
 											</div>
-											
+
 										}
 									</div>
 								</div>
@@ -381,15 +378,18 @@ Purchase:
 						<div class="pager_wrapper gc_blog_pagination">
 							<ul class="pagination">
 								<li>
+									@{
+										var CategoryId = ViewBag.CategoryId;
+									}
 									@if (Model.CurrentPage > 1)
 									{
-										<a href="@Url.Action("Index", new { page = Model.CurrentPage - 1, pageSize = Model.PageSize })">Previous</a>
+										<a href="@Url.Action($"GetBooksByCategory/{CategoryId}", new { page = Model.CurrentPage - 1, pageSize = Model.PageSize })">Previous</a>
 									}
 								</li>
 								@for (int i = 1; i <= Model.TotalPages; i++)
-								{									
+								{
 									<li>
-										<a href="@Url.Action("Index", new { page = i, pageSize = Model.PageSize })"
+										<a href="@Url.Action($"GetBooksByCategory/{CategoryId}", new { page = i, pageSize = Model.PageSize })"
 										   class="@(i == Model.CurrentPage ? "active" : "")"
 										   style="@(i == Model.CurrentPage ? "background-color: blue !important; color: white !important;" : "")">
 											@i
@@ -399,7 +399,7 @@ Purchase:
 								<li>
 									@if (Model.CurrentPage < Model.TotalPages)
 									{
-										<a href="@Url.Action("Index", new { page = Model.CurrentPage + 1, pageSize = Model.PageSize })">Next</a>
+										<a href="@Url.Action($"GetBooksByCategory/{CategoryId}", new { page = Model.CurrentPage + 1, pageSize = Model.PageSize })">Next</a>
 									}
 								</li>
 							</ul>
@@ -607,19 +607,19 @@ Purchase:
 	</div>
 	<!-- Footer Wrapper End -->
 	<!--main js file start-->
-	<script src="js/jquery_min.js"></script>
-	<script src="js/wow.js"></script>
-	<script src="js/bootstrap.js"></script>
-	<script src="js/owl.carousel.js"></script>
-	<script src="js/modernizr.js"></script>
-	<script src="js/jquery.magnific-popup.js"></script>
-	<script src="js/jquery.dlmenu.js"></script>
-	<script src="js/jquery.sticky.js"></script>
-	<script src="js/jquery.menu-aim.js"></script>
-	<script src="js/camera.min.js"></script>
-	<script src="js/jquery.easing.1.3.js"></script>
-	<script src="js/jquery.inview.min.js"></script>
-	<script src="js/custom.js"></script>
+	<script src="~/js/jquery_min.js"></script>
+	<script src="~/js/wow.js"></script>
+	<script src="~/js/bootstrap.js"></script>
+	<script src="~/js/owl.carousel.js"></script>
+	<script src="~/js/modernizr.js"></script>
+	<script src="~/js/jquery.magnific-popup.js"></script>
+	<script src="~/js/jquery.dlmenu.js"></script>
+	<script src="~/js/jquery.sticky.js"></script>
+	<script src="~/js/jquery.menu-aim.js"></script>
+	<script src="~/js/camera.min.js"></script>
+	<script src="~/js/jquery.easing.1.3.js"></script>
+	<script src="~/js/jquery.inview.min.js"></script>
+	<script src="~/js/custom.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
 		document.getElementById('categorySelect').addEventListener('change', function () {

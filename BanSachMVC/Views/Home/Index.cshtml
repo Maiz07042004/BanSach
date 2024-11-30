@@ -346,7 +346,9 @@ Purchase:
 													<ul>
 
 														<li>
-															<button class="ss_btn">Add To Bag</button>
+															<a href="@Url.Action("AddToCart", "Cart", new { bookId = itemSanPham.BookId, quantity = 1 }) class=" ss_btn" style="width: auto;border-radius: 20px; padding-left: 15px;padding-right: 15px;">
+																Thêm vào giỏ hàng
+															</a>
 														</li>
 
 													</ul>
@@ -378,7 +380,9 @@ Purchase:
 													<ul>
 
 														<li>
-															<button class="ss_btn">Add To Bag</button>
+															<a href="@Url.Action("AddToCart", "Cart", new { bookId = itemSanPham.BookId, quantity = 1 }) class=" ss_btn" style="width: auto;border-radius: 20px; padding-left: 15px;padding-right: 15px;">
+																Thêm vào giỏ hàng
+															</a>
 														</li>
 
 													</ul>
@@ -421,7 +425,7 @@ Purchase:
 														@itemSanPham.Author
 													</p>
 													<h4 data-animation="animated fadeInLeft">@(Math.Floor(itemSanPham.Price * (1 - itemSanPham.Discount / 100)))đ Only</h4>
-													<a href="#" class="lr-btn-background move-eff lr_ff_btn2 lr_index2_slider_btn" data-animation="animated bounceInUp"><span>buy now!</span></a>
+													<a href="@Url.Action("AddToCart", "Cart", new { bookId = itemSanPham.BookId, quantity = 1 })" class="lr-btn-background move-eff lr_ff_btn2 lr_index2_slider_btn" data-animation="animated bounceInUp"><span>buy now!</span></a>
 													<div class="clear"></div>
 												</div>
 											</div>
@@ -450,7 +454,7 @@ Purchase:
 														@itemSanPham.Author
 													</p>
 													<h4 data-animation="animated fadeInLeft">@(Math.Floor(itemSanPham.Price * (1 - itemSanPham.Discount / 100)))đ Only</h4>
-													<a href="#" class="lr-btn-background move-eff lr_ff_btn2 lr_index2_slider_btn" data-animation="animated bounceInUp"><span>buy now!</span></a>
+													<a href="@Url.Action("AddToCart", "Cart", new { bookId = itemSanPham.BookId, quantity = 1 })" class="lr-btn-background move-eff lr_ff_btn2 lr_index2_slider_btn" data-animation="animated bounceInUp"><span>buy now!</span></a>
 													<div class="clear"></div>
 												</div>
 											</div>
@@ -539,7 +543,9 @@ Purchase:
 											
 											<ul>												
 												<li>
-													<button class="ss_btn">Add To Bag</button>
+													<a href="@Url.Action("AddToCart", "Cart", new { bookId = itemSanPham.BookId, quantity = 1 }) class=" ss_btn" style="width: auto;border-radius: 20px; padding-left: 15px;padding-right: 15px;">
+														Thêm vào giỏ hàng
+													</a>
 												</li>												
 											</ul>
 										</div>
@@ -629,7 +635,9 @@ Purchase:
 													<ul>
 
 														<li>
-															<button class="ss_btn">Add To Bag</button>
+															<a href="@Url.Action("AddToCart", "Cart", new { bookId = itemSanPham.BookId, quantity = 1 }) class=" ss_btn" style="width: auto;border-radius: 20px; padding-left: 15px;padding-right: 15px;">
+																Thêm vào giỏ hàng
+															</a>
 														</li>
 
 													</ul>
@@ -655,7 +663,9 @@ Purchase:
 													<ul>
 
 														<li>
-															<button class="ss_btn">Add To Bag</button>
+															<a href="@Url.Action("AddToCart", "Cart", new { bookId = itemSanPham.BookId, quantity = 1 }) class=" ss_btn" style="width: auto;border-radius: 20px; padding-left: 15px;padding-right: 15px;">
+																Thêm vào giỏ hàng
+															</a>
 														</li>
 
 													</ul>

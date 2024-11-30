@@ -10,6 +10,7 @@ namespace BanSach.Models
         public decimal Price { get; set; }
 		public string Image { get; set; }
 		public decimal Discount { get; set; }
+		public string Description { get; set; }
 		public int CategoryId { get; set; }
 
         // Navigation property

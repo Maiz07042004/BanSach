@@ -39,11 +39,11 @@ namespace BanSach.Controllers
 					BookId = ci.BookId,
 					Title = ci.Book.Title,
 					Author = ci.Book.Author,
-					Price = Math.Floor(ci.Book.Price*ci.Book.Discount/100),
-					Image=ci.Book.Image,
+					Price = Math.Floor(ci.Book.Price * ((100 - ci.Book.Discount) / 100)),
+					Image = ci.Book.Image,
 					Quantity = ci.Quantity
 				}).ToList(),
-				TotalAmount = cart.CartItems.Sum(ci => ci.Quantity * Math.Floor(ci.Book.Price * ci.Book.Discount / 100)) // Tính tổng số tiền giỏ hàng
+				TotalAmount = cart.CartItems.Sum(ci => ci.Quantity * Math.Floor(ci.Book.Price * ((100 - ci.Book.Discount) / 100))) // Tính tổng số tiền giỏ hàng
 			};
 
 			return Ok(cartDTO); // Trả về DTO của giỏ hàng
@@ -51,7 +51,7 @@ namespace BanSach.Controllers
 
 		// API Thêm sách vào giỏ hàng
 		[HttpPost("add")]
-		public async Task<ActionResult> AddToCart(int userId, int bookId, int quantity)
+		public async Task<ActionResult> AddToCart(int userId, int bookId, int quantity = 1)
 		{
 			// Kiểm tra dữ liệu vào hợp lệ
 			if (quantity <= 0)
