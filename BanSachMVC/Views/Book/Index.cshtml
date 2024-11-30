@@ -311,7 +311,7 @@ Purchase:
 														<img src="img/@itemSanPham.Image" alt="Product" class="img-responsive">														
 													</div>
 													<div class="ss_feat_prod_cont_heading_wrapper">
-														<h4><a href="#">@itemSanPham.Title</a></h4>
+														<h4><a href="/Book/Detail/@itemSanPham.BookId">@itemSanPham.Title</a></h4>
 														<p>@itemSanPham.Category.CategoryName</p>	<del>@(itemSanPham.Price)đ</del>
 														<ins>@(Math.Floor(itemSanPham.Price * ((100 - itemSanPham.Discount) / 100)))đ</ins>
 													</div>
@@ -349,7 +349,7 @@ Purchase:
 													</div>
 													<div class="ss_featured_products_box_img_list_cont">
 														<div class="ss_feat_prod_cont_heading_wrapper">
-															<h4><a href="#">@itemSanPham.Title</a></h4>
+															<h4><a href="/Book/Detail/@itemSanPham.BookId">@itemSanPham.Title</a></h4>
 															<p>@itemSanPham.Category.CategoryName</p>	<del>@(itemSanPham.Price)đ</del>
 															<ins>@(Math.Floor(itemSanPham.Price * ((100-itemSanPham.Discount) / 100)))đ</ins>
 														</div>

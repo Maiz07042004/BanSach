@@ -177,17 +177,34 @@ namespace BanSachMVC.Controllers
 		[HttpGet("Book/Detail/{BookId}")]
 		public async Task<IActionResult> BookDetail(int BookId)
 		{ 
+			var viewModel = new BookDetailViewModel();
+			int categoryId;
 			var response = await _httpClient.GetAsync($"Books/{BookId}");
 			if (response.IsSuccessStatusCode)
 			{
 				var content = await response.Content.ReadAsStringAsync();
 				var booksData = JsonConvert.DeserializeObject<Book>(content);
-				return View(booksData);
+				viewModel.Book = booksData;
+				categoryId = booksData.Category.CategoryId;
+
+
+				var listBooksResponse = await _httpClient.GetAsync($"Books/Category/{categoryId}");
+				if (listBooksResponse.IsSuccessStatusCode)
+				{
+					var content2 = await listBooksResponse.Content.ReadAsStringAsync();
+					var booksData2 = JsonConvert.DeserializeObject<List<Book>>(content2);
+					viewModel.ListBooks = booksData2;
+				}
 			}
-			else
+			
+			var categoryResponse = await _httpClient.GetAsync("Categories");
+			if (categoryResponse.IsSuccessStatusCode)
 			{
-				return Redirect("/");
+				var content = await categoryResponse.Content.ReadAsStringAsync();
+				var categoriesData = JsonConvert.DeserializeObject<List<Category>>(content);
+				viewModel.Categories = categoriesData;
 			}
+			return View(viewModel);
 		}
 
 	}

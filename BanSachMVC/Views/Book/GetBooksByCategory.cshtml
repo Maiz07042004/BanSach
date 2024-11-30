@@ -49,6 +49,7 @@ Purchase:
 <body>
 	@{
 		var userId = ViewBag.UserId;
+		var categoryId = ViewBag.CategoryId;
 	}
 	@model BanSachMVC.Models.BookViewModel
 	<!-- preloader Start -->
@@ -282,7 +283,7 @@ Purchase:
 								<option value="#">Danh mục</option>
 								@foreach (var itemDanhMuc in Model.Categories)
 								{
-									<option value="@Url.Action("GetBooksByCategory", "Book", new { CategoryId = itemDanhMuc.CategoryId })">@itemDanhMuc.CategoryName</option>
+									<option selected=@(categoryId==itemDanhMuc.CategoryId?"true":"false") value="@Url.Action("GetBooksByCategory", "Book", new { CategoryId = itemDanhMuc.CategoryId })">@itemDanhMuc.CategoryName</option>
 								}
 							</select>
 							<div class="list-grid">

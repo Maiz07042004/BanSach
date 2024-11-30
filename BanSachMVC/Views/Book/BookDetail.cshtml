@@ -48,7 +48,7 @@ Purchase:
 	@{
 		var userId = ViewBag.UserId;
 	}
-	@model BanSachMVC.Models.Book
+	@model BanSachMVC.Models.BookDetailViewModel
 	<!-- preloader Start -->
 	<div id="preloader">
 		<div id="status">
@@ -62,7 +62,7 @@ Purchase:
 	<div class="ss_middle_header_wrapper">
 		<div class="ss_logo">
 			<a href="index.html">
-				<img src="images/header/logo.png" alt="Logo" title="big basket" class="img-responsive">
+				<img src="~/images/header/logo.png" alt="Logo" title="big basket" class="img-responsive">
 			</a>
 		</div>
 		<div class="ss_info_area">
@@ -81,14 +81,14 @@ Purchase:
 						{
 							<a href="/Logout">
 								<span>Logout</span>
-								<img src="images/header/user_icon.png" alt="Logout" title="Logout" class="img-responsive">
+								<img src="~/images/header/user_icon.png" alt="Logout" title="Logout" class="img-responsive">
 							</a>
 						}
 						else
 						{
 							<a href="/Login">
 								<span>Login or Register</span>
-								<img src="images/header/user_icon.png" alt="Login" title="Login" class="img-responsive">
+								<img src="~/images/header/user_icon.png" alt="Login" title="Login" class="img-responsive">
 							</a>
 						}
 					</div>
@@ -96,15 +96,15 @@ Purchase:
 				<li>
 					<div class="ss_cart_value">
 						<a href="/Cart">
-							<p>3</p>
-							<img src="images/header/cart_icon.png" alt="Cart" title="Cart">
-							<span>cart: <ins>$ 25.00</ins></span>
+	
+							<img src="~/images/header/cart_icon.png" alt="Cart" title="Cart">
+							
 						</a>
 						<ul class="dropdown-menu">
 							<li>
 								<div class="ss_cart_inner_main_section">
 									<div class="ss_cart_img_wrapper">
-										<img src="images/header/cart_img.jpg" alt="cart_img">
+										<img src="~/images/header/cart_img.jpg" alt="cart_img">
 									</div>
 									<div class="ss_cart_img_cont_wrapper">
 										<h3>Product item</h3>
@@ -259,7 +259,7 @@ Purchase:
 						<div class="cc_ps_top_slider_section">
 							<div class="owl-carousel owl-theme">
 								<div class="item" data-hash="zero">
-									<img class="small img-responsive" src="~/img/@Model.Image" alt="small_img" />
+									<img class="small img-responsive" src="~/img/@Model.Book.Image" alt="small_img" />
 								</div>
 	
 							</div>
@@ -272,9 +272,9 @@ Purchase:
 						<div class="btc_shop_sin_pro_icon_wrapper">
 							
 							<div class="ss_featured_products_box_img_list_cont ss_featured_products_box_img_list_cont_single">
-								<h4><a href="#">@Model.Title</a></h4>
-								<p class="shop_pera">@Model.Category.CategoryName</p>	<del>@Model.Price đ</del>  <ins>@(Math.Floor(Model.Price*(100-Model.Discount)/100))</ins>
-								<h5>@Model.Author</h5>
+								<h4><a href="#">@Model.Book.Title</a></h4>
+								<p class="shop_pera">@Model.Book.Category.CategoryName</p>	<del>@Model.Book.Price đ</del>  <ins>@(Math.Floor(Model.Book.Price*(100-Model.Book.Discount)/100))</ins>
+								<h5>@Model.Book.Author</h5>
 							</div>
 						</div>
 						<div class="btc_shop_prod_quanty_bar">
@@ -301,10 +301,10 @@ Purchase:
 									<div class="cc_ps_cart_btn">
 										<ul>
 											<li>
-												<a href="@Url.Action("AddToCart", "Cart", new { bookId = Model.BookId, quantity = 1 })"><i class="fa fa-shopping-cart"></i> Thêm giỏ hàng</a>
+												<a href="@Url.Action("AddToCart", "Cart", new { bookId = Model.Book.BookId, quantity = 1 })"><i class="fa fa-shopping-cart"></i> Thêm giỏ hàng</a>
 											</li>
 											<li>
-												<a href="#"><i class="fa fa-bolt"></i> Buy Now</a>
+												<a href="#" style="width:auto"><i class="fa fa-bolt"></i> Buy Now</a>
 											</li>
 										</ul>
 									</div>
@@ -337,7 +337,7 @@ Purchase:
 										
 									</div>
 									<div class="text-accordion">
-										<p>@Model.Description</p>
+										<p>@Model.Book.Description</p>
 									</div>
 								</div>
 								<!-- end of panel-body -->
@@ -354,62 +354,18 @@ Purchase:
 									</a>
 								</h4>
 							</div>
-							<div id="collapseFiveLeftfour" class="panel-collapse collapse" aria-expanded="false" role="tablist">
+							<div id="collapseFiveLeftfour" class="panel-collapse collapse in" aria-expanded="false" role="tablist">
 								<div class="panel-body">
 									<div class="text-accordion">
 										<div class="tag_cloud_wrapper">
 											<ul>
-												<li>
-													<a href="#">Business</a>
-												</li>
-												<li>
-													<a href="#">Corporate</a>
-												</li>
-												<li>
-													<a href="#">Services</a>
-												</li>
-												<li>
-													<a href="#">Customer</a>
-												</li>
-												<li>
-													<a href="#">Money</a>
-												</li>
-												<li class="active">
-													<a href="#">Portfolio</a>
-												</li>
-												<li>
-													<a href="#">Psd</a>
-												</li>
-												<li>
-													<a href="#">Joomla</a>
-												</li>
-												<li>
-													<a href="#">Skills</a>
-												</li>
-												<li>
-													<a href="#">Partners</a>
-												</li>
-												<li>
-													<a href="#">Wordpress</a>
-												</li>
-												<li>
-													<a href="#">Html</a>
-												</li>
-												<li>
-													<a href="#">Psd</a>
-												</li>
-												<li>
-													<a href="#">Joomla</a>
-												</li>
-												<li>
-													<a href="#">Skills</a>
-												</li>
-												<li>
-													<a href="#">Joomla</a>
-												</li>
-												<li>
-													<a href="#">Skills</a>
-												</li>
+												@foreach(var itemDanhMuc in Model.Categories)
+												{
+													<li class=@((itemDanhMuc.CategoryId==Model.Book.Category.CategoryId)?"active":"")>
+														<a href="#" >@itemDanhMuc.CategoryName</a>
+													</li>
+												}
+												
 											</ul>
 										</div>
 									</div>
@@ -434,57 +390,43 @@ Purchase:
 								<div class="item">
 									<div class="ss_toprated_slider_box">
 										<ul>
-											<li>
-												<div class="ss_toprated_slider_box_img">
-													<a href="#">
-														<img src="images/content/trs1.jpg" alt="Product">
-													</a>
-												</div>
-												<div class="ss_toprated_slider_box_text">
-													<h4><a href="#">Mobile Phone</a></h4>
-													<ins>$299.00</ins> 	<del>$199.00</del>
-												</div>
-											</li>
-											<li>
-												<div class="ss_toprated_slider_box_img">
-													<a href="#">
-														<img src="images/content/trs2.jpg" alt="Product">
-													</a>
-												</div>
-												<div class="ss_toprated_slider_box_text">
-													<h4><a href="#">Mobile Phone</a></h4>
-													<ins>$299.00</ins> 	<del>$199.00</del>
-												</div>
-											</li>
+											@foreach (var itemSanPham in Model.ListBooks.Take(4))
+											{
+												<li>
+													<div class="ss_toprated_slider_box_img">
+														<a href="#">
+															<img src="~/img/@itemSanPham.Image" alt="Product">
+														</a>
+													</div>
+													<div class="ss_toprated_slider_box_text">
+														<h4><a href="#">@itemSanPham.Title</a></h4>
+														<ins>@itemSanPham.Price đ</ins> 	<del>@(Math.Floor(itemSanPham.Price * (100 - itemSanPham.Discount) / 100))đ</del>
+													</div>
+												</li>
+											}
 											
+										
 										</ul>
 									</div>
 								</div>
 								<div class="item">
 									<div class="ss_toprated_slider_box">
 										<ul>
-											<li>
-												<div class="ss_toprated_slider_box_img">
-													<a href="#">
-														<img src="images/content/trs4.jpg" alt="Product">
-													</a>
-												</div>
-												<div class="ss_toprated_slider_box_text">
-													<h4><a href="#">Mobile Phone</a></h4>
-													<ins>$299.00</ins> 	<del>$199.00</del>
-												</div>
-											</li>
-											<li>
-												<div class="ss_toprated_slider_box_img">
-													<a href="#">
-														<img src="images/content/trs3.jpg" alt="Product">
-													</a>
-												</div>
-												<div class="ss_toprated_slider_box_text">
-													<h4><a href="#">Mobile Phone</a></h4>
-													<ins>$299.00</ins> 	<del>$199.00</del>
-												</div>
-											</li>
+											@foreach (var itemSanPham in Model.ListBooks.Take(4).Skip(4))
+											{
+												<li>
+													<div class="ss_toprated_slider_box_img">
+														<a href="#">
+															<img src="~/img/@itemSanPham.Image" alt="Product">
+														</a>
+													</div>
+													<div class="ss_toprated_slider_box_text">
+														<h4><a href="#">@itemSanPham.Title</a></h4>
+														<ins>@itemSanPham.Price đ</ins> 	<del>@(Math.Floor(itemSanPham.Price * (100 - itemSanPham.Discount) / 100))đ</del>
+													</div>
+												</li>
+											}
+											
 											
 										</ul>
 									</div>
@@ -493,7 +435,7 @@ Purchase:
 						</div>
 						<div class="ss_addver_sidebar">
 							<a href="#">
-								<img src="images/content/add1.jpg" alt="Add">
+								<img src="~/img/@Model.Book.Image" alt="Add">
 							</a>
 						</div>
 					</div>
@@ -509,60 +451,40 @@ Purchase:
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="ss_featured_products_tab">
 						<div class="ss_heading">
-							<h3>Related PRODUCTS</h3>
+							<h3>Sản phẩm tương tự</h3>
 						</div>
 					</div>
 					<div class="ss_latest_products">
 						<div class="owl-carousel owl-theme">
-							<div class="item">
-								<div class="ss_featured_products_box">
-									<div class="ss_featured_products_box_img">
-										<span class="ss_tag">new</span>
-										<span class="ss_offer">20% off</span>
-										<img src="images/content/lp1.jpg" alt="Product" class="img-responsive">
-										
-									</div>
-									<div class="ss_feat_prod_cont_heading_wrapper">
-										<h4><a href="#">Brand new phone 32GB, 2GB</a></h4>
-										<p>Electronics</p>	<del>$250.00</del>  <ins>$199.00</ins>
-									</div>
-									<div class="ss_featured_products_box_footer">
-										
-										<ul>
-											
-											<li>
-												<button class="ss_btn">Add To Bag</button>
-											</li>
-											
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="item">
-								<div class="ss_featured_products_box">
-									<div class="ss_featured_products_box_img">
-										<span class="ss_tag">new</span>
-										<span class="ss_offer">20% off</span>
-										<img src="images/content/lp3.jpg" alt="Product" class="img-responsive">
-										
-									</div>
-									<div class="ss_feat_prod_cont_heading_wrapper">
-										<h4><a href="#">Brand new phone 32GB, 2GB</a></h4>
-										<p>Electronics</p>	<del>$250.00</del>  <ins>$199.00</ins>
-									</div>
-									<div class="ss_featured_products_box_footer">
-										
-										<ul>
-											
-											<li>
-												<button class="ss_btn">Add To Bag</button>
-											</li>
-											
-										</ul>
+							@foreach (var itemSanPham in Model.ListBooks)
+							{
+								<div class="item">
+									<div class="ss_featured_products_box">
+										<div class="ss_featured_products_box_img">
+											<span class="ss_tag">new</span>
+											<span class="ss_offer">@(itemSanPham.Discount)% off</span>
+											<img src="~/img/@itemSanPham.Image" alt="Product" class="img-responsive">
+
+										</div>
+										<div class="ss_feat_prod_cont_heading_wrapper">
+											<h4><a href="#">@itemSanPham.Title</a></h4>
+											<p>@itemSanPham.Category.CategoryName</p>	<del>@itemSanPham.Price đ</del>  <ins>@(Math.Floor(itemSanPham.Price * (100 - itemSanPham.Discount) / 100))đ</ins>
+										</div>
+										<div class="ss_featured_products_box_footer">
+
+											<ul>
+
+												<li>
+													<a href="@Url.Action("AddToCart", "Cart", new { bookId = itemSanPham.BookId, quantity = 1 }) class=" ss_btn" style="width: auto;border-radius: 20px; padding-left: 15px;padding-right: 15px;">
+														Thêm vào giỏ hàng
+													</a>
+												</li>
+
+											</ul>
+										</div>
 									</div>
 								</div>
-							</div>
-							
+							}						
 						</div>
 					</div>
 				</div>
