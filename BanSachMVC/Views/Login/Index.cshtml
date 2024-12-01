@@ -21,29 +21,31 @@
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
                 <div class="card border-0 shadow rounded-3 my-5">
                     <div class="card-body p-4 p-sm-5">
-                        <h5 class="card-title text-center mb-5 fw-light fs-5">Sign In</h5>
+                        <h5 class="card-title text-center mb-5 fw-light fs-5">ĐĂNG NHẬP</h5>
                         <form action="/Login/Index" method="post" role="form">
                         
                             <div class="form-floating mb-3">
                                 <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email">
-                                <label for="floatingInput">Email address</label>
+                                <label for="floatingInput">Email</label>
                             </div>
                             <div class="form-floating mb-3">
                                 <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
-                                <label for="floatingPassword">Password</label>
+                                <label for="floatingPassword">Mật khẩu</label>
                             </div>
 
                             <div class="form-check mb-3">
                                 <input class="form-check-input" type="checkbox" value="" id="rememberPasswordCheck">
                                 <label class="form-check-label" for="rememberPasswordCheck">
-                                    Remember password
+                                    Nhớ mật khẩu
                                 </label>
                             </div>
                             <div class="d-grid">
                                 <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">
-                                    Sign
-                                    in
+                                    Đăng Nhập
                                 </button>
+                                <a class="btn btn-primary btn-login text-uppercase fw-bold" href="/Login/Register" style="margin-top:20px">
+                                    Đăng ký
+                                </a>
                             </div>
                         </form>
                     </div>
