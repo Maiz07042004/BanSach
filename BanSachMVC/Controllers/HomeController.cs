@@ -37,19 +37,19 @@ namespace BanSachMVC.Controllers
                     var content = await categoryResponse.Content.ReadAsStringAsync();
                     viewModel.Categories = JsonConvert.DeserializeObject<List<Category>>(content);
                 }
-                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("UserId")) &&
-                    !string.IsNullOrEmpty(HttpContext.Session.GetString("UserName")))
-                {
-                    var userId = HttpContext.Session.GetString("UserId");
-                    var userName = HttpContext.Session.GetString("UserName");
-                    ViewBag.UserId = userId;
-                    ViewBag.UserName = userName;
+				if ((HttpContext.Session.GetInt32("UserId")) != null &&
+					!string.IsNullOrEmpty(HttpContext.Session.GetString("UserName")))
+				{
+					var userId = HttpContext.Session.GetInt32("UserId");
+					var userName = HttpContext.Session.GetString("UserName");
+					ViewBag.UserId = userId;
+					ViewBag.UserName = userName;
 
-                    // Tiếp tục xử lý với userId và userName
-                }
+					// Tiếp tục xử lý với userId và userName
+				}
 
 
-                return View(viewModel);
+				return View(viewModel);
             }
             catch (Exception ex)
             {

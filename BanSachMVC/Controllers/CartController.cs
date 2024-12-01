@@ -59,8 +59,8 @@ namespace BanSachMVC.Controllers
 					!string.IsNullOrEmpty(HttpContext.Session.GetString("UserName")))
 				{
 					var userId2 = HttpContext.Session.GetInt32("UserId");
-					var userName = HttpContext.Session.GetString("UserName");
 					ViewBag.UserId = userId2;
+					var userName = HttpContext.Session.GetString("UserName");
 					ViewBag.UserName = userName;
 
 					// Tiếp tục xử lý với userId và userName

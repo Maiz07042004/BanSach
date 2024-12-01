@@ -68,8 +68,10 @@ Purchase:
 			<ul>
 				<li>
 					<div class="ss_search_box">
-						<input type="text" placeholder="Search for products">
-						<button><i class="fa fa-search" aria-hidden="true"></i></button>
+						<form action="/Book/Search" method="get">
+							<input type="text" placeholder="Search for products" name="query">
+							<button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+						</form>
 
 					</div>
 				</li>
@@ -95,9 +97,9 @@ Purchase:
 				<li>
 					<div class="ss_cart_value">
 						<a href="/Cart">
-							<p>3</p>
+
 							<img src="images/header/cart_icon.png" alt="Cart" title="Cart">
-							<span>cart: <ins>$ 25.00</ins></span>
+
 						</a>
 						<ul class="dropdown-menu">
 							<li>
@@ -338,7 +340,7 @@ Purchase:
 
 												</div>
 												<div class="ss_feat_prod_cont_heading_wrapper">
-													<h4>@Html.ActionLink(itemSanPham.Title, "Category", new { id = itemSanPham.BookId })</h4>
+													<h4><a href="/Book/Detail/@itemSanPham.BookId">@itemSanPham.Title</a></h4>
 													<p>@itemSanPham.Category.CategoryName</p>	<del>@itemSanPham.Price</del>  <ins>@(Math.Floor(itemSanPham.Price * (1 - itemSanPham.Discount / 100)))đ</ins>
 												</div>
 												<div class="ss_featured_products_box_footer">
@@ -372,7 +374,7 @@ Purchase:
 													<img src="img/@itemSanPham.Image" alt="Product" class="img-responsive">
 												</div>
 												<div class="ss_feat_prod_cont_heading_wrapper">
-													<h4><a href="#">@Html.ActionLink(itemSanPham.Title, "Category", new { id = itemSanPham.BookId })</a></h4>
+													<h4><a href="/Book/Detail/@itemSanPham.BookId">@itemSanPham.Title</a></h4>
 													<p>@itemSanPham.Category.CategoryName</p>	<del>@itemSanPham.Price</del>  <ins>@(Math.Floor(itemSanPham.Price * (1 - itemSanPham.Discount / 100)))đ</ins>
 												</div>
 												<div class="ss_featured_products_box_footer">
@@ -535,7 +537,7 @@ Purchase:
 										
 										</div>
 										<div class="ss_feat_prod_cont_heading_wrapper">
-											<h4><a href="#">@itemSanPham.Title</a></h4>
+											<h4><a href="/Book/Detail/@itemSanPham.BookId">@itemSanPham.Title</a></h4>
 											<p>@itemSanPham.Category.CategoryName</p>	<del>@itemSanPham.Price</del>
 											<ins>@(Math.Floor(itemSanPham.Price * (1 - itemSanPham.Discount / 100)))đ</ins>
 										</div>
@@ -585,7 +587,7 @@ Purchase:
 														</a>
 													</div>
 													<div class="ss_toprated_slider_box_text">
-														<h4><a href="#">@itemSanPham.Title</a></h4>
+														<h4><a href="/Book/Detail/@itemSanPham.BookId">@itemSanPham.Title</a></h4>
 														<ins>@(itemSanPham.Price)đ</ins> 	
 														<del>@(Math.Floor(itemSanPham.Price * (1 - itemSanPham.Discount / 100)))đ</del>
 													</div>
@@ -626,7 +628,7 @@ Purchase:
 
 												</div>
 												<div class="ss_feat_prod_cont_heading_wrapper">
-													<h4><a href="#">@itemSanPham.Title</a></h4>
+													<h4><a href="/Book/Detail/@itemSanPham.BookId">@itemSanPham.Title</a></h4>
 													<p>@itemSanPham.Category.CategoryName</p>	<del>@(itemSanPham.Price)đ</del>
 													<ins>@(Math.Floor(itemSanPham.Price * (1 - itemSanPham.Discount / 100)))đ</ins>
 												</div>
@@ -654,7 +656,7 @@ Purchase:
 
 												</div>
 												<div class="ss_feat_prod_cont_heading_wrapper">
-													<h4><a href="#">@itemSanPham.Title</a></h4>
+													<h4><a href="/Book/Detail/@itemSanPham.BookId">@itemSanPham.Title</a></h4>
 													<p>@itemSanPham.Category.CategoryName</p>	<del>@(itemSanPham.Price)đ</del>
 													<ins>@(Math.Floor(itemSanPham.Price * (1 - itemSanPham.Discount / 100)))đ</ins>
 												</div>

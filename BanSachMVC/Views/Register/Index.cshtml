@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 <!DOCTYPE html>
@@ -8,12 +7,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Register</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
           integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/css/bootstrap.min.css" integrity="sha512-F7WyTLiiiPqvu2pGumDR15med0MDkUIo5VTVyyfECR5DZmCnDhti9q5VID02ItWjq6fvDfMaBaDl2J3WdL1uxA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="~/css/login.css">
 </head>
 <body>
     <div class="container">
@@ -21,30 +20,34 @@
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
                 <div class="card border-0 shadow rounded-3 my-5">
                     <div class="card-body p-4 p-sm-5">
-                        <h5 class="card-title text-center mb-5 fw-light fs-5">ĐĂNG NHẬP</h5>
-                        <form action="/Login/Index" method="post" role="form">
-                        
+                        <h5 class="card-title text-center mb-5 fw-light fs-5">ĐĂNG KÝ</h5>
+                        <form action="/Register/Index" method="post" role="form">
                             <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email">
+                                <input type="email" class="form-control" id="floatingInput" placeholder="Nhập tên" name="Name">
+                                <label for="floatingInput">Tên</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="Email">
                                 <label for="floatingInput">Email</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+                                <input type="text" class="form-control" id="Address" placeholder="Nhập địa chỉ" name="Address">
+                                <label for="Address">Địa chỉ</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="Password">
                                 <label for="floatingPassword">Mật khẩu</label>
                             </div>
-
-                            <div class="form-check mb-3">
-                                <input class="form-check-input" type="checkbox" value="" id="rememberPasswordCheck">
-                                <label class="form-check-label" for="rememberPasswordCheck">
-                                    Nhớ mật khẩu
-                                </label>
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" id="floatingPasswordConfirm" placeholder="Password" name="PasswordConfirm">
+                                <label for="floatingPasswordConfirm">Nhập lại mật khẩu</label>
                             </div>
                             <div class="d-grid">
                                 <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">
-                                    Đăng Nhập
-                                </button>
-                                <a class="btn btn-primary btn-login text-uppercase fw-bold" href="/Register" style="margin-top:20px">
                                     Đăng ký
+                                </button>
+                                <a class="btn btn-primary btn-login text-uppercase fw-bold" href="/Login" style="margin-top:20px">
+                                    Đăng nhập
                                 </a>
                             </div>
                         </form>
@@ -59,3 +62,8 @@
 <script src="https://kit.fontawesome.com/5bcbc8c86e.js" crossorigin="anonymous"></script>
 
 </html>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}

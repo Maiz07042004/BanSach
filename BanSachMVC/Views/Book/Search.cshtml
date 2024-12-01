@@ -1,4 +1,6 @@
-﻿
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
 @{
 	Layout = null;
 }
@@ -48,7 +50,7 @@ Purchase:
 	@{
 		var userId = ViewBag.UserId;
 	}
-	@model BanSachMVC.Models.BookDetailViewModel
+	@model BanSachMVC.Models.BookViewModel
 	<!-- preloader Start -->
 	<div id="preloader">
 		<div id="status">
@@ -69,15 +71,18 @@ Purchase:
 			<ul>
 				<li>
 					<div class="ss_search_box">
-						<input type="text" placeholder="Search for products">
-						<button><i class="fa fa-search" aria-hidden="true"></i></button>
+						<form action="/Book/Search" method="get">
+							<input type="text" placeholder="Search for products" name="query">
+							<button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+						</form>
+
 
 					</div>
 				</li>
 
 				<li>
 					<div class="ss_login_box">
-						@if (userId!=null)
+						@if (!string.IsNullOrEmpty(userId))
 						{
 							<a href="/Logout">
 								<span>Logout</span>
@@ -96,15 +101,15 @@ Purchase:
 				<li>
 					<div class="ss_cart_value">
 						<a href="/Cart">
-	
+
 							<img src="~/images/header/cart_icon.png" alt="Cart" title="Cart">
-							
+
 						</a>
 						<ul class="dropdown-menu">
 							<li>
 								<div class="ss_cart_inner_main_section">
 									<div class="ss_cart_img_wrapper">
-										<img src="~/images/header/cart_img.jpg" alt="cart_img">
+										<img src="images/header/cart_img.jpg" alt="cart_img">
 									</div>
 									<div class="ss_cart_img_cont_wrapper">
 										<h3>Product item</h3>
@@ -145,8 +150,16 @@ Purchase:
 						<span><i class="fa fa-list-ul"></i> All Departments</span>
 					</a>
 					<ul class="dropdown-menu">
-					
-					 </ul>
+						@foreach (var itemDanhMuc in Model.Categories)
+						{
+							<li class="yamm-tfw menu-item menu-item-has-children animate-dropdown dropdown">
+								<a title="Computers &amp; Accessories" data-hover="dropdown" href="@Url.Action("GetBooksByCategory", "Book", new { CategoryId = itemDanhMuc.CategoryId })" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">
+									<i class="fa fa-user" aria-hidden="true"></i>
+									@itemDanhMuc.CategoryName
+								</a>
+							</li>
+						}
+					</ul>
 				</li>
 			</ul>
 		</nav>
@@ -232,7 +245,6 @@ Purchase:
 		</div>
 	</div>
 	<!-- Slider Wrapper End -->
-	
 	<!-- ss inner title Wrapper Start -->
 	<div class="ss_inner_title_wrapper">
 		<div class="container">
@@ -249,252 +261,160 @@ Purchase:
 		</div>
 	</div>
 	<!-- ss inner title Wrapper End -->
-	<!-- CC ps top product Wrapper Start -->
-	<div class="cc_ps_top_product_main_wrapper">
+	<!-- CC pc sidebar accordion Start -->
+	<div class="cc_pc_accordion_main_wrapper">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-					<div class="video_img_section_wrapper">
-						
-						<div class="cc_ps_top_slider_section">
-							<div class="owl-carousel owl-theme">
-								<div class="item" data-hash="zero">
-									<img class="small img-responsive" src="~/img/@Model.Book.Image" alt="small_img" />
-								</div>
-	
+				<div class="col-lg-12  col-md-12 col-sm-12 col-xs-12 sidebar2_main_wrapper">
+					<div class="sidebar_widget">
+						<div class="ss_proadd_wrapper ss_proadd_wrapper_inner">
+							<div class="ss_proadd_box">
+								<h2>@Model.Books.FirstOrDefault()?.Title</h2>
+								<p>Starting @(Model.Books.FirstOrDefault()?.Price)đ/-</p>
+								<img src="~/img/@Model.Books.FirstOrDefault()?.Image" alt="camera" title="Camera" class="img-responsive" style="width:310px;height:187px;object-fit:cover">
+								<a href="#" class="ss_btn">Shop Now!</a>
 							</div>
-							
 						</div>
 					</div>
-				</div>
-				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-					<div class="btc_shop_single_prod_right_section">
-						<div class="btc_shop_sin_pro_icon_wrapper">
-							
-							<div class="ss_featured_products_box_img_list_cont ss_featured_products_box_img_list_cont_single">
-								<h4><a href="#">@Model.Book.Title</a></h4>
-								<p class="shop_pera">@Model.Book.Category.CategoryName</p>	<del>@Model.Book.Price đ</del>  <ins>@(Math.Floor(Model.Book.Price*(100-Model.Book.Discount)/100))</ins>
-								<h5>@Model.Book.Author</h5>
+					<div class="sidebar_widget2">
+						<div class="filter-area">
+							<div class="showpro">
+								<p><span>Showing @((Model.CurrentPage - 1) * Model.PageSize + 1)-@(Model.CurrentPage * Model.PageSize + 1)</span></p>
+							</div>
+							<select id="categorySelect">
+								<option value="#">Danh mục</option>
+								@foreach (var itemDanhMuc in Model.Categories)
+								{
+									<option value="@Url.Action("GetBooksByCategory", "Book", new { CategoryId = itemDanhMuc.CategoryId })">@itemDanhMuc.CategoryName</option>
+								}
+							</select>
+							<div class="list-grid">
+								<ul class="list-inline nav nav-pills">
+									<li class="active">
+										<a data-toggle="pill" href="#grid"><i class="fa fa-th-large"></i></a>
+									</li>
+									<li>
+										<a data-toggle="pill" href="#list"><i class="fa fa-list"></i></a>
+									</li>
+								</ul>
 							</div>
 						</div>
-						<div class="btc_shop_prod_quanty_bar">
-							<div class="row">
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 full_width">
-									<div class="cc_ps_quantily_info">
-										<div class="select_number">
-											<button onclick="changeQty(1); return false;" class="increase">
-												<i class="fa fa-plus"></i>
-											</button>
-											<input type="text" name="quantity" value="1" size="2" id="input-quantity" class="form-control" />
-											<button onclick="changeQty(0); return false;" class="decrease">
-												<i class="fa fa-minus"></i>
-											</button>
-										</div>
-										<input type="hidden" name="product_id" />
-									</div>
-								</div>
-							</div>
-						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<div class="tab-content">
+								<div id="grid" class="tab-pane fade in active">
+									<div class="row">
+										@foreach (var itemSanPham in Model.Books)
+										{
+											<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 prs_upcom_slide_first">
+												<div class="ss_featured_products_box">
+													<div class="ss_featured_products_box_img">
+														<span class="ss_tag">new</span>
+														<span class="ss_offer">@(itemSanPham.Discount)% off</span>
+														<img src="~/img/@itemSanPham.Image" alt="Product" class="img-responsive">
+													</div>
+													<div class="ss_feat_prod_cont_heading_wrapper">
+														<h4><a href="/Book/Detail/@itemSanPham.BookId">@itemSanPham.Title</a></h4>
+														<p>@itemSanPham.Category.CategoryName</p>	<del>@(itemSanPham.Price)đ</del>
+														<ins>@(Math.Floor(itemSanPham.Price * ((100 - itemSanPham.Discount) / 100)))đ</ins>
+													</div>
+													<div class="ss_featured_products_box_footer">
 
-						<div class="row">
-							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-								<div class="cc_ps_cart_btn_wrapper">
-									<div class="cc_ps_cart_btn">
-										<ul>
-											<li>
-												<a href="javascript:void(0);" onclick="addToCart(@Model.Book.BookId)" style="width:auto;padding-left:10px;padding-right:10px;">
-													<i class="fa fa-shopping-cart"></i> Thêm giỏ hàng
-												</a>
-												<a href="#" style="width:auto; padding-left:10px;padding-right:10px;">
-													<i class="fa fa-bolt"></i> Mua ngay
-												</a>
-											</li>
-										</ul>
+														<ul>
+															<li>
+
+																<!-- Thẻ <a> với URL được tạo từ Url.Action -->
+																<a href="@Url.Action("AddToCart", "Cart", new { bookId = itemSanPham.BookId, quantity = 1 }) class=" ss_btn" style="width: auto;border-radius: 20px; padding-left: 15px;padding-right: 15px;">
+																	Thêm vào giỏ hàng
+																</a>
+
+															</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										}
+
+									</div>
+								</div>
+								<div id="list" class="tab-pane fade">
+									<div class="row">
+										@foreach (var itemSanPham in Model.Books)
+										{
+
+											<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+												<div class="prs_mcc_list_movie_main_wrapper">
+													<div class="ss_featured_products_box_img ss_featured_products_box_img_list">
+														<span class="ss_tag">new</span>
+														<span class="ss_offer">@(itemSanPham.Discount)% off</span>
+														<img src="~/img/@itemSanPham.Image" alt="Product" class="img-responsive">
+
+													</div>
+													<div class="ss_featured_products_box_img_list_cont">
+														<div class="ss_feat_prod_cont_heading_wrapper">
+															<h4><a href="/Book/Detail/@itemSanPham.BookId">@itemSanPham.Title</a></h4>
+															<p>@itemSanPham.Category.CategoryName</p>	<del>@(itemSanPham.Price)đ</del>
+															<ins>@(Math.Floor(itemSanPham.Price * ((100 - itemSanPham.Discount) / 100)))đ</ins>
+														</div>
+														<div class="ss_featured_products_box_footer ss_featured_products_box_footer_list">
+
+															<ul>
+																<li>
+																	<!-- Thẻ <a> với URL được tạo từ Url.Action -->
+																	<a href="@Url.Action("AddToCart", "Cart", new { bookId = itemSanPham.BookId, quantity = 1 }) class=" ss_btn" style="width: auto;border-radius: 20px; padding-left: 15px;padding-right: 15px;">
+																		Thêm vào giỏ hàng
+																	</a>
+
+
+																</li>
+															</ul>
+														</div>
+													</div>
+												</div>
+											</div>
+
+										}
 									</div>
 								</div>
 							</div>
 						</div>
+					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<!-- blog_pagination_section start -->
+						<div class="pager_wrapper gc_blog_pagination">
+							<ul class="pagination">
+								<li>
+									@if (Model.CurrentPage > 1)
+									{
+										<a href="@Url.Action("Index", new { page = Model.CurrentPage - 1, pageSize = Model.PageSize })">Previous</a>
+									}
+								</li>
+								@for (int i = 1; i <= Model.TotalPages; i++)
+								{
+									<li>
+										<a href="@Url.Action("Index", new { page = i, pageSize = Model.PageSize })"
+										   class="@(i == Model.CurrentPage ? "active" : "")"
+										   style="@(i == Model.CurrentPage ? "background-color: blue !important; color: white !important;" : "")">
+											@i
+										</a>
+									</li>
+								}
+								<li>
+									@if (Model.CurrentPage < Model.TotalPages)
+									{
+										<a href="@Url.Action("Index", new { page = Model.CurrentPage + 1, pageSize = Model.PageSize })">Next</a>
+									}
+								</li>
+							</ul>
+						</div>
+						<!-- blog_pagination_section end -->
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- CC ps top product Wrapper End -->
-	<!-- accordion section start -->
-	<div class="accordion_section">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-					<div class="panel-group" id="accordionFourLeft">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordion_oneLeft" href="#collapseFiveLeftone" aria-expanded="false">
-										description
-									</a>
-								</h4>
-							</div>
-							<div id="collapseFiveLeftone" class="panel-collapse collapse in" aria-expanded="false" role="tablist">
-								<div class="panel-body">
-									<div class="img-accordion">
-										
-									</div>
-									<div class="text-accordion">
-										<p>@Model.Book.Description</p>
-									</div>
-								</div>
-								<!-- end of panel-body -->
-							</div>
-						</div>
-						<!-- /.panel-default -->
-						
-						<!-- /.panel-default -->
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h4 class="panel-title">
-									<a class="collapsed" data-toggle="collapse" data-parent="#accordion_oneLeft" href="#collapseFiveLeftfour" aria-expanded="false">
-										Danh mục
-									</a>
-								</h4>
-							</div>
-							<div id="collapseFiveLeftfour" class="panel-collapse collapse in" aria-expanded="false" role="tablist">
-								<div class="panel-body">
-									<div class="text-accordion">
-										<div class="tag_cloud_wrapper">
-											<ul>
-												@foreach(var itemDanhMuc in Model.Categories)
-												{
-													<li class=@((itemDanhMuc.CategoryId==Model.Book.Category.CategoryId)?"active":"")>
-														<a href="#" >@itemDanhMuc.CategoryName</a>
-													</li>
-												}
-												
-											</ul>
-										</div>
-									</div>
-								</div>
-								<!-- end of panel-body -->
-							</div>
-						</div>
-						<!-- /.panel-default -->
-						
-						<!--end of /.panel-group-->
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="ss_feat_cate_wrapper ss_feat_cate_wrapper_ss">
-						<div class="ss_heading_box">
-							<div class="ss_heading">
-								<h3>Top Rated</h3>
-							</div>
-						</div>
-						<div class="ss_toprated_slider">
-							<div class="owl-carousel owl-theme">
-								<div class="item">
-									<div class="ss_toprated_slider_box">
-										<ul>
-											@foreach (var itemSanPham in Model.ListBooks.Take(4))
-											{
-												<li>
-													<div class="ss_toprated_slider_box_img">
-														<a href="#">
-															<img src="~/img/@itemSanPham.Image" alt="Product">
-														</a>
-													</div>
-													<div class="ss_toprated_slider_box_text">
-														<h4><a href="#">@itemSanPham.Title</a></h4>
-														<ins>@itemSanPham.Price đ</ins> 	<del>@(Math.Floor(itemSanPham.Price * (100 - itemSanPham.Discount) / 100))đ</del>
-													</div>
-												</li>
-											}
-											
-										
-										</ul>
-									</div>
-								</div>
-								<div class="item">
-									<div class="ss_toprated_slider_box">
-										<ul>
-											@foreach (var itemSanPham in Model.ListBooks.Take(4).Skip(4))
-											{
-												<li>
-													<div class="ss_toprated_slider_box_img">
-														<a href="#">
-															<img src="~/img/@itemSanPham.Image" alt="Product">
-														</a>
-													</div>
-													<div class="ss_toprated_slider_box_text">
-														<h4><a href="#">@itemSanPham.Title</a></h4>
-														<ins>@itemSanPham.Price đ</ins> 	<del>@(Math.Floor(itemSanPham.Price * (100 - itemSanPham.Discount) / 100))đ</del>
-													</div>
-												</li>
-											}
-											
-											
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="ss_addver_sidebar">
-							<a href="#">
-								<img src="~/img/@Model.Book.Image" alt="Add">
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- accordion section end -->
-	<!-- Latest Products Wrapper Start -->
-	<div class="ss_latest_products_wrapper ss_latest_products_wrapper_related">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-					<div class="ss_featured_products_tab">
-						<div class="ss_heading">
-							<h3>Sản phẩm tương tự</h3>
-						</div>
-					</div>
-					<div class="ss_latest_products">
-						<div class="owl-carousel owl-theme">
-							@foreach (var itemSanPham in Model.ListBooks)
-							{
-								<div class="item">
-									<div class="ss_featured_products_box">
-										<div class="ss_featured_products_box_img">
-											<span class="ss_tag">new</span>
-											<span class="ss_offer">@(itemSanPham.Discount)% off</span>
-											<img src="~/img/@itemSanPham.Image" alt="Product" class="img-responsive">
-
-										</div>
-										<div class="ss_feat_prod_cont_heading_wrapper">
-											<h4><a href="#">@itemSanPham.Title</a></h4>
-											<p>@itemSanPham.Category.CategoryName</p>	<del>@itemSanPham.Price đ</del>  <ins>@(Math.Floor(itemSanPham.Price * (100 - itemSanPham.Discount) / 100))đ</ins>
-										</div>
-										<div class="ss_featured_products_box_footer">
-
-											<ul>
-
-												<li>
-													<a href="@Url.Action("AddToCart", "Cart", new { bookId = itemSanPham.BookId, quantity = 1 }) class=" ss_btn" style="width: auto;border-radius: 20px; padding-left: 15px;padding-right: 15px;">
-														Thêm vào giỏ hàng
-													</a>
-												</li>
-
-											</ul>
-										</div>
-									</div>
-								</div>
-							}						
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Latest Products Wrapper End -->
+	<!-- CC pc sidebar accordion End -->
 	<!-- Newsletter Wrapper Start -->
 	<div class="ss_newsletter_wrapper">
 		<div class="container">
@@ -599,20 +519,20 @@ Purchase:
 						<ul>
 							<li>
 								<span>Head Office:</span>
-								<p>Web Company Name, 125, Colis Street ABC45 India #010101</p>
+								<p>Trang web bán sách tốt nhất Việt Nam</p>
 							</li>
 							<li>
 								<span>Phone:</span>
 								<p>
-									+1-804-548-5214
-									<br>+1-804-548-5215
+									0364933757
+									<br>0364933757
 								</p>
 							</li>
 							<li>
 								<span>Email:</span>
 								<p>
-									<a href="#">store@example.com</a>
-									<br><a href="#">support@example.com</a>
+									<a href="#">dangmai19112016@gmail.com.com</a>
+									<br><a href="#">dangmai19112016@gmail.com.com</a>
 								</p>
 							</li>
 						</ul>
@@ -704,58 +624,26 @@ Purchase:
 	<script src="~/js/jquery.easing.1.3.js"></script>
 	<script src="~/js/jquery.inview.min.js"></script>
 	<script src="~/js/custom.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
-		$(window).on("load", function() {
-				var wow = new WOW({
-					boxClass: 'wow',
-					animateClass: 'animated',
-					offset: 0,
-					mobile: true,
-					live: true
-				});
-				wow.init();
+		document.getElementById('categorySelect').addEventListener('change', function () {
+			var selectedValue = this.value;
+			if (selectedValue !== '#') {
+				window.location.href = selectedValue; // Chuyển hướng đến URL được chọn
+			}
+		});
+	</script>
+	<script>
+		$(window).on("load", function () {
+			var wow = new WOW({
+				boxClass: 'wow',
+				animateClass: 'animated',
+				offset: 0,
+				mobile: true,
+				live: true
 			});
-
-		function changeQty(increase) {
-			var quantityInput = document.getElementById("input-quantity");
-			var quantity = parseInt(quantityInput.value);
-
-			if (increase === 1) {
-				quantity += 1;
-			} else if (increase === 0 && quantity > 1) {
-				quantity -= 1;
-			}
-
-			quantityInput.value = quantity;
-		}
-		function addToCart(bookId) {
-			var quantity = document.getElementById("input-quantity").value;
-
-			// Kiểm tra nếu quantity không hợp lệ
-			if (quantity <= 0 || isNaN(quantity)) {
-				alert("Số lượng không hợp lệ.");
-				return;
-			}
-
-			// Gửi yêu cầu POST với số lượng và bookId
-			window.location.href = '@Url.Action("AddToCart", "Cart")?bookId=' + bookId + '&quantity=' + quantity;
-		}
-				function goToByScroll(id) {
-					$('html,body').animate({
-						scrollTop: $("#" + id).offset().top
-					}, 'slow');
-				}
-
-				//------- Progress Bar ---------//
-
-				$('.progress_section').on('inview', function(event, visible, visiblePartX, visiblePartY) {
-					if (visible) {
-						$.each($('div.progress-bar'), function() {
-							$(this).css('width', $(this).attr('aria-valuenow') + '%');
-						});
-						$(this).off('inview');
-					}
-				});
+			wow.init();
+		});
 	</script>
 	<!--main js file end-->
 </body>

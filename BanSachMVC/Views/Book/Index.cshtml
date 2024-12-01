@@ -71,8 +71,11 @@ Purchase:
 			<ul>
 				<li>
 					<div class="ss_search_box">
-						<input type="text" placeholder="Search for products">
-						<button><i class="fa fa-search" aria-hidden="true"></i></button>
+						<form action="/Book/Search" method="get">
+							<input type="text" placeholder="Search for products" name="query">
+							<button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+						</form>
+
 
 					</div>
 				</li>
@@ -83,14 +86,14 @@ Purchase:
 						{
 							<a href="/Logout">
 								<span>Logout</span>
-								<img src="images/header/user_icon.png" alt="Logout" title="Logout" class="img-responsive">
+								<img src="~/images/header/user_icon.png" alt="Logout" title="Logout" class="img-responsive">
 							</a>
 						}
 						else
 						{
 							<a href="/Login">
 								<span>Login or Register</span>
-								<img src="images/header/user_icon.png" alt="Login" title="Login" class="img-responsive">
+								<img src="~/images/header/user_icon.png" alt="Login" title="Login" class="img-responsive">
 							</a>
 						}
 					</div>
@@ -98,9 +101,9 @@ Purchase:
 				<li>
 					<div class="ss_cart_value">
 						<a href="/Cart">
-							<p>3</p>
+
 							<img src="images/header/cart_icon.png" alt="Cart" title="Cart">
-							<span>cart: <ins>$ 25.00</ins></span>
+
 						</a>
 						<ul class="dropdown-menu">
 							<li>

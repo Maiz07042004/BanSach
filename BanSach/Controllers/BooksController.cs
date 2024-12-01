@@ -122,5 +122,44 @@ namespace BanSach.Controllers
 
 			return NoContent();
 		}
+
+		// Tìm kiếm sách
+		[HttpGet("Search")]
+		public async Task<IActionResult> SearchBooks(string query, int page = 1, int pageSize = 12)
+		{
+			if (string.IsNullOrEmpty(query))
+			{
+				return BadRequest("Từ khóa tìm kiếm không hợp lệ.");
+			}
+
+			// Lọc sách dựa trên từ khóa tìm kiếm
+			var booksQuery = _context.Books.Include(b => b.Category).AsQueryable();
+
+			// Tìm sách theo tên (Title), tác giả (Author) hoặc mô tả (Description)
+			booksQuery = booksQuery.Where(b =>
+				b.Title.Contains(query) ||
+				b.Author.Contains(query) ||
+				b.Category.CategoryName.Contains(query)||
+				b.Description.Contains(query));
+
+			// Lấy tổng số sách tìm được
+			var totalBooks = await booksQuery.CountAsync();
+
+			// Lấy danh sách sách theo phân trang
+			var books = await booksQuery
+				.Skip((page - 1) * pageSize)  // Bỏ qua số sách của các trang trước đó
+				.Take(pageSize)              // Lấy số sách trong trang hiện tại
+				.ToListAsync();
+
+			// Tạo đối tượng DTO để trả về kết quả
+			var pageResult = new PageResultDTO
+			{
+				Items = books,              // Các sách tìm được trong trang
+				TotalCount = totalBooks,    // Tổng số sách tìm được
+			};
+
+			return Ok(pageResult);
+		}
+
 	}
 }
