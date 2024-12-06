@@ -14,4 +14,8 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\admin\assets\font\font-awesome-pro-v6-6.2.0\.github\pull_request_template.md" />
+  </ItemGroup>
+
 </Project>

@@ -7,40 +7,82 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/BanSachMVC.styles.css" asp-append-version="true" />
+    <style>
+        /* Tạo bố cục cho trang */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f6f9;
+            padding: 20px;
+        }
+
+        /* Thiết kế tiêu đề */
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        h4 {
+            text-align: center;
+            color: #95a5a6;
+        }
+
+        /* Thiết kế danh sách liên kết */
+        ul {
+            list-style-type: none; /* Xóa dấu đầu dòng */
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+            ul li {
+                margin: 10px 0;
+                width: 100%;
+                text-align: center;
+            }
+
+                ul li a {
+                    display: block;
+                    background-color: #3498db;
+                    color: white;
+                    text-decoration: none;
+                    padding: 15px 20px;
+                    border-radius: 5px;
+                    font-size: 18px;
+                    transition: all 0.3s ease;
+                }
+
+                    ul li a:hover {
+                        background-color: #2980b9;
+                        transform: translateY(-5px);
+                    }
+
+                    ul li a:active {
+                        background-color: #1c6f9b;
+                    }
+
+        /* Thiết kế Footer */
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #7f8c8d;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BanSachMVC</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <ul>
+        <li><a href="/Admin/QuanLySach">Quản lý sách</a></li>
+        <li><a href="/Admin/QuanLyDonHang">Quản lý đơn hàng</a></li>
+        <li><a href="/Admin/QuanLyNguoiDung">Quản lý người dùng</a></li>
+        <li><a href="@Url.Action("Index", "Logout")">Đăng xuất</a></li>
+    </ul>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer class="footer" style="margin-top:30px">
+            <p>&copy; 2024 Trang Quản Lý</p>
+        </footer>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - BanSachMVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

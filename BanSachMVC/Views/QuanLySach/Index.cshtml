@@ -1,0 +1,179 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <title>Danh Sách Sách</title>
+    <style>
+        /* Đặt căn giữa và khoảng cách cho pagination */
+        .pager_wrapper {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Định dạng danh sách phân trang */
+        .pagination {
+            display: inline-flex;
+            padding: 0;
+            list-style-type: none;
+            margin: 0;
+        }
+
+            /* Định dạng từng mục trong pagination */
+            .pagination li {
+                margin: 0 5px;
+            }
+
+            /* Định dạng liên kết phân trang */
+            .pagination a {
+                padding: 10px 15px;
+                color: #007bff; /* Màu chữ mặc định */
+                text-decoration: none;
+                border-radius: 5px;
+                font-size: 16px;
+                transition: all 0.3s ease; /* Hiệu ứng chuyển động */
+                border: 1px solid #007bff; /* Đặt viền xung quanh liên kết */
+            }
+
+                /* Hiệu ứng hover cho liên kết */
+                .pagination a:hover {
+                    background-color: #007bff;
+                    color: white;
+                }
+
+            /* Định dạng cho trang đang được chọn */
+            .pagination .active a {
+                background-color: #007bff;
+                color: white;
+                font-weight: bold; /* Làm nổi bật trang hiện tại */
+            }
+
+            /* Định dạng khi liên kết bị vô hiệu hóa (disabled) */
+            .pagination .disabled span {
+                color: #aaa;
+                padding: 10px 15px;
+                border: 1px solid #ddd;
+                background-color: #f5f5f5;
+                cursor: not-allowed; /* Con trỏ không thể nhấp vào */
+            }
+
+            /* Tùy chỉnh màu nền cho các liên kết ở hai đầu (Previous/Next) */
+            .pagination .previous, .pagination .next {
+                font-weight: bold;
+            }
+
+                /* Tùy chỉnh cho các liên kết "Previous" và "Next" */
+                .pagination .previous a,
+                .pagination .next a {
+                    padding: 10px 20px;
+                    font-size: 18px;
+                    font-weight: bold;
+                }
+
+            /* Tạo khoảng cách giữa các phần tử */
+            .pagination .page-item {
+                margin: 0 3px;
+            }
+    </style>
+</head>
+<body>
+    @model BanSachMVC.Models.BookViewModel
+
+    <h2>Danh Sách Sách</h2>
+
+    <a href="@Url.Action("Them")" class="btn btn-primary">Thêm</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Mã Sách</th>
+                <th>Tên Sách</th>
+                <th>Tác Giả</th>
+                <th>Giá</th>
+                <th>Giảm Giá</th>
+                <th>Hình Ảnh</th>
+                <th>Thể Loại</th>
+                <th>Hành Động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var book in Model.Books)
+            {
+                <tr>
+                    <td>@book.BookId</td>
+                    <td>@book.Title</td>
+                    <td>@book.Author</td>
+                    <td>@book.Price đ</td>
+                    <td>@book.Discount %</td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(book.Image))
+                        {
+                            <img src="~/img/@book.Image" alt="Hình ảnh sách" style="width: 100px; height: auto;" />
+                        }
+                        else
+                        {
+                            <span>Không có hình ảnh</span>
+                        }
+                    </td>
+                    <td>@book.Category.CategoryName</td>
+                    <td>
+                        <a href="@Url.Action("ChinhSua", new { id = book.BookId })" class="btn btn-info">Sửa</a> |
+                        <a href="@Url.Action("Xoa", new { id = book.BookId })" class="btn btn-danger">Xóa</a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+    <div class="pager_wrapper gc_blog_pagination">
+        <ul class="pagination">
+            <!-- Liên kết "Previous" (Trang trước) -->
+            <li class="@(Model.CurrentPage > 1 ? "" : "disabled")">
+                @if (Model.CurrentPage > 1)
+                {
+                    <a href="/Admin/QuanLySach?page=@(Model.CurrentPage - 1)&pageSize=@Model.PageSize">Previous</a>
+                }
+                else
+                {
+                    <span>Previous</span>
+                }
+            </li>
+
+            <!-- Các số trang -->
+            @for (int i = 1; i <= Model.TotalPages; i++)
+            {
+                <li class="@(i == Model.CurrentPage ? "active" : "")">
+                    <a href="/Admin/QuanLySach?page=@i&pageSize=@Model.PageSize"
+                       class="@(i == Model.CurrentPage ? "active" : "")"
+                       style="@(i == Model.CurrentPage ? ("background-color: blue !important; color: white !important;") : "")">
+                        @i
+                    </a>
+                </li>
+            }
+
+            <!-- Liên kết "Next" (Trang tiếp theo) -->
+            <li class="@(Model.CurrentPage < Model.TotalPages ? "" : "disabled")">
+                @if (Model.CurrentPage < Model.TotalPages)
+                {
+                    <a href="/Admin/QuanLySach?page=@(Model.CurrentPage + 1)&pageSize=@Model.PageSize">Next</a>
+                }
+                else
+                {
+                    <span>Next</span>
+                }
+            </li>
+        </ul>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
