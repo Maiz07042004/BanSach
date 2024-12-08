@@ -62,7 +62,8 @@ namespace BanSach.Controllers
             {
                 Email=user.Email,
                 UserId=user.UserId,
-                Name=user.Name
+                Name=user.Name,
+                Role=user.Role
             };
             return Ok(user);
         }

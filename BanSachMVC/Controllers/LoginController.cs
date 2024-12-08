@@ -52,9 +52,18 @@ namespace BanSachMVC.Controllers
                     // Lưu thông tin người dùng vào Session
                     HttpContext.Session.SetInt32("UserId", user.UserId);
                     HttpContext.Session.SetString("UserName", user.Name);
+                    HttpContext.Session.SetInt32("Role", user.Role);
 
                     // Chuyển hướng đến trang chủ sau khi đăng nhập thành công
-                    return RedirectToAction("Index", "Home");
+                    if (user.Role == 0)
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "ThongKe");
+                    }
+
                 }
                 else
                 {

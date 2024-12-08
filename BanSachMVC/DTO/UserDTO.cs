@@ -5,6 +5,7 @@
 		public int UserId { get; set; }
 		public string Email { get; set; }
 		public string Name { get; set; }
-		// Thêm các trường khác nếu cần, nhưng không bao gồm Password.
-	}
+        public int Role { get; set; }
+        // Thêm các trường khác nếu cần, nhưng không bao gồm Password.
+    }
 }

@@ -1,0 +1,138 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Thống kê</title>
+    <!-- Thêm link đến Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Thêm Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">Thống kê thông tin sách và đơn hàng</h1>
+
+        <div class="row g-4">
+
+            
+
+            <!-- Thống kê doanh thu theo ngày -->
+            <div class="col-md-6">
+                <div class="card shadow-sm h-100">
+                    <div class="card-header bg-success text-white text-center">
+                        <h5>Doanh thu theo từng ngày</h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="revenueChart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thống kê đơn hàng theo trạng thái -->
+            <div class="col-md-6">
+                <div class="card shadow-sm h-100">
+                    <div class="card-header bg-warning text-dark text-center">
+                        <h5>Đơn hàng theo trạng thái</h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="statusChart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+            <!-- Thống kê sách theo danh mục -->
+            <div class="col-md-12">
+                <div class="card shadow-sm h-100">
+                    <div class="card-header bg-info text-white text-center">
+                        <h5>Số sách theo danh mục</h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="bookChart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Scripts biểu đồ -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Biểu đồ sách theo danh mục
+            var bookStats = @Html.Raw(ViewBag.BookStatistics);
+            new Chart(document.getElementById('bookChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: bookStats.map(stat => stat.CategoryName),
+                    datasets: [{
+                        label: 'Số sách theo danh mục',
+                        data: bookStats.map(stat => stat.BookCount),
+                        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+
+            // Biểu đồ doanh thu theo ngày
+            var revenueStats = @Html.Raw(ViewBag.RevenueStatistics);
+            new Chart(document.getElementById('revenueChart').getContext('2d'), {
+                type: 'line',
+                data: {
+                    labels: revenueStats.map(stat => stat.OrderDate),
+                    datasets: [{
+                        label: 'Doanh thu',
+                        data: revenueStats.map(stat => stat.TotalRevenue),
+                        backgroundColor: 'rgba(255, 99, 132, 0.4)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        fill: false,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+
+            // Biểu đồ đơn hàng theo trạng thái
+            var orderStats = @Html.Raw(ViewBag.OrderStatistics);
+            new Chart(document.getElementById('statusChart').getContext('2d'), {
+                type: 'pie',
+                data: {
+                    labels: orderStats.map(stat => (stat.Status=="Confirmed"?"Đã xác nhận":"Chờ xác nhận")),
+                    datasets: [{
+                        label: 'Đơn hàng',
+                        data: orderStats.map(stat => stat.Count),
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.7)',
+                            'rgba(54, 162, 235, 0.7)',
+                            'rgba(255, 206, 86, 0.7)',
+                            'rgba(75, 192, 192, 0.7)'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top'
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

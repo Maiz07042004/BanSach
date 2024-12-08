@@ -120,12 +120,12 @@ namespace BanSach.Controllers
         {
             var totalOrders = await _context.Orders.CountAsync();
             var orders = await _context.Orders
-                .OrderByDescending(o => o.OrderDate)
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize)
-                .Include(o => o.OrderItems)
-                .ToListAsync();
-
+               .Include(o => o.OrderItems)
+               .OrderByDescending(o => o.Status == "Pending") // Sắp xếp ưu tiên Pending lên trước
+               .ThenByDescending(o => o.OrderDate) 
+               .Skip((page - 1) * pageSize)
+               .Take(pageSize)
+               .ToListAsync();
             return Ok(new
             {
                 TotalOrders = totalOrders,

@@ -44,7 +44,7 @@
                 ul li a {
                     display: block;
                     background-color: #3498db;
-                    color: white;
+                    color: white !important;
                     text-decoration: none;
                     padding: 15px 20px;
                     border-radius: 5px;
@@ -71,9 +71,9 @@
 </head>
 <body>
     <ul>
+        <li><a href="/ThongKe">Thống kê</a></li>
         <li><a href="/QuanLySach">Quản lý sách</a></li>
         <li><a href="/QuanLyDonHang">Quản lý đơn hàng</a></li>
-        <li><a href="/QuanLyNguoiDung">Quản lý người dùng</a></li>
         <li><a href="@Url.Action("Index", "Logout")">Đăng xuất</a></li>
     </ul>
     <div class="container body-content">
