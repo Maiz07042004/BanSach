@@ -10,7 +10,6 @@
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/Content/style.css" />
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
     <title>Danh Sách Sách</title>
     <style>
         /* Đặt căn giữa và khoảng cách cho pagination */
@@ -89,7 +88,7 @@
 
     <h2>Danh Sách Sách</h2>
 
-    <a href="@Url.Action("Them")" class="btn btn-primary">Thêm</a>
+    <a href="@Url.Action("Create")" class="btn btn-primary">Thêm</a>
 
     <table class="table">
         <thead>
@@ -125,8 +124,8 @@
                     </td>
                     <td>@book.Category.CategoryName</td>
                     <td>
-                        <a href="@Url.Action("ChinhSua", new { id = book.BookId })" class="btn btn-info">Sửa</a> |
-                        <a href="@Url.Action("Xoa", new { id = book.BookId })" class="btn btn-danger">Xóa</a>
+                        <a href="@Url.Action("Edit", new { id = book.BookId })" class="btn btn-info">Sửa</a> |
+                        <a href="@Url.Action("Delete", new { id = book.BookId })" class="btn btn-danger">Xóa</a>
                     </td>
                 </tr>
             }
@@ -151,7 +150,7 @@
             @for (int i = 1; i <= Model.TotalPages; i++)
             {
                 <li class="@(i == Model.CurrentPage ? "active" : "")">
-                    <a href="/Admin/QuanLySach?page=@i&pageSize=@Model.PageSize"
+                    <a href="/QuanLySach?page=@i&pageSize=@Model.PageSize"
                        class="@(i == Model.CurrentPage ? "active" : "")"
                        style="@(i == Model.CurrentPage ? ("background-color: blue !important; color: white !important;") : "")">
                         @i
@@ -163,7 +162,7 @@
             <li class="@(Model.CurrentPage < Model.TotalPages ? "" : "disabled")">
                 @if (Model.CurrentPage < Model.TotalPages)
                 {
-                    <a href="/Admin/QuanLySach?page=@(Model.CurrentPage + 1)&pageSize=@Model.PageSize">Next</a>
+                    <a href="/QuanLySach?page=@(Model.CurrentPage + 1)&pageSize=@Model.PageSize">Next</a>
                 }
                 else
                 {

@@ -34,8 +34,8 @@ namespace BanSach.Controllers
 			var totalBooks = await _context.Books.CountAsync();
 
 			// Lấy danh sách sách theo phân trang
-			var books = await _context.Books.Include(b => b.Category)
-				.Skip((page - 1) * pageSize)  // Bỏ qua số sách của các trang trước đó
+			var books = await _context.Books.Include(b => b.Category).OrderByDescending(b => b.BookId)
+                .Skip((page - 1) * pageSize)  // Bỏ qua số sách của các trang trước đó
 				.Take(pageSize)              // Lấy số sách trong trang hiện tại
 				.ToListAsync();
 
@@ -81,27 +81,57 @@ namespace BanSach.Controllers
             return Ok(book);
         }
 
-		//Thêm sách
-		// POST: api/books
-		[HttpPost]
-		public async Task<ActionResult<Book>> PostBook(Book book)
-		{
-			_context.Books.Add(book);
-			await _context.SaveChangesAsync();
-
-			return CreatedAtAction(nameof(GetBook), new { id = book.BookId }, book);
-		}
-
-		// PUT: api/books/5
-		[HttpPut("{id}")]
-		public async Task<IActionResult> PutBook(int id, Book book)
-		{
-			if (id != book.BookId)
+        // POST: api/books
+        [HttpPost]
+        public async Task<ActionResult<Book>> PostBook([FromBody] ThemBookRequest bookrequest)
+        {
+            if (ModelState.IsValid)
 			{
-				return BadRequest();
-			}
+                // Kiểm tra nếu dữ liệu đầu vào không hợp lệ
+                if (bookrequest == null)
+                {
+                    return BadRequest("Dữ liệu sách không hợp lệ.");
+                }
 
-			_context.Entry(book).State = EntityState.Modified;
+				var book=new Book
+				{
+					Title = bookrequest.Title,
+					Author=bookrequest.Author,
+					Price=bookrequest.Price,
+					Image=bookrequest.Image,
+					Discount=bookrequest.Discount,
+					Description=bookrequest.Description,
+					CategoryId=bookrequest.CategoryId
+				};
+                // Thêm sách vào DbContext
+                _context.Books.Add(book);
+
+                // Lưu thay đổi vào cơ sở dữ liệu
+                await _context.SaveChangesAsync();
+
+                // Trả về sách đã thêm kèm theo mã ID và dữ liệu sách
+                return CreatedAtAction(nameof(GetBook), new { id = book.BookId }, book);
+            }
+			return BadRequest("hsaasdasda");
+        }
+
+        // PUT: api/books/5
+        [HttpPut("{id}")]
+		public async Task<IActionResult> PutBook(int id, [FromBody] ThemBookRequest book)
+		{
+			var bookEdit = new Book
+			{
+				BookId = id,
+				Title = book.Title,
+				Author = book.Author,
+				Price = book.Price,
+				Image = book.Image,
+				Discount = book.Discount,
+				Description = book.Description,
+				CategoryId = book.CategoryId
+			};
+
+			_context.Entry(bookEdit).State = EntityState.Modified;
 			await _context.SaveChangesAsync();
 
 			return NoContent();

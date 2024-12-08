@@ -77,7 +77,8 @@ namespace BanSach.Controllers
                     Address = request.Address,
                     PhoneNumber = request.PhoneNumber,
                     Email = request.Email,
-                    OrtherNotes = request.OrtherNotes
+                    OrtherNotes = request.OrtherNotes,
+                    Status = "Pending"
                 };
 
                 // Thêm đơn hàng vào cơ sở dữ liệu và lưu
@@ -111,6 +112,56 @@ namespace BanSach.Controllers
                 // Log lỗi chi tiết
                 return StatusCode(500, new { Message = "Đã xảy ra lỗi khi đặt hàng", Error = ex.Message });
             }
+        }
+
+
+        [HttpGet("All")]
+        public async Task<IActionResult> GetAllOrders(int page = 1, int pageSize = 10)
+        {
+            var totalOrders = await _context.Orders.CountAsync();
+            var orders = await _context.Orders
+                .OrderByDescending(o => o.OrderDate)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .Include(o => o.OrderItems)
+                .ToListAsync();
+
+            return Ok(new
+            {
+                TotalOrders = totalOrders,
+                Orders = orders
+            });
+        }
+
+        [HttpPut("{id}/status")]
+        public async Task<IActionResult> UpdateOrderStatus(int id, [FromBody] string status)
+        {
+            var order = await _context.Orders.FindAsync(id);
+            if (order == null)
+            {
+                return NotFound();
+            }
+
+            order.Status = status;
+            await _context.SaveChangesAsync();
+
+            return Ok(new { Message = $"Đã cập nhật trạng thái đơn hàng thành '{status}'" });
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetOrderDetails(int id)
+        {
+            var order = await _context.Orders
+                .Include(o => o.OrderItems)
+                .ThenInclude(oi => oi.Book)
+                .FirstOrDefaultAsync(o => o.OrderId == id);
+
+            if (order == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(order);
         }
 
     }

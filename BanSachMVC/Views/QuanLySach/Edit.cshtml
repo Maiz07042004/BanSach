@@ -1,0 +1,91 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@{
+    ViewBag.Title = "Chỉnh Sửa Sách";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@model BanSachMVC.Models.Book
+
+<form action="/Admin/QuanLySach/Edit" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="BookId" value="@Model.BookId" /> <!-- Dấu ID sách để biết đang chỉnh sửa quyển nào -->
+
+    <div class="form-group">
+        <label for="Title">Tiêu đề sách</label>
+        <input type="text" id="Title" name="Title" class="form-control" value="@Model.Title" required />
+    </div>
+
+    <div class="form-group">
+        <label for="Author">Tác giả</label>
+        <input type="text" id="Author" name="Author" class="form-control" value="@Model.Author" required />
+    </div>
+
+    <div class="form-group">
+        <label for="Price">Giá</label>
+        <input type="number" id="Price" name="Price" class="form-control" step="0.01" value="@Model.Price" required />
+    </div>
+
+    <div class="form-group">
+        <label for="Discount">Giảm giá (%)</label>
+        <input type="number" id="Discount" name="Discount" class="form-control" step="0.01" value="@Math.Floor(Model.Discount)" />
+    </div>
+
+    <div class="form-group">
+        <label for="Description">Mô tả</label>
+        <textarea id="Description" name="Description" class="form-control">@Model.Description</textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="Image">Hình ảnh hiện tại</label>
+        @if (!string.IsNullOrEmpty(Model.Image))
+        {
+            <div>
+                <img src="~/img/@Model.Image" alt="Hình ảnh sách" style="max-width: 200px; display: block; margin-bottom: 10px;" />
+            </div>
+        }
+        <label for="Image">Chọn hình ảnh mới (nếu cần)</label>
+        <input type="file" id="Image" name="imageFile" class="form-control" onchange="previewImage(event)" />
+        <div id="imagePreviewContainer" class="mt-3">
+            <img id="imagePreview" src="" alt="Image Preview" style="max-width: 200px; display: none;" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="CategoryId">Danh mục</label>
+        <select id="CategoryId" name="CategoryId" class="form-control" required>
+            @foreach (Category category in ViewBag.Categories)
+            {
+                <option value="@category.CategoryId" selected=@(category.CategoryId == Model.CategoryId ? "selected" : "")>
+                    @category.CategoryName
+                </option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Cập Nhật Sách</button>
+        <a href="@Url.Action("Index")" class="btn btn-secondary">Hủy</a>
+    </div>
+</form>
+
+<script>
+    function previewImage(event) {
+        var file = event.target.files[0];  // Lấy tệp ảnh đầu tiên
+        var reader = new FileReader(); // Khởi tạo FileReader để đọc tệp
+
+        reader.onload = function(e) {
+            var imagePreview = document.getElementById("imagePreview");
+            imagePreview.src = e.target.result; // Cập nhật nguồn ảnh
+            imagePreview.style.display = "block"; // Hiển thị ảnh
+        };
+
+        if (file) {
+            reader.readAsDataURL(file); // Đọc tệp dưới dạng Data URL
+        }
+    }
+</script>
+

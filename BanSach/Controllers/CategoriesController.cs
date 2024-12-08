@@ -17,7 +17,7 @@ namespace BanSach.Controllers
 
         // Lấy tất cả danh mục
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
+        public async Task<ActionResult<List<Category>>> GetCategories()
         {
             var categories = await _context.Categories.ToListAsync();
             return Ok(categories);

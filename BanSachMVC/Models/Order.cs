@@ -12,9 +12,10 @@ namespace BanSachMVC.Models
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
 		public string OrtherNotes { get; set; }
+        public string Status { get; set; }
 
-		// Navigation properties
-		public virtual User User { get; set; }
+        // Navigation properties
+        public virtual User User { get; set; }
         public virtual ICollection<OrderItem> OrderItems { get; set; }
 
     }

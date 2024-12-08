@@ -37,26 +37,24 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-// Cấu hình định tuyến cho các controller trong Admin
-app.MapControllerRoute(
-    name: "admin",
-    pattern: "Admin/{controller=QuanLySach}/{action=Index}/{id?}");
 
 // Cấu hình định tuyến mặc định cho các controller khác
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-app.Use(async (context, next) =>
-{
-    if (context.Request.Path.Value.StartsWith("/QuanLySach"))
-    {
-        context.Response.StatusCode = 404;
-        await context.Response.WriteAsync("Not Found");
-    }
-    else
-    {
-        await next();
-    }
-});
+
+
+//app.Use(async (context, next) =>
+//{
+//    if (context.Request.Path.Value.StartsWith("/QuanLySach"))
+//    {
+//        context.Response.StatusCode = 404;
+//        await context.Response.WriteAsync("Not Found");
+//    }
+//    else
+//    {
+//        await next();
+//    }
+//});
 
 app.Run();

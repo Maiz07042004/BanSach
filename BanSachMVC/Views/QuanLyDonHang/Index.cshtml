@@ -1,0 +1,61 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model BanSachMVC.DTO.OrdersResponseDTO
+@{
+    ViewBag.Title = "Quản Lý Đơn Hàng";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Tên Khách Hàng</th>
+            <th>Ngày Đặt</th>
+            <th>Tổng Tiền</th>
+            <th>Trạng Thái</th>
+            <th>Xem chi tiết</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.Orders.Count; i++)
+        {
+            <tr>
+                <td>@(i + 1)</td>
+                <td>@Model.Orders[i].CustomerName</td>
+                <td>@Model.Orders[i].OrderDate.ToString("dd/MM/yyyy")</td>
+                <td>@Model.Orders[i].TotalAmount.ToString() đ</td>
+                <td>
+                    <form asp-action="UpdateStatus" method="post" class="form-inline">
+                        <input type="hidden" name="orderId" value="@Model.Orders[i].OrderId" />
+                        <select asp-for="Orders[i].Status" class="form-control" name="status">
+                            <option value="Pending" selected="@(Model.Orders[i].Status == "Pending")">Chờ xác nhận</option>
+                            <option value="Confirmed" selected="@(Model.Orders[i].Status == "Confirmed")">Xác nhận</option>
+                            <option value="Cancel" selected="@(Model.Orders[i].Status == "Cancel")">Huỷ</option>
+                        </select>
+
+                        <button type="submit" class="btn btn-primary ml-2">Cập Nhật</button>
+                    </form>
+                </td>
+                <td>
+                    <a class="btn btn-primary" href="/QuanLyDonHang/Detail/@Model.Orders[i].OrderId">Xem chi tiết</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
