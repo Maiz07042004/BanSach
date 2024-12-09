@@ -40,7 +40,7 @@ namespace BanSachMVC.Controllers
             try
             {
                 // Gửi yêu cầu đăng nhập đến API
-                var response = await _httpClient.PostAsync("https://localhost:7059/api/Auth/login", jsonContent);
+                var response = await _httpClient.PostAsync("Auth/login", jsonContent);
 
                 // Kiểm tra xem phản hồi từ API có thành công không
                 if (response.IsSuccessStatusCode)

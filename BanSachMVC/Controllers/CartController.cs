@@ -27,7 +27,7 @@ namespace BanSachMVC.Controllers
 
 				if (userId==null)
 				{
-					// Nếu không có cookie, có thể chuyển hướng đến trang đăng nhập
+					// Nếu không có session, có thể chuyển hướng đến trang đăng nhập
 					return RedirectToAction("Index", "Login");
 				}
 

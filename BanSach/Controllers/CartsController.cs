@@ -74,6 +74,7 @@ namespace BanSach.Controllers
 					UpdatedDate = DateTime.Now
 				};
 				_context.Carts.Add(cart);
+				await _context.SaveChangesAsync();
 			}
 
 			// Tìm sách theo bookId
@@ -89,6 +90,7 @@ namespace BanSach.Controllers
 			{
 				cartItem = new CartItem
 				{
+					CartId=cart.CartId,
 					BookId = bookId,
 					Quantity = quantity,
 					UnitPrice = book.Price

@@ -137,7 +137,7 @@ namespace BanSach.Controllers
 			return NoContent();
 		}
 
-		// DELETE: api/books/5
+		// DELETE: api/Books/5
 		[HttpDelete("{id}")]
 		public async Task<IActionResult> DeleteBook(int id)
 		{
