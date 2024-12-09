@@ -82,7 +82,7 @@ Purchase:
 
 				<li>
 					<div class="ss_login_box">
-						@if (!string.IsNullOrEmpty(userId))
+						@if (userId != null)
 						{
 							<a href="/Logout">
 								<span>Logout</span>

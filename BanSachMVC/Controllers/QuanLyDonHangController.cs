@@ -20,25 +20,34 @@ namespace BanSachMVC.Controllers.Admin
 
         public async Task<IActionResult> Index(int page = 1, int pageSize = 10)
         {
-            try
+            var Role = HttpContext.Session.GetInt32("Role");
+            if (Role == 1)
             {
-                var response = await _httpClient.GetAsync($"Orders/All?page={page}&pageSize={pageSize}");
-                if (response.IsSuccessStatusCode)
+                try
                 {
-                    var content = await response.Content.ReadAsStringAsync();
-                    var result = JsonConvert.DeserializeObject<OrdersResponseDTO>(content);
+                    var response = await _httpClient.GetAsync($"Orders/All?page={page}&pageSize={pageSize}");
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var content = await response.Content.ReadAsStringAsync();
+                        var result = JsonConvert.DeserializeObject<OrdersResponseDTO>(content);
 
-                    return View(result);
+                        return View(result);
+                    }
+
+                    TempData["Error"] = "Không thể lấy danh sách đơn hàng.";
+                    return RedirectToAction(nameof(Index));
                 }
-
-                TempData["Error"] = "Không thể lấy danh sách đơn hàng.";
-                return RedirectToAction(nameof(Index));
+                catch
+                {
+                    TempData["Error"] = "Có lỗi xảy ra khi kết nối tới API.";
+                    return RedirectToAction(nameof(Index));
+                }
             }
-            catch
+            else
             {
-                TempData["Error"] = "Có lỗi xảy ra khi kết nối tới API.";
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
             }
+               
         }
 
         // POST: Admin/Orders/UpdateStatus
