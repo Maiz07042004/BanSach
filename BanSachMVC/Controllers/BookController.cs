@@ -25,32 +25,60 @@ namespace BanSachMVC.Controllers
 			{
 				var viewModel = new BookViewModel();
 
-				// Gọi API lấy danh sách sách
-				var response = await _httpClient.GetAsync($"Books?page={page}&pageSize={pageSize}");
-				Console.WriteLine(response);
-				if (response.IsSuccessStatusCode)
-				{
-					var content = await response.Content.ReadAsStringAsync();
-					var booksData = JsonConvert.DeserializeObject<PageResultDTO>(content);
+                // Gọi API lấy danh sách sách
+                var response = await _httpClient.GetAsync($"Books?page={page}&pageSize={pageSize}");
+                // Gửi một yêu cầu GET tới endpoint API "Books" với các tham số page và pageSize để lấy danh sách sách. 
+                // Biến response chứa phản hồi từ API.
 
-					if (booksData != null)
-					{
-						viewModel.Books = booksData.Items ?? new List<Book>();  // Nếu Items là null, gán danh sách rỗng
-						viewModel.TotalBooks = booksData.TotalCount;
-						viewModel.CurrentPage = page;
-						viewModel.PageSize = pageSize;
-						viewModel.TotalPages = (int)Math.Ceiling((double)viewModel.TotalBooks / pageSize);  // Tính số trang
-					}
-					else
-					{
-						// Xử lý khi booksData là null
-						viewModel.Books = new List<Book>();
-						viewModel.TotalBooks = 0;
-					}
-				}
+                Console.WriteLine(response);
+                // Ghi thông tin của response ra console để kiểm tra phản hồi từ API.
 
-				// Gọi API lấy danh sách danh mục
-				var categoryResponse = await _httpClient.GetAsync("Categories");
+                if (response.IsSuccessStatusCode)
+                {
+                    // Kiểm tra xem phản hồi từ API có thành công hay không (HTTP status code 2xx).
+
+                    var content = await response.Content.ReadAsStringAsync();
+                    // Đọc nội dung phản hồi API dưới dạng chuỗi JSON.
+
+                    var booksData = JsonConvert.DeserializeObject<PageResultDTO>(content);
+                    // Chuyển đổi chuỗi JSON thành đối tượng `PageResultDTO` bằng cách sử dụng thư viện Newtonsoft.Json.
+
+                    if (booksData != null)
+                    {
+                        // Kiểm tra xem dữ liệu booksData đã được deserialization thành công hay chưa.
+
+                        viewModel.Books = booksData.Items ?? new List<Book>();
+                        // Gán danh sách sách từ thuộc tính `Items` trong đối tượng booksData vào viewModel.
+                        // Nếu `Items` là null, gán một danh sách rỗng để tránh lỗi NullReferenceException.
+
+                        viewModel.TotalBooks = booksData.TotalCount;
+                        // Gán tổng số lượng sách từ thuộc tính `TotalCount` trong booksData vào viewModel.
+
+                        viewModel.CurrentPage = page;
+                        // Gán số trang hiện tại mà người dùng yêu cầu vào viewModel.
+
+                        viewModel.PageSize = pageSize;
+                        // Gán số lượng sách hiển thị trên một trang vào viewModel.
+
+                        viewModel.TotalPages = (int)Math.Ceiling((double)viewModel.TotalBooks / pageSize);
+                        // Tính toán tổng số trang dựa trên tổng số sách và số sách hiển thị trên mỗi trang.
+                        // Sử dụng `Math.Ceiling` để làm tròn lên khi tổng số sách không chia hết cho pageSize.
+                    }
+                    else
+                    {
+                        // Xử lý trường hợp booksData bị null, có thể xảy ra nếu API trả về một nội dung không hợp lệ.
+
+                        viewModel.Books = new List<Book>();
+                        // Gán danh sách sách trong viewModel là danh sách rỗng để tránh lỗi khi sử dụng.
+
+                        viewModel.TotalBooks = 0;
+                        // Đặt tổng số lượng sách trong viewModel thành 0.
+                    }
+                }
+
+
+                // Gọi API lấy danh sách danh mục
+                var categoryResponse = await _httpClient.GetAsync("Categories");
 				if (categoryResponse.IsSuccessStatusCode)
 				{
 					var content = await categoryResponse.Content.ReadAsStringAsync();

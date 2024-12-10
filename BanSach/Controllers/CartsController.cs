@@ -87,13 +87,14 @@ namespace BanSach.Controllers
 			var cartItem = cart.CartItems?.FirstOrDefault(ci => ci.BookId == bookId);
 			if (cartItem == null)
 			{
-				cartItem = new CartItem
-				{
-					BookId = bookId,
-					Quantity = quantity,
-					UnitPrice = book.Price
-				};
-				cart.CartItems.Add(cartItem);
+                cartItem = new CartItem
+                {
+                    CartId = cart.CartId,
+                    BookId = bookId,
+                    Quantity = quantity,
+                    UnitPrice = book.Price
+                };
+                cart.CartItems.Add(cartItem);
 			}
 			else
 			{
