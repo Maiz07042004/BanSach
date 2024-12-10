@@ -183,6 +183,8 @@ namespace BanSachMVC.Controllers
 			}
 			return RedirectToAction("Index", "Home");
 		}
+
+		// click vào buy now -> cho kiểm tra bookid vs sl
 		[HttpGet]
 		public async Task<IActionResult> BuyNow(int bookId, int quantity = 1)
 		{

@@ -305,6 +305,7 @@ Purchase:
 												<a href="javascript:void(0);" onclick="addToCart(@Model.Book.BookId)" style="width:auto;padding-left:10px;padding-right:10px;">
 													<i class="fa fa-shopping-cart"></i> Thêm giỏ hàng
 												</a>
+									<!-- buynow -->
 												<a href="javascript:void(0);" onclick="buyNow(@Model.Book.BookId)" style="width:auto; padding-left:10px;padding-right:10px;">
 													<i class="fa fa-bolt"></i> Mua ngay
 												</a>
@@ -740,6 +741,9 @@ Purchase:
 			// Gửi yêu cầu POST với số lượng và bookId
 			window.location.href = '@Url.Action("AddToCart", "Cart")?bookId=' + bookId + '&quantity=' + quantity;
 		}
+
+
+		// Buy now
 		function buyNow(bookId) {
 			var quantity = document.getElementById("input-quantity").value;
 
