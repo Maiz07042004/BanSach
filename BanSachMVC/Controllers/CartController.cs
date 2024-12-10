@@ -27,7 +27,7 @@ namespace BanSachMVC.Controllers
 
 				if (userId==null)
 				{
-					// Nếu không có cookie, có thể chuyển hướng đến trang đăng nhập
+					// Nếu không có session, có thể chuyển hướng đến trang đăng nhập
 					return RedirectToAction("Index", "Login");
 				}
 
@@ -183,7 +183,96 @@ namespace BanSachMVC.Controllers
 			}
 			return RedirectToAction("Index", "Home");
 		}
+		[HttpGet]
+		public async Task<IActionResult> BuyNow(int bookId, int quantity = 1)
+		{
+			try
+			{
+				var book=new Book();
+				// Lấy userId từ session
+				var userId = HttpContext.Session.GetInt32("UserId");
 
+				var response = await _httpClient.GetAsync($"Books/{bookId}");
+				if (response.IsSuccessStatusCode)
+				{
+					var content = await response.Content.ReadAsStringAsync();
+					book = JsonConvert.DeserializeObject<Book>(content);
+					
+				}
+				if ((HttpContext.Session.GetInt32("UserId")) != null &&
+					!string.IsNullOrEmpty(HttpContext.Session.GetString("UserName")))
+				{
+					var userId2 = HttpContext.Session.GetInt32("UserId");
+					var userName = HttpContext.Session.GetString("UserName");
+					ViewBag.UserId = userId2;
+					ViewBag.UserName = userName;
+
+					// Tiếp tục xử lý với userId và userName
+				}
+				ViewBag.Quantity = quantity;
+
+				return View(book);
+			}
+			catch (Exception ex)
+			{
+				// Xử lý lỗi nếu có
+				return Json(new { success = false, message = ex.Message });
+			}
+		}
+		[HttpPost]
+		public async Task<IActionResult> BuyNow(int BookId, int Quantity,string CustomerName, string Email, string Address, string PhoneNumber, string OrtherNotes)
+		{
+			var userId = HttpContext.Session.GetInt32("UserId");
+			if (userId == null)
+			{
+				return RedirectToAction("Index", "Login");  // Nếu không có UserId thì chuyển đến trang đăng nhập
+			}
+
+			// Tạo đối tượng CheckoutRequestDTO
+			var checkoutData = new BuyNowRequestDTO
+			{
+				UserId = (int)userId,
+				BookId = BookId,
+				Quantity = Quantity,
+				CustomerName = CustomerName,
+				Email = Email,
+				Address = Address,
+				PhoneNumber = PhoneNumber,
+				OrtherNotes = OrtherNotes
+			};
+
+			var jsonContent = new StringContent(JsonConvert.SerializeObject(checkoutData), Encoding.UTF8, "application/json");
+
+			try
+			{
+				// Gửi yêu cầu đăng nhập đến API
+				var response = await _httpClient.PostAsync("Orders/BuyNow", jsonContent);
+
+				// Kiểm tra xem phản hồi từ API có thành công không
+				if (response.IsSuccessStatusCode)
+				{
+					var content = await response.Content.ReadAsStringAsync();
+					var result = JsonConvert.DeserializeObject<dynamic>(content);
+
+					// Nếu đặt hàng thành công, chuyển đến trang xác nhận đơn hàng
+					return RedirectToAction("OrderConfirmation", new { orderId = result.OrderId });
+				}
+				else
+				{
+					// Nếu phản hồi từ API không thành công, hiển thị lỗi từ API
+					var errorContent = await response.Content.ReadAsStringAsync();
+					var error = JsonConvert.DeserializeObject<dynamic>(errorContent);
+					ViewBag.ErrorMessage = error?.message ?? "Đặt hàng không thành công.";  // Hiển thị lỗi từ API
+					return View();
+				}
+			}
+			catch (Exception ex)
+			{
+				// Xử lý lỗi nếu có
+				ViewBag.ErrorMessage = "Đã xảy ra lỗi trong quá trình gửi đơn hàng. Lỗi: " + ex.Message;
+				return View();
+			}
+		}
 		public async Task<IActionResult> Checkout()
 		{
 			try

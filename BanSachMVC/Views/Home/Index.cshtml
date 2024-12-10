@@ -149,7 +149,7 @@ Purchase:
 						@foreach (var itemDanhMuc in Model.Categories)
 						{
 							<li class="yamm-tfw menu-item menu-item-has-children animate-dropdown dropdown">
-								<a title="Computers &amp; Accessories" data-hover="dropdown" href="@Url.Action("Category", "Home", new { id = itemDanhMuc.CategoryId })" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">
+								<a title="Computers &amp; Accessories" data-hover="dropdown" href="@Url.Action("Category", "Book", new { id = itemDanhMuc.CategoryId })" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">
 									<i class="fa fa-user" aria-hidden="true"></i>
 									@itemDanhMuc.CategoryName
 								</a>
@@ -294,7 +294,8 @@ Purchase:
 				{
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 						<div class="ss_proadd_box">
-							<h2>@Html.ActionLink(itemSanPham.Title, "Category", new { id = itemSanPham.BookId })</h2>
+							<h2>@Html.ActionLink(itemSanPham.Title, "Detail", "Book", new { id = itemSanPham.BookId }, null)</h2>
+			
 							<p>
 								@itemSanPham.Title
 							</p>	<ins>$@itemSanPham.Price</ins>

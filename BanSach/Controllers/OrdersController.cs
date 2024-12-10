@@ -114,8 +114,65 @@ namespace BanSach.Controllers
             }
         }
 
+		[HttpPost("BuyNow")]
+		public async Task<IActionResult> BuyNow([FromBody] BuyNowRequestDTO request)
+		{
+			try
+			{
+				// 1. Lấy thông tin sách từ cơ sở dữ liệu
+				var book = await _context.Books.FirstOrDefaultAsync(b => b.BookId == request.BookId);
+				if (book == null)
+				{
+					return BadRequest("Sách không tồn tại.");
+				}
 
-        [HttpGet("All")]
+				// 2. Tính toán giá sau khi áp dụng giảm giá
+				var unitPriceAfterDiscount = book.Price - (book.Price * (book.Discount / 100));
+
+				decimal totalAmount = unitPriceAfterDiscount * request.Quantity;
+
+				// 3. Tạo đơn hàng mới
+				var order = new Order
+				{
+					UserId = request.UserId,
+					CustomerName = request.CustomerName,
+					OrderDate = DateTime.Now,
+					TotalAmount = totalAmount,
+					Address = request.Address,
+					PhoneNumber = request.PhoneNumber,
+					Email = request.Email,
+					OrtherNotes = request.OrtherNotes,
+					Status = "Pending"
+				};
+
+				_context.Orders.Add(order);
+				await _context.SaveChangesAsync(); // Lưu đơn hàng và lấy OrderId
+
+				// 4. Thêm thông tin sách vào bảng OrderItems
+				var orderItem = new OrderItem
+				{
+					OrderId = order.OrderId,
+					BookId = request.BookId,
+					Quantity = request.Quantity,
+					UnitPrice = unitPriceAfterDiscount
+				};
+
+				_context.OrderItems.Add(orderItem);
+				await _context.SaveChangesAsync();
+
+				// 5. Trả về thông tin thành công
+				return Ok(new { Message = "Đặt hàng thành công", OrderId = order.OrderId });
+			}
+			catch (Exception ex)
+			{
+				// Log lỗi chi tiết
+				return StatusCode(500, new { Message = "Đã xảy ra lỗi khi đặt hàng", Error = ex.Message });
+			}
+		}
+
+
+
+		[HttpGet("All")]
         public async Task<IActionResult> GetAllOrders(int page = 1, int pageSize = 10)
         {
             var totalOrders = await _context.Orders.CountAsync();

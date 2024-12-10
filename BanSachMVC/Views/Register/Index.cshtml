@@ -15,6 +15,20 @@
     <link rel="stylesheet" href="~/css/login.css">
 </head>
 <body>
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div style="color: red;">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div style="color: green;">
+            @TempData["SuccessMessage"]
+        </div>
+    }
     <div class="container">
         <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
@@ -23,7 +37,7 @@
                         <h5 class="card-title text-center mb-5 fw-light fs-5">ĐĂNG KÝ</h5>
                         <form action="/Register/Index" method="post" role="form">
                             <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="floatingInput" placeholder="Nhập tên" name="Name">
+                                <input type="text" class="form-control" id="floatingInput" placeholder="Nhập tên" name="Name">
                                 <label for="floatingInput">Tên</label>
                             </div>
                             <div class="form-floating mb-3">
