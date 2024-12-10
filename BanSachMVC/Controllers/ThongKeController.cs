@@ -27,7 +27,7 @@ namespace BanSachMVC.Controllers
                 // Thống kê doanh thu theo ngày
                 var revenueResponse = await _httpClient.GetAsync("ThongKe/revenue-by-date");
                 var revenueJson = await revenueResponse.Content.ReadAsStringAsync();
-                var revenueData = JsonConvert.DeserializeObject<List<RevenueStatisticsDTO>>(revenueJson);
+                var revenueData = JsonConvert.DeserializeObject<List<RevenueStatisticsDTO>>(revenueJson); 
 
                 // Thống kê đơn hàng theo trạng thái
                 var orderStatusResponse = await _httpClient.GetAsync("ThongKe/orders-by-status");
@@ -36,7 +36,7 @@ namespace BanSachMVC.Controllers
 
                 // Gửi dữ liệu JSON về ViewBag
                 ViewBag.BookStatistics = JsonConvert.SerializeObject(booksData);
-                ViewBag.RevenueStatistics = JsonConvert.SerializeObject(revenueData);
+                ViewBag.RevenueStatistics = JsonConvert.SerializeObject(revenueData); 
                 ViewBag.OrderStatistics = JsonConvert.SerializeObject(orderStatusData);
 
                 return View();

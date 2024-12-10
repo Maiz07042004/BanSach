@@ -31,17 +31,17 @@ namespace BanSachMVC.Controllers
 					return RedirectToAction("Index", "Login");
 				}
 
-				// Gọi API lấy giỏ hàng của người dùng
+				// Gọi API lấy giỏ hàng của người dùng bằng đường đẫn nếu userid là 1 thì sẽ là Carts/1
 				var response = await _httpClient.GetAsync($"Carts/{userId}");  // Sử dụng userId từ session
 
 				if (response.IsSuccessStatusCode)
 				{
-					// Đọc dữ liệu JSON từ phản hồi
+					// Đọc dữ liệu JSON từ phản hồi trả về dữ liệu dưới dạng JSON
 					var content = await response.Content.ReadAsStringAsync();
 
-					// Giải mã JSON thành đối tượng giỏ hàng
+					// Giải mã JSON thành đối tượng giỏ hàng là CartDTO kiểu như CartDTO là lớp đại diện cho giỏ hàng
 					var cart = JsonConvert.DeserializeObject<CartDTO>(content);
-					viewModel.Cart = cart;  // Giả sử ViewModel có thuộc tính Cart để lưu thông tin giỏ hàng
+					viewModel.Cart = cart;  // Giả sử ViewModel có thuộc tính Cart để lưu thông tin giỏ hàng (gắn dữ liệu vào view)
 				}
 				else
 				{
@@ -82,10 +82,13 @@ namespace BanSachMVC.Controllers
 		{
 			try
 			{
+				// lấy userid của người dùng từ session
 				var userId = HttpContext.Session.GetInt32("UserId");
-
+				//tạo đối tượng có id và quantity để gửi tới API
 				var data = new { idBook = request.idBook, quantity = request.quantity };
+				//chuyển đối tượng  thành chuỗi JSON
 				var jsonContent = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
+				//gửi yêu cầu PUT tới API để cập nhật lại giỏ hàng khi thay đổi số lượng, userid để biết được giỏ hàng của người dùng nào cần cập nhật
 				var response = await _httpClient.PutAsync($"Carts/update/{userId}", jsonContent);
 				if (response.IsSuccessStatusCode)
 				{
@@ -344,7 +347,7 @@ namespace BanSachMVC.Controllers
 				return RedirectToAction("Index", "Login");  // Nếu không có UserId thì chuyển đến trang đăng nhập
 			}
 
-			// Tạo đối tượng CheckoutRequestDTO
+			// Tạo đối tượng CheckoutRequestDTO để gửi đến Api 
 			var checkoutData = new CheckoutRequestDTO
 			{
 				UserId = (int)userId,  // Lấy UserId từ Session
@@ -354,12 +357,12 @@ namespace BanSachMVC.Controllers
 				PhoneNumber = PhoneNumber,
 				OrtherNotes = OrtherNotes
 			};
-
+			// StringContent là để đóng gói chuỗi JSON
 			var jsonContent = new StringContent(JsonConvert.SerializeObject(checkoutData), Encoding.UTF8, "application/json");
 
 			try
 			{
-				// Gửi yêu cầu đăng nhập đến API
+				// Gửi yêu cầu đăng nhập đến API với địa chỉ Orders/Checkout nội dung đơn hàng được gửi đi trong jsonContent
 				var response = await _httpClient.PostAsync("Orders/Checkout", jsonContent);
 
 				// Kiểm tra xem phản hồi từ API có thành công không
@@ -390,6 +393,7 @@ namespace BanSachMVC.Controllers
 
 		public async Task<IActionResult> OrderConfirmation(int orderId)
 		{
+			// gắn giá trị cho view để hiển thị
 			ViewBag.orderId = orderId;
 			return View(orderId);
 		}

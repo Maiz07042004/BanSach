@@ -165,50 +165,75 @@ namespace BanSachMVC.Controllers
 				return View("Error");
 			}
 		}
-		[HttpGet("Book/Detail/{BookId}")]
-		public async Task<IActionResult> BookDetail(int BookId)
-		{ 
-			var viewModel = new BookDetailViewModel();
-			int categoryId;
-			var response = await _httpClient.GetAsync($"Books/{BookId}");
-			if (response.IsSuccessStatusCode)
-			{
-				var content = await response.Content.ReadAsStringAsync();
-				var booksData = JsonConvert.DeserializeObject<Book>(content);
-				viewModel.Book = booksData;
-				categoryId = booksData.Category.CategoryId;
+        [HttpGet("Book/Detail/{BookId}")]
+        public async Task<IActionResult> BookDetail(int BookId)
+        {
+            var viewModel = new BookDetailViewModel();
+            try
+            {
+                int categoryId;
+
+                // Lấy chi tiết sách
+                var response = await _httpClient.GetAsync($"Books/{BookId}");
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    var booksData = JsonConvert.DeserializeObject<Book>(content);
+                    viewModel.Book = booksData;
+                    categoryId = booksData.Category.CategoryId;
+
+                    // Lấy danh sách sách cùng thể loại
+                    var listBooksResponse = await _httpClient.GetAsync($"Books/Category/{categoryId}");
+                    if (listBooksResponse.IsSuccessStatusCode)
+                    {
+                        var content2 = await listBooksResponse.Content.ReadAsStringAsync();
+                        var booksData2 = JsonConvert.DeserializeObject<List<Book>>(content2);
+                        viewModel.ListBooks = booksData2;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Error fetching books by category: {listBooksResponse.StatusCode}");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine($"Error fetching book details: {response.StatusCode}");
+                }
+
+                // Lấy danh mục sách
+                var categoryResponse = await _httpClient.GetAsync("Categories");
+                if (categoryResponse.IsSuccessStatusCode)
+                {
+                    var content = await categoryResponse.Content.ReadAsStringAsync();
+                    var categoriesData = JsonConvert.DeserializeObject<List<Category>>(content);
+                    viewModel.Categories = categoriesData;
+                }
+                else
+                {
+                    Console.WriteLine($"Error fetching categories: {categoryResponse.StatusCode}");
+                }
+
+                // Lấy thông tin người dùng từ session
+                if ((HttpContext.Session.GetInt32("UserId")) != null &&
+                    !string.IsNullOrEmpty(HttpContext.Session.GetString("UserName")))
+                {
+                    var userId = HttpContext.Session.GetInt32("UserId");
+                    var userName = HttpContext.Session.GetString("UserName");
+                    ViewBag.UserId = userId;
+                    ViewBag.UserName = userName;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception occurred: {ex.Message}");
+                return View("Error");
+            }
+
+            return View(viewModel);
+        }
 
 
-				var listBooksResponse = await _httpClient.GetAsync($"Books/Category/{categoryId}");
-				if (listBooksResponse.IsSuccessStatusCode)
-				{
-					var content2 = await listBooksResponse.Content.ReadAsStringAsync();
-					var booksData2 = JsonConvert.DeserializeObject<List<Book>>(content2);
-					viewModel.ListBooks = booksData2;
-				}
-			}
-			
-			var categoryResponse = await _httpClient.GetAsync("Categories");
-			if (categoryResponse.IsSuccessStatusCode)
-			{
-				var content = await categoryResponse.Content.ReadAsStringAsync();
-				var categoriesData = JsonConvert.DeserializeObject<List<Category>>(content);
-				viewModel.Categories = categoriesData;
-			}
-			if ((HttpContext.Session.GetInt32("UserId")) != null &&
-					!string.IsNullOrEmpty(HttpContext.Session.GetString("UserName")))
-			{
-				var userId = HttpContext.Session.GetInt32("UserId");
-				var userName = HttpContext.Session.GetString("UserName");
-				ViewBag.UserId = userId;
-				ViewBag.UserName = userName;
-
-				// Tiếp tục xử lý với userId và userName
-			}
-			return View(viewModel);
-		}
-
-		[HttpGet]
+        [HttpGet]
 		public async Task<IActionResult> Search(string query, int page = 1, int pageSize = 12)
 		{
 			try
